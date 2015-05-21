@@ -15,8 +15,8 @@ Run the program cc.exe via command line (I recommend to put it somewhere in %PAT
 
 ### Example usage:
 
-* cc (-(21.433*0.46+75)+4*5.775/94-1)
-* Output> -85,6134353191489
+* Input > "cc (-(21.433*0.46+75)+4*5.775/94-1)"
+* Output> "-85,6134353191489"
 
 NB: Please note that the exponential function technically exists put the character is escaped by windows CMD 
     use enclosing " signs in your equation to avoid this ( i.e. "(2^3)3" )
