@@ -1,0 +1,35 @@
+﻿Build started 21.05.2015 21:52:38.
+     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_DLL\CCalc_DLL.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IF:\Coding\VSTUDIO\ComplexCalc\\CCalc_Core\ /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D CCALC_DLL /D _MBCS /D _WINDLL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\CCalc_Core\CAbstractEq.cpp ..\CCalc_Core\CAddEq.cpp ..\CCalc_Core\CChainEq.cpp ..\CCalc_Core\CConstEq.cpp ..\CCalc_Core\CDivEq.cpp ..\CCalc_Core\CEqParser.cpp ..\CCalc_Core\CExpEq.cpp ..\CCalc_Core\CMplEq.cpp ..\CCalc_Core\CSubEq.cpp ccalc_dll.cpp
+         CAbstractEq.cpp
+         CAddEq.cpp
+         CChainEq.cpp
+         CConstEq.cpp
+         CDivEq.cpp
+         CEqParser.cpp
+         CExpEq.cpp
+         CMplEq.cpp
+         CSubEq.cpp
+         ccalc_dll.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.lib" /MACHINE:X86 /SAFESEH /DLL Release\CAbstractEq.obj
+         Release\CAddEq.obj
+         Release\CChainEq.obj
+         Release\CConstEq.obj
+         Release\CDivEq.obj
+         Release\CEqParser.obj
+         Release\CExpEq.obj
+         Release\CMplEq.obj
+         Release\CSubEq.obj
+         Release\ccalc_dll.obj
+            Creating library F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.lib and object F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.exp
+         Generating code
+         Finished generating code
+         CCalc_DLL.vcxproj -> F:\Coding\VSTUDIO\ComplexCalc\Release\lib\ccalc.dll
+     1>Done Building Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_DLL\CCalc_DLL.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.56

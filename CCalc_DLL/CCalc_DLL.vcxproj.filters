@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{e316d728-f040-4230-ac63-400edfbe96b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLL">
+      <UniqueIdentifier>{3145dc02-f3b2-4e6b-8a92-a5de9d3070e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CCalc_Core\CAbstractEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CAddEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CChainEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CConstEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CDivEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CEqParser.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CExpEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CMplEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CSubEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ccalc_dll.cpp">
+      <Filter>DLL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CCalc_Core\CAbstractEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CAddEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CChainEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CConstEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CDivEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CEqParser.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CExpEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CMplEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CSubEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ccalc_dll.h">
+      <Filter>DLL</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

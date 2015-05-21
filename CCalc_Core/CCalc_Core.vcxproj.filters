@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Equations">
+      <UniqueIdentifier>{6ba302bd-291d-4ea3-afb9-28ba813d12c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Constant">
+      <UniqueIdentifier>{6a9d5a19-0b65-4c01-aca0-1509ce57b200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{979e41d6-6f7a-4ea4-8097-2e46984974fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Addition">
+      <UniqueIdentifier>{0d95af8c-d634-4409-a0f4-d27a91ca527d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Subtraction">
+      <UniqueIdentifier>{63ef06f2-2d5a-4d1c-8cbd-c5e15cef99de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Muliplication">
+      <UniqueIdentifier>{c5aae8e4-77f6-4e21-b5aa-0182b4a710e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Division">
+      <UniqueIdentifier>{3ea5d089-acac-4af5-8886-2ebe3753da4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Chain">
+      <UniqueIdentifier>{63f4e101-8968-4d55-b974-3f5240040de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Parser">
+      <UniqueIdentifier>{847c4dbf-ae4e-4b89-bb92-42eec6fd66aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Exponential">
+      <UniqueIdentifier>{79577ebd-1f53-4932-9668-7f8ef3717b3f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CAbstractEq.cpp">
+      <Filter>Equations</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstEq.cpp">
+      <Filter>Equations\Constant</Filter>
+    </ClCompile>
+    <ClCompile Include="CAddEq.cpp">
+      <Filter>Equations\Addition</Filter>
+    </ClCompile>
+    <ClCompile Include="CSubEq.cpp">
+      <Filter>Equations\Subtraction</Filter>
+    </ClCompile>
+    <ClCompile Include="CMplEq.cpp">
+      <Filter>Equations\Muliplication</Filter>
+    </ClCompile>
+    <ClCompile Include="CDivEq.cpp">
+      <Filter>Equations\Division</Filter>
+    </ClCompile>
+    <ClCompile Include="CChainEq.cpp">
+      <Filter>Equations\Chain</Filter>
+    </ClCompile>
+    <ClCompile Include="CEqParser.cpp">
+      <Filter>Equations\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CExpEq.cpp">
+      <Filter>Equations\Exponential</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CAbstractEq.h">
+      <Filter>Equations</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstEq.h">
+      <Filter>Equations\Constant</Filter>
+    </ClInclude>
+    <ClInclude Include="CAddEq.h">
+      <Filter>Equations\Addition</Filter>
+    </ClInclude>
+    <ClInclude Include="CSubEq.h">
+      <Filter>Equations\Subtraction</Filter>
+    </ClInclude>
+    <ClInclude Include="CMplEq.h">
+      <Filter>Equations\Muliplication</Filter>
+    </ClInclude>
+    <ClInclude Include="CDivEq.h">
+      <Filter>Equations\Division</Filter>
+    </ClInclude>
+    <ClInclude Include="CChainEq.h">
+      <Filter>Equations\Chain</Filter>
+    </ClInclude>
+    <ClInclude Include="CEqParser.h">
+      <Filter>Equations\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CExpEq.h">
+      <Filter>Equations\Exponential</Filter>
+    </ClInclude>
+    <ClInclude Include="DBOUT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
