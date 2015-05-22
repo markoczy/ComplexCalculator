@@ -43,6 +43,12 @@
     <Filter Include="Equations\Exponential">
       <UniqueIdentifier>{79577ebd-1f53-4932-9668-7f8ef3717b3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{abd231d2-8e47-4d15-8dc7-90eafe5341f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Functions\Bult-in Functions">
+      <UniqueIdentifier>{344fe43a-35c9-436d-ab03-13fd31bc9c86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAbstractEq.cpp">
@@ -75,6 +81,15 @@
     <ClCompile Include="CExpEq.cpp">
       <Filter>Equations\Exponential</Filter>
     </ClCompile>
+    <ClCompile Include="CVarEq.cpp">
+      <Filter>Equations</Filter>
+    </ClCompile>
+    <ClCompile Include="CFunctionsPool.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="CFcnChainEq.cpp">
+      <Filter>Functions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h">
@@ -106,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="DBOUT.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CVarEq.h">
+      <Filter>Equations</Filter>
+    </ClInclude>
+    <ClInclude Include="CFunctionsPool.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="CFcnChainEq.h">
+      <Filter>Functions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

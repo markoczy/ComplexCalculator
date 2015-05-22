@@ -9,3 +9,6 @@ F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\$(SolutionDir)\Release\CCalc_CS.exe
 F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\$(SolutionDir)\Release\CCalc_CS.pdb
 F:\Coding\VSTUDIO\ComplexCalc\Release\CCalc_CS.exe
 F:\Coding\VSTUDIO\ComplexCalc\Release\CCalc_CS.pdb
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\CCalc_CS.Properties.Resources.resources
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\CCalc_CS.csproj.GenerateResource.Cache
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\CCalc_CS.csprojResolveAssemblyReference.cache

@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-	CEqParser parser;
+	/*CEqParser parser;
 
 	if (argc == 2)
 	{
@@ -21,8 +21,25 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "Error: Argument count not matching: " << argc << std::endl;
 		return -1;
-	}
+	}*/
 
-	//std::cin.get();
+
+	CFcnChainEq eq;
+
+	// 2+3+x+y
+	// x=20
+	// y=50
+
+	eq.addOperation(new CConstEq(2), eOpType::ADD_EQ);
+	eq.addOperation(new CConstEq(3), eOpType::ADD_EQ);
+	eq.addOperation(new CVarEq("x"), eOpType::ADD_EQ);
+	eq.addOperation(new CVarEq("y"), eOpType::CONST_EQ);
+
+	eq.setVar("x", 20);
+	eq.setVar("y", 50);
+
+	std::cout << "Value = " << eq.getValue() << std::endl;
+
+	std::cin.get();
 
 }

@@ -77,8 +77,11 @@
     <ClCompile Include="CConstEq.cpp" />
     <ClCompile Include="CDivEq.cpp" />
     <ClCompile Include="CExpEq.cpp" />
+    <ClCompile Include="CFcnChainEq.cpp" />
+    <ClCompile Include="CFunctionsPool.cpp" />
     <ClCompile Include="CMplEq.cpp" />
     <ClCompile Include="CSubEq.cpp" />
+    <ClCompile Include="CVarEq.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="CEqParser.cpp" />
   </ItemGroup>
@@ -89,9 +92,12 @@
     <ClInclude Include="CConstEq.h" />
     <ClInclude Include="CDivEq.h" />
     <ClInclude Include="CExpEq.h" />
+    <ClInclude Include="CFcnChainEq.h" />
+    <ClInclude Include="CFunctionsPool.h" />
     <ClInclude Include="CMplEq.h" />
     <ClInclude Include="CSubEq.h" />
     <ClInclude Include="CEqParser.h" />
+    <ClInclude Include="CVarEq.h" />
     <ClInclude Include="DBOUT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

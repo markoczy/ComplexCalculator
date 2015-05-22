@@ -36,19 +36,18 @@ void CChainEq::clear()
 {
 	DBOUT("Called clear ops Size = " << ops.size());
 
-	
 	// Delete Pointers
 	while (ops.size()>0)
 	{
 		eOpType op = ops.at(0).value->getEqType();
 
-		if (op == eOpType::CONST_EQ)
+		if (op == eOpType::CONST_EQ) // TODO: Others??
 		{
 			DBOUT("Deleting normal");
 			CConstEq* eq = (CConstEq*)ops.at(0).value;
 			delete eq;
 		}
-		else if (op == eOpType::CHAIN_EQ)
+		else if (op == eOpType::CHAIN_EQ || op == eOpType::FCN_CH_EQ)
 		{
 			DBOUT("Deleting chain");
 			CChainEq* chain = (CChainEq*)ops.at(0).value;
@@ -57,44 +56,8 @@ void CChainEq::clear()
 		}
 		
 		ops.erase(ops.begin());
-		/*switch (ops.at(0).value->getEqType())
-		{
-			case eOpType::NULL_EQ:
-			case eOpType::CONST_EQ:
-				DBOUT("Deleting normal");
-				if (true)
-				{
-					CConstEq* eq = (CConstEq*)ops.at(0).value;
-					delete eq;
-				}
-				break;
-			case eOpType::ADD_EQ:
-			case eOpType::SUB_EQ:
-			case eOpType::MPL_EQ:
-			case eOpType::DIV_EQ:
-			case eOpType::EXP_EQ:
-				DBOUT("Deleting normal");
-				if (true)
-				{
-					CAbstractEq* eq = (CAbstractEq*)ops.at(0).value;
-					delete eq;
-				}
-				break;
-			case eOpType::CHAIN_EQ:
-				DBOUT("Deleting chain");
-				if (true)
-				{
-					CChainEq* chain = (CChainEq*)ops.at(0).value;
-					chain->clear();
-					delete ops.at(0).value;
-				}
-				break;
-			default:
-				EROUT("Found unhandled operation Type: " << ops.at(0).value->getEqType());
-				break;
-		}*/
+		
 	}
-	//ops.clear();
 }
 
 double CChainEq::getValue()

@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace CCalc_CS
 {
     class Program
     {
+        [STAThreadAttribute]
         static void Main(string[] args)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            
             //CEqParser parser;
             CCalc cc=new CCalc();
 
@@ -23,10 +30,13 @@ namespace CCalc_CS
 			        return;
 		        }
 		
-		        double finalVal = cc.parse(args[0]);
+		        double d = cc.parse(args[0]);
                 //std::cout.precision(15);
 
-                Console.WriteLine(finalVal.ToString());
+                string str = d.ToString();
+
+                Clipboard.SetText("Test");
+                Console.WriteLine(str);
                 //std::cout<< finalVal << std::endl;
 	        }
 	        else

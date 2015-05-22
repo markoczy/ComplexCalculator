@@ -1,16 +1,19 @@
-﻿Build started 21.05.2015 19:24:04.
+﻿Build started 22.05.2015 23:50:10.
      1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 3 (Rebuild target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Release\) contains files shared from another project (CPP_REqCpu.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CDivEq.cpp CExpEq.cpp CMplEq.cpp CSubEq.cpp Main.cpp CEqParser.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CDivEq.cpp CExpEq.cpp CFcnChainEq.cpp CFunctionsPool.cpp CMplEq.cpp CSubEq.cpp CVarEq.cpp Main.cpp CEqParser.cpp
          CAbstractEq.cpp
          CAddEq.cpp
          CChainEq.cpp
          CConstEq.cpp
          CDivEq.cpp
          CExpEq.cpp
+         CFcnChainEq.cpp
+         CFunctionsPool.cpp
          CMplEq.cpp
          CSubEq.cpp
+         CVarEq.cpp
          Main.cpp
          CEqParser.cpp
        Link:
@@ -20,8 +23,11 @@
          Release\CConstEq.obj
          Release\CDivEq.obj
          Release\CExpEq.obj
+         Release\CFcnChainEq.obj
+         Release\CFunctionsPool.obj
          Release\CMplEq.obj
          Release\CSubEq.obj
+         Release\CVarEq.obj
          Release\Main.obj
          Release\CEqParser.obj
          Generating code
@@ -31,4 +37,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.60
+Time Elapsed 00:00:03.54

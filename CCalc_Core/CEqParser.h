@@ -7,6 +7,8 @@
 #include "CExpEq.h"
 #include "CChainEq.h"
 
+#include "CFunctionsPool.h"
+
 #include <string>
 
 /**

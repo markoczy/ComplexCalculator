@@ -36,7 +36,7 @@ public:
 	virtual void addOperation(CAbstractEq* value, eOpType oper);
 	virtual void clear();
 
-private:
+protected:
 	std::vector<SOperation> ops;
 
 	static bool _solveOp(std::vector<SOperation> &vec, int it);

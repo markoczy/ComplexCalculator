@@ -9,15 +9,16 @@
 */
 enum eOpType
 {
-	NULL_EQ		= 0,
-	CONST_EQ	= 1,
-	ADD_EQ		= 2,
-	SUB_EQ		= 3,
-	MPL_EQ		= 4,
-	DIV_EQ		= 5,
-	EXP_EQ		= 6,
-	FCN_EQ		= 7, // nyi
-	CHAIN_EQ	= 8
+	NULL_EQ		= 0, // unset value
+	CONST_EQ	= 1, // constant double
+	VAR_EQ		= 2, // variable (for functions)
+	ADD_EQ		= 3, // add operation
+	SUB_EQ		= 4, // subtraction
+	MPL_EQ		= 5, // multiplication
+	DIV_EQ		= 6, // division
+	EXP_EQ		= 7, // exponential
+	CHAIN_EQ	= 9, // linear chain equation
+	FCN_CH_EQ	= 8	 // function chain
 };
 
 class CAbstractEq
