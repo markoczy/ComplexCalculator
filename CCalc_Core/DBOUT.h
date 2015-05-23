@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 
 #ifdef _MYDBG_

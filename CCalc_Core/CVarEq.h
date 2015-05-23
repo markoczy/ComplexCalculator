@@ -13,10 +13,14 @@ public:
 
 	virtual bool hasValue();
 
+	// @override
 	virtual double getValue();
 
 protected:
+	
 	bool valExists = false;
-	double value = 0;
+	
+	double value;
+
 	std::string name;
 };

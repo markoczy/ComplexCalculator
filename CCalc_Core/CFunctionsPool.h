@@ -9,7 +9,7 @@
 class CFunctionsPool
 {
 public:
-	bool parseFunctionString(std::string function);
+	bool defineFunction(std::string function);
 	bool loadFunctionsDb(std::string path);
 
 private:

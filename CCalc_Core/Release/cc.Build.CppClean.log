@@ -3,11 +3,13 @@ f:\coding\vstudio\complexcalc\ccalc_core\release\ceqparser.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\main.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cvareq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\csubeq.obj
+f:\coding\vstudio\complexcalc\ccalc_core\release\cparsedfcneq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cmpleq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cfunctionspool.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cfcnchaineq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cexpeq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cdiveq.obj
+f:\coding\vstudio\complexcalc\ccalc_core\release\cc_common.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cconsteq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\cchaineq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\release\caddeq.obj

@@ -8,18 +8,18 @@ bool CEqParser::validate(std::string equation)
 	{
 		char chr = equation.at(i);
 
-		if (!_validateChar(chr))
+		if (!cc::validateChar(chr))
 		{
 			std::cout << "Found invalid char: " << chr << std::endl;
 			return false;
 		}
 
-		if (_isParOpen(chr))
+		if (cc::isParOpen(chr))
 		{
 			paranthOpen++;
 			continue;
 		}
-		else if (_isParClose(chr))
+		else if (cc::isParClose(chr))
 		{
 			paranthOpen--;
 			continue;
@@ -43,60 +43,6 @@ double CEqParser::parse(std::string equation)
 	return rVal;
 }
 
-
-bool CEqParser::_isParOpen(char chr)
-{
-	return chr=='(';
-}
-
-bool CEqParser::_isParClose(char chr)
-{
-	return chr == ')';
-}
-
-bool CEqParser::_isDecimal(char chr)
-{
-	for (int i = 0; i < DECIMALS_COUNT; i++)
-	{
-		if (chr == DECIMALS[i]) return true;
-	}
-
-	return false;
-}
-
-bool CEqParser::_isOperator(char chr)
-{
-	for (int i = 0; i < OPS_COUNT; i++)
-	{
-		if (chr == OPS[i]) return true;
-	}
-
-	return false;
-}
-
-eOpType CEqParser::_parseOperator(char chr)
-{
-	switch (chr)
-	{
-	case '+':
-		return eOpType::ADD_EQ;
-		break;
-	case '-':
-		return eOpType::SUB_EQ;
-		break;
-	case '/':
-		return eOpType::DIV_EQ;
-		break;
-	case '*':
-		return eOpType::MPL_EQ;
-		break;
-	case '^':
-		return eOpType::EXP_EQ;
-		break;
-	default:
-		return eOpType::NULL_EQ;
-	}
-}
 
 CAbstractEq* CEqParser::_parse(std::string &eq)
 {
@@ -136,7 +82,7 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 
 			// Activate Operation reader 
 			// (means: create new linear Equation)
-			if (_isParOpen(chr))
+			if (cc::isParOpen(chr))
 			{
 				opReaderActive = true;
 			}
@@ -159,7 +105,7 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 			//////////////////////// NUMBERS ////////////////////////
 
 			// Check Decimals
-			bool isDecimal = _isDecimal(chr);
+			bool isDecimal = cc::isDecimal(chr);
 
 			// If no more decimals found:
 			// Set flag to create number
@@ -188,7 +134,7 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 			}
 
 			// Look for negative nums
-			if (!hasNumber && _parseOperator(chr) == SUB_EQ)
+			if (!hasNumber && cc::parseOperator(chr) == SUB_EQ)
 			{
 				//std::cout << "Setting negate(true)" << std::endl;
 				negateParam = true;
@@ -197,9 +143,9 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 			/////////////////////// OPERATORS ///////////////////////
 
 			// If found Operator -> set
-			if (_isOperator(chr))
+			if (cc::isOperator(chr))
 			{
-				op = _parseOperator(chr);
+				op = cc::parseOperator(chr);
 			}
 			// Default Operators if paranthesis found
 			// And number alrdy defined
@@ -234,12 +180,12 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 		{
 			////////////////////// SUBEQUATIONS /////////////////////
 
-			if (_isParOpen(chr))
+			if (cc::isParOpen(chr))
 			{
 				parCount++;
 			}
 
-			if (_isParClose(chr))
+			if (cc::isParClose(chr))
 			{
 				parCount--;
 			}
@@ -289,36 +235,3 @@ CAbstractEq* CEqParser::_parse(std::string &eq)
 	return rVal;
 }
 
-bool CEqParser::_validateChar(char chr)
-{
-	for (int i = 0; i < DECIMALS_COUNT; i++)
-	{
-		if (chr == DECIMALS[i])
-		{
-			return true;
-		}
-	}
-	
-	for (int i = 0; i < OPS_COUNT;i++)
-	{
-		if (chr==OPS[i])
-		{
-			return true;
-		}
-	}
-
-	for (int i = 0; i < ALPHAS_COUNT; i++)
-	{
-		if (chr == ALPHAS[i])
-		{
-			return true;
-		}
-	}
-
-	if (chr == ')' || chr == '(')
-	{
-		return true;
-	}
-
-	return false;
-}

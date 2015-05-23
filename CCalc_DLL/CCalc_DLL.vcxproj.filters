@@ -51,6 +51,9 @@
     <ClCompile Include="ccalc_dll.cpp">
       <Filter>DLL</Filter>
     </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CC_Common.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CCalc_Core\CAbstractEq.h">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="ccalc_dll.h">
       <Filter>DLL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CC_Common.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

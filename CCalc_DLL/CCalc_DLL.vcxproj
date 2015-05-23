@@ -87,6 +87,7 @@
     <ClInclude Include="..\CCalc_Core\CAddEq.h" />
     <ClInclude Include="..\CCalc_Core\CChainEq.h" />
     <ClInclude Include="..\CCalc_Core\CConstEq.h" />
+    <ClInclude Include="..\CCalc_Core\CC_Common.h" />
     <ClInclude Include="..\CCalc_Core\CDivEq.h" />
     <ClInclude Include="..\CCalc_Core\CEqParser.h" />
     <ClInclude Include="..\CCalc_Core\CExpEq.h" />
@@ -99,6 +100,7 @@
     <ClCompile Include="..\CCalc_Core\CAddEq.cpp" />
     <ClCompile Include="..\CCalc_Core\CChainEq.cpp" />
     <ClCompile Include="..\CCalc_Core\CConstEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CC_Common.cpp" />
     <ClCompile Include="..\CCalc_Core\CDivEq.cpp" />
     <ClCompile Include="..\CCalc_Core\CEqParser.cpp" />
     <ClCompile Include="..\CCalc_Core\CExpEq.cpp" />

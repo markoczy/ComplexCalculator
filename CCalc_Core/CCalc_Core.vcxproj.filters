@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -37,17 +29,26 @@
     <Filter Include="Equations\Chain">
       <UniqueIdentifier>{63f4e101-8968-4d55-b974-3f5240040de3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Equations\Parser">
-      <UniqueIdentifier>{847c4dbf-ae4e-4b89-bb92-42eec6fd66aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Equations\Exponential">
       <UniqueIdentifier>{79577ebd-1f53-4932-9668-7f8ef3717b3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Functions">
+    <Filter Include="Utility">
+      <UniqueIdentifier>{2b260507-3515-4180-97cf-cef6a585f483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
+      <UniqueIdentifier>{847c4dbf-ae4e-4b89-bb92-42eec6fd66aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Functions">
       <UniqueIdentifier>{abd231d2-8e47-4d15-8dc7-90eafe5341f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Functions\Bult-in Functions">
+    <Filter Include="Equations\Functions\Bult-in Functions">
       <UniqueIdentifier>{344fe43a-35c9-436d-ab03-13fd31bc9c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Functions\Data Structure">
+      <UniqueIdentifier>{b2859473-720e-40f3-b8d1-81ce633c0e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Functions\Data Structure\Chain">
+      <UniqueIdentifier>{6b1287d1-1811-4a66-adda-323681f8a641}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +77,7 @@
       <Filter>Equations\Chain</Filter>
     </ClCompile>
     <ClCompile Include="CEqParser.cpp">
-      <Filter>Equations\Parser</Filter>
+      <Filter>Parser</Filter>
     </ClCompile>
     <ClCompile Include="CExpEq.cpp">
       <Filter>Equations\Exponential</Filter>
@@ -85,10 +86,16 @@
       <Filter>Equations</Filter>
     </ClCompile>
     <ClCompile Include="CFunctionsPool.cpp">
-      <Filter>Functions</Filter>
+      <Filter>Equations\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="CC_Common.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="CParsedFcnEq.cpp">
+      <Filter>Equations\Functions\Data Structure</Filter>
     </ClCompile>
     <ClCompile Include="CFcnChainEq.cpp">
-      <Filter>Functions</Filter>
+      <Filter>Equations\Functions\Data Structure\Chain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,22 +121,28 @@
       <Filter>Equations\Chain</Filter>
     </ClInclude>
     <ClInclude Include="CEqParser.h">
-      <Filter>Equations\Parser</Filter>
+      <Filter>Parser</Filter>
     </ClInclude>
     <ClInclude Include="CExpEq.h">
       <Filter>Equations\Exponential</Filter>
-    </ClInclude>
-    <ClInclude Include="DBOUT.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CVarEq.h">
       <Filter>Equations</Filter>
     </ClInclude>
     <ClInclude Include="CFunctionsPool.h">
-      <Filter>Functions</Filter>
+      <Filter>Equations\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="CC_Common.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DBOUT.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="CParsedFcnEq.h">
+      <Filter>Equations\Functions\Data Structure</Filter>
     </ClInclude>
     <ClInclude Include="CFcnChainEq.h">
-      <Filter>Functions</Filter>
+      <Filter>Equations\Functions\Data Structure\Chain</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

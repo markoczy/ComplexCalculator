@@ -23,6 +23,7 @@ bool CVarEq::hasValue()
 	return valExists;
 }
 
+// @override
 double CVarEq::getValue()
 {
 	return value;

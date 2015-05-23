@@ -9,16 +9,30 @@
 */
 enum eOpType
 {
-	NULL_EQ		= 0, // unset value
-	CONST_EQ	= 1, // constant double
-	VAR_EQ		= 2, // variable (for functions)
-	ADD_EQ		= 3, // add operation
-	SUB_EQ		= 4, // subtraction
-	MPL_EQ		= 5, // multiplication
-	DIV_EQ		= 6, // division
-	EXP_EQ		= 7, // exponential
-	CHAIN_EQ	= 9, // linear chain equation
-	FCN_CH_EQ	= 8	 // function chain
+	//////////////////////////////////////////////////
+	// 100+  : Single Operations (e.g. Constant)	//
+	// 200+  : Dual Operations (e.g. Add)			//
+	// 300+  : Built-in functions					//
+	// 1000+ : Chains								//
+	// 2000+ : Special								//
+	//////////////////////////////////////////////////
+	NULL_EQ		= 0,	// unset value				//
+	//////////////////////////////////////////////////
+	CONST_EQ	= 101,	// constant (double)		//
+	VAR_EQ		= 102,	// variable (for functions)	//
+	//////////////////////////////////////////////////
+	ADD_EQ		= 201,	// addition					//
+	SUB_EQ		= 202,	// subtraction				//
+	MPL_EQ		= 203,	// multiplication			//
+	DIV_EQ		= 204,	// division					//
+	//////////////////////////////////////////////////
+	EXP_EQ		= 301,	// exponential function		//
+	//////////////////////////////////////////////////
+	CHAIN_EQ	= 1000, // linear chain equation	//
+	FCN_CH_EQ	= 1001,	// function chain			//
+	//////////////////////////////////////////////////
+	FCN_EQ		= 2000	// parsed function			//
+	//////////////////////////////////////////////////
 };
 
 class CAbstractEq
