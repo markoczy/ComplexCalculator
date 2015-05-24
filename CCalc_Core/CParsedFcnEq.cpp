@@ -67,6 +67,12 @@ void CParsedFcnEq::addOperation(CAbstractEq* value, eOpType oper)
 	return fcnEq.addOperation(value, oper);
 }
 
+std::string CParsedFcnEq::getName()
+{
+	return this->fcnName;
+}
+
+
 // @override
 double CParsedFcnEq::getValue()
 {

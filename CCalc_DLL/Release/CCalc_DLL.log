@@ -1,4 +1,4 @@
-﻿Build started 23.05.2015 20:03:59.
+﻿Build started 24.05.2015 15:07:34.
      1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_DLL\CCalc_DLL.vcxproj" on node 2 (Rebuild target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
@@ -34,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.90
+Time Elapsed 00:00:05.23

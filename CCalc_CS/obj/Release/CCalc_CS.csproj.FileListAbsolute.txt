@@ -11,3 +11,4 @@ F:\Coding\VSTUDIO\ComplexCalc\Release\cc.exe
 F:\Coding\VSTUDIO\ComplexCalc\Release\cc.pdb
 F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\cc.exe
 F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\cc.pdb
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_CS\obj\Release\CCalc_CS.csprojResolveAssemblyReference.cache

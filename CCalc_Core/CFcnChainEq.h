@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "CVarEq.h"
+#include "CAbstractFcnEq.h"
 #include "CChainEq.h"
 
 class CFcnChainEq : public CChainEq
@@ -33,8 +34,14 @@ protected:
 
 	// The child operation chains
 	// are stored in an array for quick access
-	std::vector<CFcnChainEq*> fcnFields;
-	
+	std::vector<CFcnChainEq*> fcnChnFields;
+
+	// fcnFields
+	std::vector<CAbstractFcnEq*> fcnFields;
+
+	////////////////////////////////////////////////////// TODO: Function superclass
+	//std::vector<CFcnChainEq*> fcnFields;
+
 	bool solvable = false;
 
 };

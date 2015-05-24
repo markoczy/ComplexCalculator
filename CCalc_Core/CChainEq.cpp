@@ -180,8 +180,12 @@ int CChainEq::_getCountOf(std::vector<SOperation> &vec, eOpType op)
 
 int CChainEq::_getFirstOf(std::vector<SOperation> &vec, eOpType op)
 {
-	int first = 0;
+	if (vec.size() < 1)
+	{
+		return -1;
+	}
 
+	int first = 0;
 	for (unsigned int i = 0; i < vec.size(); i++)
 	{
 		if (vec.at(i).conOp == op)

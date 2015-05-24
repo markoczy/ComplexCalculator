@@ -1,5 +1,8 @@
 #include "CC_Common.h"
 
+
+/////////////////////////// NAMESPACE: "cc" ///////////////////////////////////
+//
 bool cc::isDecimal(char chr)
 {
 	for (int i = 0; i < DECIMALS_COUNT; i++)
@@ -9,7 +12,17 @@ bool cc::isDecimal(char chr)
 
 	return false;
 }
+//
+bool cc::isAlpha(char chr)
+{
+	for (int i = 0; i < ALPHAS_COUNT; i++)
+	{
+		if (chr == ALPHAS[i]) return true;
+	}
 
+	return false;
+}
+//
 bool cc::isOperator(char chr)
 {
 	for (int i = 0; i < OPS_COUNT; i++)
@@ -19,17 +32,27 @@ bool cc::isOperator(char chr)
 
 	return false;
 }
-
+//
 bool cc::isParOpen(char chr)
 {
 	return chr == '(';
 }
-
+//
 bool cc::isParClose(char chr)
 {
 	return chr == ')';
 }
+//
+bool cc::isFcnDefOp(char chr1, char chr2)
+{
+	if (chr1 == ':')
+	{
+		return chr2 == '=';
+	}
 
+	return false;
+}
+//
 bool cc::validateChar(char chr)
 {
 	for (int i = 0; i < DECIMALS_COUNT; i++)
@@ -63,7 +86,7 @@ bool cc::validateChar(char chr)
 
 	return false;
 }
-
+//
 eOpType cc::parseOperator(char chr)
 {
 	switch (chr)

@@ -16,11 +16,15 @@ void CFcnChainEq::addOperation(CAbstractEq* value, eOpType oper)
 		paramFields.push_back((CVarEq*)value);
 	}
 	// Add fcnChain to pool
-	if (value->getEqType() == eOpType::FCN_CH_EQ)
+	else if (value->getEqType() == eOpType::FCN_CH_EQ)
 	{
-		fcnFields.push_back((CFcnChainEq*)value);
+		fcnChnFields.push_back((CFcnChainEq*)value);
 	}
-
+	// Add Function to pool
+	else if (value->getEqType() == eOpType::FCN_EQ)
+	{
+		fcnFields.push_back((CAbstractFcnEq*)value);
+	}
 }
 
 void CFcnChainEq::addParam(std::string name)
@@ -29,7 +33,7 @@ void CFcnChainEq::addParam(std::string name)
 	params.push_back(p);
 }
 
-
+/// XXX doubled effort! (get pointers, then use ops)
 int CFcnChainEq::setParam(std::string name, double value)
 {
 	int varCount=0;
@@ -56,6 +60,13 @@ int CFcnChainEq::setParam(std::string name, double value)
 			// Set the values
 			CFcnChainEq* chain = (CFcnChainEq*)eq;
 			varCount += chain->setParam(name, value);
+		}
+		// Assign variables of child equations (recursive)
+		else if (eq->getEqType() == eOpType::FCN_EQ)
+		{
+			// Set the values
+			CAbstractFcnEq* fcn = (CAbstractFcnEq*)eq;
+			varCount += fcn->setParamValue(name, value);
 		}
 
 	}
@@ -128,10 +139,10 @@ bool CFcnChainEq::validateParams(std::vector<CVarEq> &params)
 
 
 	////// Part 2: Validate Recursive
-	for (unsigned int iFcnField = 0; iFcnField < fcnFields.size(); iFcnField++)
+	for (unsigned int iFcnField = 0; iFcnField < fcnChnFields.size(); iFcnField++)
 	{
 		// Validate child(s)
-		rVal &= fcnFields.at(iFcnField)->validateParams(params);
+		rVal &= fcnChnFields.at(iFcnField)->validateParams(params);
 
 		// lazy exit
 		if (!rVal) return false;

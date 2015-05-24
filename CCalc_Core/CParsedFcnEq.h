@@ -28,10 +28,13 @@ public:
 
 	// Add operation to member chain
 	virtual void addOperation(CAbstractEq* value, eOpType oper);
-
+	
+	virtual std::string getName();
 
 	// @override
 	virtual double getValue();
+
+
 
 protected:
 	
