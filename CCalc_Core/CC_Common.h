@@ -79,6 +79,8 @@ struct sFcnNames
 	const char* ATAN = "atan";
 	const char* COT = "cot";
 	const char* ACOT = "acot";
+	//
+	const char* PI = "pi";
 
 };
 static sFcnNames fcnNames;

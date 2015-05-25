@@ -159,7 +159,17 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 
 		functions.push_back(eq);
 	}
+	//
+	// pi
+	if (true)
+	{
+		eq = new CParsedFcnEq(fcnNames.PI);
 
+		CAbstractFcnEq* fcn = new CAbstractFcnEq();
+		eq->addOperation(new CConstEq(3.14159265359), eOpType::CONST_EQ);
+
+		functions.push_back(eq);
+	}
 
 	return true;
 }

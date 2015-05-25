@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 	if (exp_eq != NULL)
 	{
 		exp_eq->setParamValueAt(0, new CConstEq(2));
-		exp_eq->setParamValueAt(1, new CConstEq(2));
+		exp_eq->setParamValueAt(1, new CConstEq(3));
 	}
 	else
 	{
@@ -122,6 +122,24 @@ int main(int argc, char *argv[])
 
 	std::cout << "Try get value:" << std::endl;
 	std::cout << "value = " <<exp_eq->getValue()<< std::endl;
+
+	std::cout << "\nCreating cos(sin(4))" << std::endl;
+
+	CParsedFcnEq* sin_eq = fcns.getFunctionByName("sin");
+	sin_eq->setParamValueAt(0, new CConstEq(4));
+
+	CParsedFcnEq* cos_eq = fcns.getFunctionByName("cos");
+	cos_eq->setParamValueAt(0, sin_eq);
+
+	CMplEq* eqx = new CMplEq(sin_eq, cos_eq);
+
+	std::cout << "Try get value:" << std::endl;
+	std::cout << "value = " << cos_eq->getValue() << std::endl;
+
+	std::cout << "\nCreating pi" << std::endl;
+	CParsedFcnEq* pi_eq = fcns.getFunctionByName("pi");
+	std::cout << "Try get value:" << std::endl;
+	std::cout << "value = " << pi_eq->getValue() << std::endl;
 
 	std::cin.get();
 
