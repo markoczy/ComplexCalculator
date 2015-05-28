@@ -1,4 +1,4 @@
-﻿Build started 25.05.2015 20:03:09.
+﻿Build started 28.05.2015 20:57:09.
      1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Rebuild target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CPP_REqCpu.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
@@ -44,4 +44,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.78
+Time Elapsed 00:00:04.62

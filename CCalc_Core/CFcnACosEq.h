@@ -4,19 +4,23 @@
 #include "CAbstractEq.h"
 #include "CExpEq.h"
 
-class CFcnACosEq : public CAbstractFcnEq
+class CFcnACosEq : public CFcnChainEq
 {
 public:
 
 	CFcnACosEq(CAbstractEq* value)
 	{
-		this->values.push_back(value);
-		this->eqType = eOpType::FCN_EQ;
+		SOperation op;
+		op.value = value;
+		op.conOp = eOpType::CONST_EQ;
+		ops.push_back(op);
+
+		this->eqType = eOpType::FCN_CH_EQ;
 	}
 
 	virtual double getValue()
 	{
-		return acos(values.at(0)->getValue());
+		return acos(ops.at(0).value->getValue());
 	}
 
 private:

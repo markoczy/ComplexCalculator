@@ -27,7 +27,7 @@ bool CParsedFcnEq::addParam(std::string name)
 
 
 
-bool CParsedFcnEq::setParamValues(std::vector<CAbstractEq*> values)
+bool CParsedFcnEq::setParamValues(std::vector<double> values)
 {
 	// Check input size
 	if (values.size() != params.size())
@@ -45,14 +45,14 @@ bool CParsedFcnEq::setParamValues(std::vector<CAbstractEq*> values)
 
 }
 
-bool CParsedFcnEq::setParamValueAt(int it,CAbstractEq* value)
+bool CParsedFcnEq::setParamValueAt(int it,double value)
 {
 	if ((unsigned)it>params.size())
 	{
 		return false;
 	}
 	
-	params.at(it).setValue(value->getValue());
+	params.at(it).setValue(value);
 
 	return true;
 }

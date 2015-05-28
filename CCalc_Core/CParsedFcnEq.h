@@ -18,8 +18,8 @@ public:
 	virtual bool addParam(std::string name);
 
 	// Sets param values
-	virtual bool setParamValues(std::vector<CAbstractEq*> values);
-	virtual bool setParamValueAt(int it, CAbstractEq* value);
+	virtual bool setParamValues(std::vector<double> values);
+	virtual bool setParamValueAt(int it, double value);
 	
 	// Validates function Expression
 	// returns if expression all params

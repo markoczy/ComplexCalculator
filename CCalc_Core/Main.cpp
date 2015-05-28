@@ -92,8 +92,8 @@ int main(int argc, char *argv[])
 		std::cout << "Validation returns false" << std::endl;
 	}
 
-	f1.setParamValueAt(0, new CConstEq(8));
-	f1.setParamValueAt(1, new CConstEq(3));
+	f1.setParamValueAt(0, 8);
+	f1.setParamValueAt(1, 3);
 
 	std::cout << "Try get Value" << std::endl;
 	std::cout << "Value is: " << f1.getValue() << std::endl;
@@ -110,8 +110,8 @@ int main(int argc, char *argv[])
 	
 	if (exp_eq != NULL)
 	{
-		exp_eq->setParamValueAt(0, new CConstEq(2));
-		exp_eq->setParamValueAt(1, new CConstEq(3));
+		exp_eq->setParamValueAt(0, 2);
+		exp_eq->setParamValueAt(1, 3);
 	}
 	else
 	{
@@ -126,10 +126,10 @@ int main(int argc, char *argv[])
 	std::cout << "\nCreating cos(sin(4))" << std::endl;
 
 	CParsedFcnEq* sin_eq = fcns.getFunctionByName("sin");
-	sin_eq->setParamValueAt(0, new CConstEq(4));
+	sin_eq->setParamValueAt(0, 4);
 
 	CParsedFcnEq* cos_eq = fcns.getFunctionByName("cos");
-	cos_eq->setParamValueAt(0, sin_eq);
+	cos_eq->setParamValueAt(0, sin_eq->getValue());
 
 	CMplEq* eqx = new CMplEq(sin_eq, cos_eq);
 

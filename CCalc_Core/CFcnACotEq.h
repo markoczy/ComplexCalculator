@@ -4,20 +4,24 @@
 #include "CAbstractEq.h"
 #include "CExpEq.h"
 
-class CFcnACotEq : public CAbstractFcnEq
+class CFcnACotEq : public CFcnChainEq
 {
 public:
 
 	CFcnACotEq(CAbstractEq* value)
 	{
-		values.push_back(value);
-		this->eqType = eOpType::FCN_EQ;
+		SOperation op;
+		op.value = value;
+		op.conOp = eOpType::CONST_EQ;
+		ops.push_back(op);
+
+		this->eqType = eOpType::FCN_CH_EQ;
 	}
 
 	virtual double getValue()
 	{
 		// acot(x)=atan(1/x)
-		return atan(1 / values.at(0)->getValue());
+		return atan(1 / ops.at(0).value->getValue());
 	}
 
 
