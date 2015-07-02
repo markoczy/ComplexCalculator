@@ -12,50 +12,50 @@ CFunctionsPool::CFunctionsPool()
 	}
 }
 
+// ===> CFcnParser
+//bool CFunctionsPool::defineFunction(std::string stmt)
+//{
+//	// e.g. f(x):=23x
+//	//		g(x,y):=(2y+3)x
+//
+//	// 1. Get Param Names
+//
+//	// 2. Create Chain
+//
+//	if (_validateStmt(stmt))
+//	{
+//		DBOUT("Validation successful");
+//	}
+//	else
+//	{
+//		EROUT("Validation not successful");
+//	}
+//
+//	int defOpIt = _getDefOpIt(stmt);
+//
+//	std::string fcnName = _getFcnName(stmt, defOpIt);
+//	std::vector<std::string> paramNames = _getFcnParamNames(stmt, defOpIt);
+//	std::string equ = _getFcnEquation(stmt, defOpIt);
+//
+//	DBOUT("fcnName = " << fcnName.c_str());
+//	DBOUT("fcnEquation = " << equ.c_str());
+//	DBOUT("param Names size = " << paramNames.size());
+//
+//	// Create function and fill param names
+//	//
+//	CParsedFcnEqV2 eq(fcnName);
+//	for (unsigned int i = 0; i < paramNames.size(); i++)
+//	{
+//		eq.addParam(paramNames.at(i));
+//		DBOUT("param Name at " << i << " = " << paramNames.at(i).c_str());
+//	}
+//	
+//	// TODO: parse equation
+//
+//	return true;
+//}
 
-bool CFunctionsPool::defineFunction(std::string stmt)
-{
-	// e.g. f(x):=23x
-	//		g(x,y):=(2y+3)x
-
-	// 1. Get Param Names
-
-	// 2. Create Chain
-
-	if (_validateStmt(stmt))
-	{
-		DBOUT("Validation successful");
-	}
-	else
-	{
-		EROUT("Validation not successful");
-	}
-
-	int defOpIt = _getDefOpIt(stmt);
-
-	std::string fcnName = _getFcnName(stmt, defOpIt);
-	std::vector<std::string> paramNames = _getFcnParamNames(stmt, defOpIt);
-	std::string equ = _getFcnEquation(stmt, defOpIt);
-
-	DBOUT("fcnName = " << fcnName.c_str());
-	DBOUT("fcnEquation = " << equ.c_str());
-	DBOUT("param Names size = " << paramNames.size());
-
-	// Create function and fill param names
-	//
-	CParsedFcnEq eq(fcnName);
-	for (unsigned int i = 0; i < paramNames.size(); i++)
-	{
-		eq.addParam(paramNames.at(i));
-		DBOUT("param Name at " << i << " = " << paramNames.at(i).c_str());
-	}
-	
-	// TODO: parse equation
-
-	return true;
-}
-
-CParsedFcnEq* CFunctionsPool::getFunctionByName(std::string name)
+CParsedFcnEqV2* CFunctionsPool::getFunctionByName(std::string name)
 {
 	int len = functions.size();
 
@@ -68,6 +68,7 @@ CParsedFcnEq* CFunctionsPool::getFunctionByName(std::string name)
 		}
 	}
 
+	DBOUT("Not Found matching function: " << name.c_str());
 	return NULL;
 }
 

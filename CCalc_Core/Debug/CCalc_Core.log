@@ -1,26 +1,8 @@
-﻿Build started 28.05.2015 20:57:09.
-     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Rebuild target(s)).
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CPP_REqCpu.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿Build started 03.07.2015 00:11:23.
+     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MYDBG_ /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAbstractFcnEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CC_Common.cpp CC_Function.cpp CDivEq.cpp CExpEq.cpp CFcnChainEq.cpp CFunctionsPool.cpp CMplEq.cpp CParsedFcnEq.cpp CSubEq.cpp CVarEq.cpp Main.cpp CEqParser.cpp
-         CEqParser.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MYDBG_ /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
-         CVarEq.cpp
-         CSubEq.cpp
-         CParsedFcnEq.cpp
-         CMplEq.cpp
-         CFunctionsPool.cpp
-         CFcnChainEq.cpp
-         CExpEq.cpp
-         CDivEq.cpp
-         CC_Function.cpp
-         CC_Common.cpp
-         CConstEq.cpp
-         CChainEq.cpp
-         CAddEq.cpp
-         CAbstractFcnEq.cpp
-         CAbstractEq.cpp
-         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.lib" /MACHINE:X86 Debug\CAbstractEq.obj
          Debug\CAbstractFcnEq.obj
@@ -30,18 +12,20 @@
          Debug\CC_Common.obj
          Debug\CC_Function.obj
          Debug\CDivEq.obj
+         Debug\CEqParserV2.obj
          Debug\CExpEq.obj
          Debug\CFcnChainEq.obj
          Debug\CFunctionsPool.obj
+         Debug\CInvEq.obj
          Debug\CMplEq.obj
          Debug\CParsedFcnEq.obj
+         Debug\CParsedFcnEqV2.obj
          Debug\CSubEq.obj
          Debug\CVarEq.obj
          Debug\Main.obj
-         Debug\CEqParser.obj
          CCalc_Core.vcxproj -> F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.exe
-     1>Done Building Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.62
+Time Elapsed 00:00:00.53

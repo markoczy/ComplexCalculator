@@ -79,15 +79,17 @@
     <ClCompile Include="CC_Common.cpp" />
     <ClCompile Include="CC_Function.cpp" />
     <ClCompile Include="CDivEq.cpp" />
+    <ClCompile Include="CEqParserV2.cpp" />
     <ClCompile Include="CExpEq.cpp" />
     <ClCompile Include="CFcnChainEq.cpp" />
     <ClCompile Include="CFunctionsPool.cpp" />
+    <ClCompile Include="CInvEq.cpp" />
     <ClCompile Include="CMplEq.cpp" />
     <ClCompile Include="CParsedFcnEq.cpp" />
+    <ClCompile Include="CParsedFcnEqV2.cpp" />
     <ClCompile Include="CSubEq.cpp" />
     <ClCompile Include="CVarEq.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="CEqParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h" />
@@ -95,8 +97,10 @@
     <ClInclude Include="CAddEq.h" />
     <ClInclude Include="CChainEq.h" />
     <ClInclude Include="CConstEq.h" />
+    <ClInclude Include="CC_Operation.h" />
     <ClInclude Include="CC_Function.h" />
     <ClInclude Include="CDivEq.h" />
+    <ClInclude Include="CEqParserV2.h" />
     <ClInclude Include="CExpEq.h" />
     <ClInclude Include="CFcnACosEq.h" />
     <ClInclude Include="CFcnACotEq.h" />
@@ -110,11 +114,12 @@
     <ClInclude Include="CFcnSinEq.h" />
     <ClInclude Include="CFcnTanEq.h" />
     <ClInclude Include="CFunctionsPool.h" />
+    <ClInclude Include="CInvEq.h" />
     <ClInclude Include="CMplEq.h" />
     <ClInclude Include="CC_Common.h" />
     <ClInclude Include="CParsedFcnEq.h" />
+    <ClInclude Include="CParsedFcnEqV2.h" />
     <ClInclude Include="CSubEq.h" />
-    <ClInclude Include="CEqParser.h" />
     <ClInclude Include="CVarEq.h" />
     <ClInclude Include="DBOUT.h" />
     <ClInclude Include="InitBuiltInFcns.h" />

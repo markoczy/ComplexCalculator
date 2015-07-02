@@ -1,4 +1,4 @@
-#include "CC_Common.h"
+#include "CC_Function.h"
 
 
 
@@ -20,22 +20,21 @@ void cc::fcn::removeParam(std::string &stmt, std::string paramName)
 	}
 }
 
-bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
+bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 {
-	CParsedFcnEq* eq;
+	CParsedFcnEqV2* eq;
+	//CFcnChainEq* chn;
 	
 	//// Exponential
 	//
 	// exp
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.EXP);
+		eq = new CParsedFcnEqV2(fcnNames.EXP);
 		
-		CFcnExpEq* fcn = new CFcnExpEq(new CVarEq(X), new CVarEq(Y));
+		CFcnExpEq* fcn = new CFcnExpEq();
 
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
-		eq->addParam(Y);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -43,13 +42,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// log
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.LOG);
+		eq = new CParsedFcnEqV2(fcnNames.LOG);
 
-		CFcnLogEq* fcn = new CFcnLogEq(new CVarEq(X), new CVarEq(Y));
+		CFcnLogEq* fcn = new CFcnLogEq();
 
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
-		eq->addParam(Y);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -59,25 +56,23 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// sin
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.SIN);
+		eq = new CParsedFcnEqV2(fcnNames.SIN);
 
-		CFcnSinEq* fcn = new CFcnSinEq(new CVarEq(X));
+		CFcnSinEq* fcn = new CFcnSinEq();
 
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
-	
+		eq->setFcnChain(fcn);
+
 		functions.push_back(eq);
 	}
 	//
 	// asin
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.ASIN);
+		eq = new CParsedFcnEqV2(fcnNames.ASIN);
+		
+		CFcnASinEq* fcn = new CFcnASinEq();
 
-		CFcnASinEq* fcn = new CFcnASinEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -85,12 +80,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// cos
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.COS);
+		eq = new CParsedFcnEqV2(fcnNames.COS);
 
-		CFcnCosEq* fcn = new CFcnCosEq(new CVarEq(X));
+		CFcnCosEq* fcn = new CFcnCosEq();
 
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -98,12 +92,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// acos
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.ACOS);
+		eq = new CParsedFcnEqV2(fcnNames.ACOS);
+		
+		CFcnACosEq* fcn = new CFcnACosEq();
 
-		CFcnACosEq* fcn = new CFcnACosEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -111,12 +104,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// tan
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.TAN);
+		eq = new CParsedFcnEqV2(fcnNames.TAN);
+		
+		CFcnTanEq* fcn = new CFcnTanEq();
 
-		CFcnTanEq* fcn = new CFcnTanEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -124,12 +116,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// atan
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.ATAN);
+		eq = new CParsedFcnEqV2(fcnNames.ATAN);
+		
+		CFcnATanEq* fcn = new CFcnATanEq();
 
-		CFcnATanEq* fcn = new CFcnATanEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -137,12 +128,11 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// cot
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.COT);
+		eq = new CParsedFcnEqV2(fcnNames.COT);
+		
+		CFcnCotEq* fcn = new CFcnCotEq();
 
-		CFcnCotEq* fcn = new CFcnCotEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
@@ -150,18 +140,17 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 	// acot
 	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.ACOT);
+		eq = new CParsedFcnEqV2(fcnNames.ACOT);
+		
+		CFcnACotEq* fcn = new CFcnACotEq();
 
-		CFcnACotEq* fcn = new CFcnACotEq(new CVarEq(X));
-
-		eq->addOperation((CAbstractEq*)fcn, eOpType::CONST_EQ);
-		eq->addParam(X);
+		eq->setFcnChain(fcn);
 
 		functions.push_back(eq);
 	}
 	//
 	// pi
-	if (true)
+	/*if (true)
 	{
 		eq = new CParsedFcnEq(fcnNames.PI);
 
@@ -169,7 +158,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEq*> &functions)
 		eq->addOperation(new CConstEq(3.14159265359), eOpType::CONST_EQ);
 
 		functions.push_back(eq);
-	}
+	}*/
 
 	return true;
 }

@@ -8,29 +8,11 @@
     <Filter Include="Equations">
       <UniqueIdentifier>{6ba302bd-291d-4ea3-afb9-28ba813d12c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Equations\Constant">
-      <UniqueIdentifier>{6a9d5a19-0b65-4c01-aca0-1509ce57b200}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test">
       <UniqueIdentifier>{979e41d6-6f7a-4ea4-8097-2e46984974fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Equations\Addition">
-      <UniqueIdentifier>{0d95af8c-d634-4409-a0f4-d27a91ca527d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Subtraction">
-      <UniqueIdentifier>{63ef06f2-2d5a-4d1c-8cbd-c5e15cef99de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Muliplication">
-      <UniqueIdentifier>{c5aae8e4-77f6-4e21-b5aa-0182b4a710e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Division">
-      <UniqueIdentifier>{3ea5d089-acac-4af5-8886-2ebe3753da4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Equations\Chain">
       <UniqueIdentifier>{63f4e101-8968-4d55-b974-3f5240040de3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Exponential">
-      <UniqueIdentifier>{79577ebd-1f53-4932-9668-7f8ef3717b3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utility">
       <UniqueIdentifier>{2b260507-3515-4180-97cf-cef6a585f483}</UniqueIdentifier>
@@ -40,12 +22,6 @@
     </Filter>
     <Filter Include="Equations\Functions">
       <UniqueIdentifier>{abd231d2-8e47-4d15-8dc7-90eafe5341f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Functions\Data Structure">
-      <UniqueIdentifier>{b2859473-720e-40f3-b8d1-81ce633c0e74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Equations\Functions\Data Structure\Chain">
-      <UniqueIdentifier>{6b1287d1-1811-4a66-adda-323681f8a641}</UniqueIdentifier>
     </Filter>
     <Filter Include="Equations\Functions\Built-in Functions">
       <UniqueIdentifier>{344fe43a-35c9-436d-ab03-13fd31bc9c86}</UniqueIdentifier>
@@ -71,8 +47,44 @@
     <Filter Include="Utility\Function">
       <UniqueIdentifier>{7496250e-7aea-41ec-9a76-cf1be2bc5c24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Equations\Functions\Data Structure">
+      <UniqueIdentifier>{b2859473-720e-40f3-b8d1-81ce633c0e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Functions\Data Structure\Chain">
+      <UniqueIdentifier>{6b1287d1-1811-4a66-adda-323681f8a641}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Equations\Functions\Data Structure\Abstract">
       <UniqueIdentifier>{74b74727-3eb4-44b7-b307-8ef48dac407d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Equation">
+      <UniqueIdentifier>{db16ca69-eee8-4376-aaae-be997d1f309a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Single">
+      <UniqueIdentifier>{bafb2e08-b495-406e-81b1-bab6e3afcf71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary">
+      <UniqueIdentifier>{f88a26aa-1fb6-4ca6-b714-f32899395bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary\Addition">
+      <UniqueIdentifier>{0d95af8c-d634-4409-a0f4-d27a91ca527d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Single\Constant">
+      <UniqueIdentifier>{6a9d5a19-0b65-4c01-aca0-1509ce57b200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary\Exponential">
+      <UniqueIdentifier>{79577ebd-1f53-4932-9668-7f8ef3717b3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary\Division">
+      <UniqueIdentifier>{3ea5d089-acac-4af5-8886-2ebe3753da4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary\Muliplication">
+      <UniqueIdentifier>{c5aae8e4-77f6-4e21-b5aa-0182b4a710e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Binary\Subtraction">
+      <UniqueIdentifier>{63ef06f2-2d5a-4d1c-8cbd-c5e15cef99de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equations\Single\Inverse">
+      <UniqueIdentifier>{8b264a91-3e62-44cf-bb98-fb91062a19ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,28 +95,25 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="CConstEq.cpp">
-      <Filter>Equations\Constant</Filter>
+      <Filter>Equations\Single\Constant</Filter>
     </ClCompile>
     <ClCompile Include="CAddEq.cpp">
-      <Filter>Equations\Addition</Filter>
+      <Filter>Equations\Binary\Addition</Filter>
     </ClCompile>
     <ClCompile Include="CSubEq.cpp">
-      <Filter>Equations\Subtraction</Filter>
+      <Filter>Equations\Binary\Subtraction</Filter>
     </ClCompile>
     <ClCompile Include="CMplEq.cpp">
-      <Filter>Equations\Muliplication</Filter>
+      <Filter>Equations\Binary\Muliplication</Filter>
     </ClCompile>
     <ClCompile Include="CDivEq.cpp">
-      <Filter>Equations\Division</Filter>
+      <Filter>Equations\Binary\Division</Filter>
     </ClCompile>
     <ClCompile Include="CChainEq.cpp">
       <Filter>Equations\Chain</Filter>
     </ClCompile>
-    <ClCompile Include="CEqParser.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
     <ClCompile Include="CExpEq.cpp">
-      <Filter>Equations\Exponential</Filter>
+      <Filter>Equations\Binary\Exponential</Filter>
     </ClCompile>
     <ClCompile Include="CVarEq.cpp">
       <Filter>Equations</Filter>
@@ -127,34 +136,40 @@
     <ClCompile Include="CAbstractFcnEq.cpp">
       <Filter>Equations\Functions\Data Structure\Abstract</Filter>
     </ClCompile>
+    <ClCompile Include="CEqParserV2.cpp">
+      <Filter>Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CParsedFcnEqV2.cpp">
+      <Filter>Equations\Functions\Data Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="CInvEq.cpp">
+      <Filter>Equations\Single\Inverse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h">
       <Filter>Equations</Filter>
     </ClInclude>
     <ClInclude Include="CConstEq.h">
-      <Filter>Equations\Constant</Filter>
+      <Filter>Equations\Single\Constant</Filter>
     </ClInclude>
     <ClInclude Include="CAddEq.h">
-      <Filter>Equations\Addition</Filter>
+      <Filter>Equations\Binary\Addition</Filter>
     </ClInclude>
     <ClInclude Include="CSubEq.h">
-      <Filter>Equations\Subtraction</Filter>
+      <Filter>Equations\Binary\Subtraction</Filter>
     </ClInclude>
     <ClInclude Include="CMplEq.h">
-      <Filter>Equations\Muliplication</Filter>
+      <Filter>Equations\Binary\Muliplication</Filter>
     </ClInclude>
     <ClInclude Include="CDivEq.h">
-      <Filter>Equations\Division</Filter>
+      <Filter>Equations\Binary\Division</Filter>
     </ClInclude>
     <ClInclude Include="CChainEq.h">
       <Filter>Equations\Chain</Filter>
     </ClInclude>
-    <ClInclude Include="CEqParser.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
     <ClInclude Include="CExpEq.h">
-      <Filter>Equations\Exponential</Filter>
+      <Filter>Equations\Binary\Exponential</Filter>
     </ClInclude>
     <ClInclude Include="CVarEq.h">
       <Filter>Equations</Filter>
@@ -212,6 +227,18 @@
     </ClInclude>
     <ClInclude Include="CAbstractFcnEq.h">
       <Filter>Equations\Functions\Data Structure\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="CEqParserV2.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CC_Operation.h">
+      <Filter>Utility\Equation</Filter>
+    </ClInclude>
+    <ClInclude Include="CParsedFcnEqV2.h">
+      <Filter>Equations\Functions\Data Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="CInvEq.h">
+      <Filter>Equations\Single\Inverse</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

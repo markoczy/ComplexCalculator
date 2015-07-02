@@ -1,15 +1,19 @@
 #pragma once
+//
 
-#include "CAbstractFcnEq.h"
-#include "CAbstractEq.h"
-#include "CExpEq.h"
+#include "CC_Common.h"
+#include "CFcnChainEq.h"
+
 
 class CFcnExpEq : public CFcnChainEq
 {
 public:
 
-	CFcnExpEq(CAbstractEq* base, CAbstractEq* exp)
+	CFcnExpEq()
 	{
+		CVarEq * base = new CVarEq("X");
+		CVarEq * exp = new CVarEq("Y");
+
 		SOperation lBase;
 		lBase.value = base;
 		lBase.conOp = eOpType::CONST_EQ;
@@ -19,6 +23,9 @@ public:
 		lExp.value = exp;
 		lExp.conOp = eOpType::CONST_EQ;
 		ops.push_back(lExp);
+
+		this->addParam(base->getName());
+		this->addParam(exp->getName());
 
 		this->eqType = eOpType::FCN_CH_EQ;
 	}

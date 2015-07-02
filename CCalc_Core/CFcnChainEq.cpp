@@ -23,7 +23,7 @@ void CFcnChainEq::addOperation(CAbstractEq* value, eOpType oper)
 	// Add Function to pool
 	else if (value->getEqType() == eOpType::FCN_EQ)
 	{
-		fcnFields.push_back((CAbstractFcnEq*)value);
+		fcnFields.push_back((CFcnChainEq*)value);
 	}
 }
 
@@ -33,10 +33,27 @@ void CFcnChainEq::addParam(std::string name)
 	params.push_back(p);
 }
 
+int CFcnChainEq::getParamCount()
+{
+	if (isLambda)
+	{
+		return -1;
+	}
+	else
+	{
+		return params.size();
+	}
+}
+
+
 /// XXX doubled effort! (get pointers, then use ops)
-int CFcnChainEq::setParam(std::string name, double value)
+int CFcnChainEq::setParam(int it, double value)
 {
 	int varCount=0;
+
+	std::string name = params.at(it).getName();
+
+	DBOUT("Setting param " << name.c_str() <<", value = "<<value);
 
 	for (unsigned int i = 0; i < ops.size(); i++)
 	{
@@ -45,6 +62,8 @@ int CFcnChainEq::setParam(std::string name, double value)
 		// Assign variables of this equation (horizontal)
 		if (eq->getEqType()==eOpType::VAR_EQ)
 		{
+			DBOUT("Found Var");
+
 			// Set the value
 			CVarEq* var = (CVarEq*)eq;
 			if (!var->getName().compare(name))
@@ -57,17 +76,17 @@ int CFcnChainEq::setParam(std::string name, double value)
 		// Assign variables of child equations (recursive)
 		else if (eq->getEqType() == eOpType::FCN_CH_EQ)
 		{
-			// Set the values
 			CFcnChainEq* chain = (CFcnChainEq*)eq;
-			varCount += chain->setParam(name, value);
+
+			// Check if param exists in equation
+			int pIt = chain->getParamIt(name);
+			if (pIt != -1)
+			{
+				// Set the value
+				varCount += chain->setParam(pIt, value);
+			}
 		}
-		// Assign variables of child equations (recursive)
-		else if (eq->getEqType() == eOpType::FCN_EQ)
-		{
-			// Set the values
-			CAbstractFcnEq* fcn = (CAbstractFcnEq*)eq;
-			varCount += fcn->setParamValue(name, value);
-		}
+		
 
 	}
 
@@ -149,4 +168,19 @@ bool CFcnChainEq::validateParams(std::vector<CVarEq> &params)
 	}
 
 	return true;
+}
+
+
+int CFcnChainEq::getParamIt(std::string name)
+{
+	for (unsigned int i = 0; i < params.size(); i++)
+	{
+		if (!params.at(i).getName().compare(name))
+		{
+			return i;
+		}
+	}
+
+	return -1;
+
 }

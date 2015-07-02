@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CAbstractEq.h"
+#include "CC_Common.h"
 
 class CAddEq : public CAbstractEq
 {

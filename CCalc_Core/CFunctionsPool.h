@@ -1,9 +1,10 @@
 #pragma once
 
-#include "CParsedFcnEq.h"
+#include "CParsedFcnEqv2.h"
 #include "CC_Common.h"
+#include "CC_Function.h"
 
-#include <vector>
+//#include <vector>
 
 
 
@@ -19,19 +20,19 @@ public:
 
 	bool loadFunctionsDb(std::string path);
 
-	CParsedFcnEq* getFunctionByName(std::string name);
+	CParsedFcnEqV2* getFunctionByName(std::string name);
 
 
 private:
 
 	// functions array
-	std::vector<CParsedFcnEq*> functions;
+	std::vector<CParsedFcnEqV2*> functions;
 
 	// Init built-in functions
 	bool _initFunctions();
 
 
-	//// Parser utility
+	//// Parser utility ===> CFcnParser
 	//
 	// f(x,y):=sin(x)+0.3y
 	//

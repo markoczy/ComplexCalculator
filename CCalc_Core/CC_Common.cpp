@@ -19,7 +19,7 @@ bool cc::isAlpha(char chr)
 	{
 		if (chr == ALPHAS[i]) return true;
 	}
-
+	
 	return false;
 }
 //

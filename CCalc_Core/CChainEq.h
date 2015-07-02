@@ -1,14 +1,7 @@
 #pragma once
 
-#include "DBOUT.h"
-
-#include "CAbstractEq.h"
-#include "CConstEq.h"
-#include "CAddEq.h"
-#include "CSubEq.h"
-#include "CMplEq.h"
-#include "CDivEq.h"
-#include "CExpEq.h"
+#include "CC_Common.h"
+#include "CC_Operation.h"
 
 // Operation:
 // 0 dimensional (atomar) element of an 

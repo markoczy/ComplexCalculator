@@ -1,148 +1,33 @@
-#include "CEqParser.h"
-#include "CParsedFcnEq.h"
+#include "CEqParserV2.h"
+#include "CFunctionsPool.h"
+
 
 int main(int argc, char *argv[])
 {
-	////////////////////////////////// OLD CLI ____
+	CEqParserV2 p;
+	CFunctionsPool f;
+	p.setFunctions(&f);
 
-	/*CEqParser parser;
+	double val = 0;
 
-	if (argc == 2)
+	//val = p.parse("-(3+2)3/1.5");
+	//val = p.parse("-((3*2)+5-2)*2");
+	//val = p.parse("2-(5*0.52)");
+	//val = p.parse("2*-3");
+
+	CAbstractFcnEq eq;
+	if (eq.init(&f, "sin"))
 	{
-		if (!parser.validate(argv[1]))
-		{
-			std::cout << "Error: Equation not valid" << std::endl;
-			return -1;
-		}
-		
-		double finalVal = parser.parse(argv[1]);
-		std::cout.precision(15);
-		std::cout<< finalVal << std::endl;
-		return 0;
-	}
-	else
-	{
-		std::cout << "Error: Argument count not matching: " << argc << std::endl;
-		return -1;
-	}*/
-
-	////////////////////////////////// ____ OLD CLI 
-
-
-	/////////////////////////////////////////////////////// TEST 1 ____
-
-	//// 2+3+x+y
-	//// x=20
-	//// y=50
-	/*CParsedFcnEq f1("f1");
-	
-	f1.addOperation(new CConstEq(2), eOpType::ADD_EQ);
-	f1.addOperation(new CConstEq(3), eOpType::ADD_EQ);
-	f1.addOperation(new CVarEq("x"), eOpType::ADD_EQ);
-	f1.addOperation(new CVarEq("y"), eOpType::CONST_EQ);
-	f1.addParam("x");
-	f1.addParam("y");
-
-	if (f1.validate())
-	{
-		std::cout << "Validation returns true" << std::endl;
-	}
-	else
-	{
-		std::cout << "Validation returns false" << std::endl;
+		std::cout << "Equation found!"<<std::endl;
 	}
 
-	f1.setParamValueAt(0, new CConstEq(20));
-	f1.setParamValueAt(1, new CConstEq(50));
+	eq.addParamValue(new CConstEq(3.14/2));
+	val = eq.getValue();
 
-	std::cout << "Try get Value" << std::endl;
-	std::cout << "Value is: " <<f1.getValue()<< std::endl;*/
-
-	/////////////////////////////////////////////////////// ____ TEST 1
-
-
-	//// (0.125*x)*y*(y/3)
-	//// x=8
-	//// y=3
-	CParsedFcnEq f1("f1");
-	f1.addParam("x");
-	f1.addParam("y");
-
-	// 0.125*x
-	CFcnChainEq* s1 = new CFcnChainEq();
-	s1->addOperation(new CConstEq(0.125), eOpType::MPL_EQ);
-	s1->addOperation(new CVarEq("x"), eOpType::CONST_EQ);
-
-	// y/3
-	CFcnChainEq* s2 = new CFcnChainEq();
-	s2->addOperation(new CVarEq("y"), eOpType::DIV_EQ);
-	s2->addOperation(new CConstEq(3), eOpType::CONST_EQ);
-
-	// S1 * y * S2
-	f1.addOperation(s1, eOpType::MPL_EQ);
-	f1.addOperation(new CVarEq("y"), eOpType::MPL_EQ);
-	f1.addOperation(s2, eOpType::CONST_EQ);
-
-	if (f1.validate())
-	{
-		std::cout << "Validation returns true" << std::endl;
-	}
-	else
-	{
-		std::cout << "Validation returns false" << std::endl;
-	}
-
-	f1.setParamValueAt(0, 8);
-	f1.setParamValueAt(1, 3);
-
-	std::cout << "Try get Value" << std::endl;
-	std::cout << "Value is: " << f1.getValue() << std::endl;
-
-
-	/////////////////////////////////////////////////////////
-
-	CFunctionsPool fcns;
-
-	//fcns.defineFunction("f22(xyz,yhg):=42x+y");
-
-
-	CParsedFcnEq* exp_eq = fcns.getFunctionByName("exp");
-	
-	if (exp_eq != NULL)
-	{
-		exp_eq->setParamValueAt(0, 2);
-		exp_eq->setParamValueAt(1, 3);
-	}
-	else
-	{
-		std::cout << "Error: could not find function" << std::endl;
-		return -1;
-	}
-
-
-	std::cout << "Try get value:" << std::endl;
-	std::cout << "value = " <<exp_eq->getValue()<< std::endl;
-
-	std::cout << "\nCreating cos(sin(4))" << std::endl;
-
-	CParsedFcnEq* sin_eq = fcns.getFunctionByName("sin");
-	sin_eq->setParamValueAt(0, 4);
-
-	CParsedFcnEq* cos_eq = fcns.getFunctionByName("cos");
-	cos_eq->setParamValueAt(0, sin_eq->getValue());
-
-	CMplEq* eqx = new CMplEq(sin_eq, cos_eq);
-
-	std::cout << "Try get value:" << std::endl;
-	std::cout << "value = " << cos_eq->getValue() << std::endl;
-
-	std::cout << "\nCreating pi" << std::endl;
-	CParsedFcnEq* pi_eq = fcns.getFunctionByName("pi");
-	std::cout << "Try get value:" << std::endl;
-	std::cout << "value = " << pi_eq->getValue() << std::endl;
+	std::cout << "Value = " << val;
 
 	std::cin.get();
 
-
+	//delete f;
 	return 0;
 }

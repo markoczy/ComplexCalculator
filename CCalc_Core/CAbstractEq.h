@@ -1,8 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <math.h>
 
 /**
 * @brief Operation Types (i.e. child classes)
@@ -16,22 +13,23 @@ enum eOpType
 	// 1000+ : Chains								//
 	// 2000+ : Special								//
 	//////////////////////////////////////////////////
-	NULL_EQ		= 0,	// unset value				//
+	NULL_EQ = 0,	// unset value					//
 	//////////////////////////////////////////////////
-	CONST_EQ	= 101,	// constant (double)		//
-	VAR_EQ		= 102,	// variable (for functions)	//
+	CONST_EQ = 101,	// constant (double)			//
+	INV_EQ = 102,	// inversed						//
+	VAR_EQ = 110,	// variable (for functions)		//
 	//////////////////////////////////////////////////
-	ADD_EQ		= 201,	// addition					//
-	SUB_EQ		= 202,	// subtraction				//
-	MPL_EQ		= 203,	// multiplication			//
-	DIV_EQ		= 204,	// division					//
+	ADD_EQ = 201,	// addition						//
+	SUB_EQ = 202,	// subtraction					//
+	MPL_EQ = 203,	// multiplication				//
+	DIV_EQ = 204,	// division						//
 	//////////////////////////////////////////////////
-	EXP_EQ		= 301,	// exponential function		//
+	EXP_EQ = 301,	// exponential function			//
 	//////////////////////////////////////////////////
-	CHAIN_EQ	= 1000, // linear chain equation	//
-	FCN_CH_EQ	= 1001,	// function chain			//
+	CHAIN_EQ = 1000, // linear chain equation		//
+	FCN_CH_EQ = 1001,	// function chain			//
 	//////////////////////////////////////////////////
-	FCN_EQ		= 2000	// parsed function			//
+	FCN_EQ = 2000	// parsed function				//
 	//////////////////////////////////////////////////
 };
 

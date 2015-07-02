@@ -1,36 +1,44 @@
 #pragma once
 
-#include "CC_Function.h"
+#include <iostream>
+#include <vector>
+#include <math.h>
+#include <string>
+
+//#include "CC_Function.h"
 
 //// Operations
 //
+#include "DBOUT.h"
+
 #include "CAbstractEq.h"
-
-//// Functions
 //
-#include "CParsedFcnEq.h"
-//
-// Exponential
-//
-#include "CFcnExpEq.h"
-#include "CFcnLogEq.h"
-//
-// Trigonometry
-//
-#include "CFcnACosEq.h"
-#include "CFcnCosEq.h"
-//
-#include "CFcnASinEq.h"
-#include "CFcnSinEq.h"
-//
-#include "CFcnATanEq.h"
-#include "CFcnTanEq.h"
-//
-#include "CFcnACotEq.h"
-#include "CFcnCotEq.h"
-//
+////// Functions
 ////
-
+//#include "CParsedFcnEq.h"
+////
+//// Exponential
+////
+//#include "CFcnExpEq.h"
+//#include "CFcnLogEq.h"
+////
+//// Trigonometry
+////
+//#include "CFcnACosEq.h"
+//#include "CFcnCosEq.h"
+////
+//#include "CFcnASinEq.h"
+//#include "CFcnSinEq.h"
+////
+//#include "CFcnATanEq.h"
+//#include "CFcnTanEq.h"
+////
+//#include "CFcnACotEq.h"
+//#include "CFcnCotEq.h"
+////
+//////
+//
+//#include "CFcnChainEq.h"
 
 /////////////////////////////// PARSER CHARS ///////////////////////////////
 
@@ -59,6 +67,8 @@ const int EXP_FCN_NAMES_COUNT = 2;
 const std::string TRI_FCN_NAMES[] = {	"sin", "asin","cos","acos",
 										"tan","atan","cot","acot" };
 const int TRI_FCN_NAMES_COUNT = 8;
+
+
 
 
 struct sFcnNames
@@ -116,14 +126,6 @@ namespace cc
 	eOpType parseOperator(char chr);
 
 
-	// File: CC_Function.cpp
-	namespace fcn
-	{
-		// XXX unfinished!!!
-		void removeParam(std::string &stmt, std::string paramName);
-
-		bool initFunctions(std::vector<CParsedFcnEq*> &functions);
-	}
-	
-
 }
+
+

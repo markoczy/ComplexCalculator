@@ -1,20 +1,22 @@
 #pragma once
 
-#include "CAbstractFcnEq.h"
-#include "CAbstractEq.h"
-#include "CExpEq.h"
+#include "CC_Common.h"
+#include "CFcnChainEq.h"
 
 class CFcnCosEq : public CFcnChainEq
 {
 public:
 
-	CFcnCosEq(CAbstractEq* value)
+	CFcnCosEq()
 	{
+		CVarEq * var = new CVarEq("X");
+
 		SOperation op;
-		op.value = value;
+		op.value = var;
 		op.conOp = eOpType::CONST_EQ;
 		ops.push_back(op);
 
+		this->addParam(var->getName());
 		this->eqType = eOpType::FCN_CH_EQ;
 	}
 

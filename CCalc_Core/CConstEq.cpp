@@ -10,3 +10,8 @@ double CConstEq::getValue()
 {
 	return this->value;
 }
+
+void CConstEq::setValue(double value)
+{
+	this->value=value;
+}
