@@ -90,6 +90,7 @@
     <ClCompile Include="CSubEq.cpp" />
     <ClCompile Include="CVarEq.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="StringTools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h" />
@@ -123,6 +124,7 @@
     <ClInclude Include="CVarEq.h" />
     <ClInclude Include="DBOUT.h" />
     <ClInclude Include="InitBuiltInFcns.h" />
+    <ClInclude Include="StringTools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

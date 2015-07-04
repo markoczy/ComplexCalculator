@@ -13,13 +13,16 @@ class CEqParserV2
 
 public:
 
-	void setFunctions(CFunctionsPool *fcns);
+	void init(CFunctionsPool *fcns);
 	
 	// Checks if equation is valid
 	bool validate(std::string equation);
 
 	// Parses double value from equation
 	double parse(std::string equation);
+
+	static std::string _parseFunctionName(std::string &equation, int &it);
+
 
 private:
 
@@ -33,19 +36,23 @@ private:
 
 	//// Parsing functions
 	//
-	static CAbstractEq* _parseEquation(std::string &equation, int &it);
+	CAbstractEq* _parseEquation(std::string &equation, int &it);
 	//
-	static CConstEq* _parseNumber(std::string &equation, int &it);
+	CConstEq* _parseNumber(std::string &equation, int &it);
 	//
-	static eOpType _parseOperator(std::string &equation, int &it);
+	eOpType _parseOperator(std::string &equation, int &it);
 	//
-	static CAbstractFcnEq* _parseFunction(std::string &equation, int &it);
+	//static std::string _parseFunctionName(std::string &equation, int &it);
+	//
+	CAbstractFcnEq* _parseFunction(std::string &equation, int &it);
 	
 	//// Substring
 	//
 	static std::string _getEqSubstr(std::string &equation, int &it);
 	//
 	static std::string _getFcnSubstr(std::string &equation, int &it);
+	//
+	static std::string _getFcnParamSubstr(std::string &equation, int &it);
 
 	//// Validating
 	//

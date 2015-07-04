@@ -15,7 +15,6 @@ bool CAbstractFcnEq::init(CFunctionsPool * aPool,std::string name)
 	}
 	
 	mParamCount = fcnReference->getParamCount();
-	DBOUT("ParamCount is: " << mParamCount);
 
 	return true;
 }
@@ -31,6 +30,12 @@ bool CAbstractFcnEq::addParamValue(CAbstractEq * value)
 	values.push_back(value);
 	return true;
 }
+
+int CAbstractFcnEq::getParamCount()
+{
+	return mParamCount;
+}
+
 
 double CAbstractFcnEq::getValue()
 {

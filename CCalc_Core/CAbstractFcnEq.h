@@ -18,6 +18,8 @@ public:
 
 	virtual bool addParamValue(CAbstractEq * value);
 	
+	virtual int getParamCount();
+
 	virtual double getValue();
 
 protected:

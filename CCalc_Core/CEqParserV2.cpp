@@ -2,7 +2,7 @@
 
 //-//-//-//-//-// PUBLIC //-//-//-//-//-//
 
-void CEqParserV2::setFunctions(CFunctionsPool *fcns)
+void CEqParserV2::init(CFunctionsPool *fcns)
 {
 	mFcns = fcns;
 }
@@ -38,7 +38,6 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 
 	while ((unsigned)it < equation.length())
 	{
-		DBOUT("it = " << it<< ", char = "<<chr);
 
 		//// Fast exit if statement ends
 		//if(cc::isParClose(equation.at(it)))
@@ -48,7 +47,8 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 		//	break;
 		//}
 
-		char chr = equation.at(it);
+		chr = equation.at(it);
+		DBOUT("it = " << it << ", char = " << chr);
 
 		
 		eOpType op = eOpType::NULL_EQ;
@@ -68,10 +68,8 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 		}
 		else if (cc::isAlpha(chr))
 		{
-			std::string sub = _getFcnSubstr(equation, it);
-
-			int subIt = 0; // dummy
-			number = _parseFunction(sub, subIt);
+			DBOUT("Found alpha " << chr);
+			number = _parseFunction(equation, it);
 		}
 		else if (cc::isOperator(chr))
 		{
@@ -168,6 +166,8 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 }
 
 
+
+
 //-//-// TEST ME !!!
 CConstEq* CEqParserV2::_parseNumber(std::string &equation, int &it)
 {
@@ -233,13 +233,70 @@ eOpType CEqParserV2::_parseOperator(std::string &equation, int &it)
 	default:
 		return eOpType::NULL_EQ;
 	}
+
+}
+
+std::string CEqParserV2::_parseFunctionName(std::string &equation, int &it)
+{
+	std::string rVal = "";
+
+	while ((unsigned)it < equation.length() && cc::isAlpha(equation.at(it)))
+	{
+		char chr = equation.at(it);
+		rVal.push_back(chr);
+
+		it++;
+	}
+
+	return rVal;
 }
 
 CAbstractFcnEq* CEqParserV2::_parseFunction(std::string &equation, int &it)
 {
+	//-//-//-//-//-//-//-//-//-//-//-//
+	// Example:	2+func((2+1),3)+42
+	//            ^
+	//-//-//-//-//-//-//-//-//-//-//-//
+	
+	
+	std::string fcnName=_parseFunctionName(equation,it);
+	DBOUT("Function name is "<<fcnName);
 
-	return NULL;
+	CAbstractFcnEq * fcnEq = new CAbstractFcnEq();
+
+	// If function parsing failed or function 
+	// not found return
+	if (!fcnEq->init(mFcns, fcnName))
+	{ 
+		EROUT("Init CAbstractFcnEq failed");
+		return NULL; 
+	}
+
+	// Parse params -> CChain(2,1),CConst(3)
+	// (need subequations...)
+	int paramCount=fcnEq->getParamCount();
+	DBOUT("Init successful, paramCount is "<<paramCount);
+
+	std::vector<CAbstractEq*> params; // XXX unneeded??
+
+	it++;
+
+	// TODO: Lambda -> paramCount=-1
+	for (int i = 0; i < paramCount; i++)
+	{
+		std::string paramSubstr = _getFcnParamSubstr(equation, it);
+		DBOUT("Param "<<i<<", substring is: " << paramSubstr);
+		int subIt = 0;
+		CAbstractEq* param = _parseEquation(paramSubstr, subIt);
+		params.push_back(param);
+
+		fcnEq->addParamValue(param);
+	}
+
+
+	return fcnEq;
 }
+
 
 std::string CEqParserV2::_getEqSubstr(std::string &equation, int &it)
 {
@@ -247,7 +304,7 @@ std::string CEqParserV2::_getEqSubstr(std::string &equation, int &it)
 	// Example: 22+(24-5/3.43+12)
 	//             ^^
 	//-//-//-//-//-//-//-//-//-//-//-//
-	
+
 	// Params
 	int parCount = 1;
 	char chr = equation.at(it);
@@ -264,15 +321,8 @@ std::string CEqParserV2::_getEqSubstr(std::string &equation, int &it)
 	while ((unsigned)it < equation.length() && parCount>0)
 	{
 		chr = equation.at(it);
-
-		if (cc::isParOpen(chr))
-		{
-			parCount++;
-		}
-		else if (cc::isParClose(chr))
-		{
-			parCount--;
-		}
+		
+		parCount += cc::parseParanthesis(chr);
 
 		if (parCount > 0)
 		{
@@ -289,21 +339,67 @@ std::string CEqParserV2::_getEqSubstr(std::string &equation, int &it)
 	return rVal;
 }
 
+
 std::string CEqParserV2::_getFcnSubstr(std::string &equation, int &it)
 {
 	//-//-//-//-//-//-//-//-//-//-//-//
 	// Example:	2+func((2+1),3)+42
-	//            ^
+	//            ^           ^
 	//-//-//-//-//-//-//-//-//-//-//-//
+	bool doExit = false;
+	bool initOk = false;
+	int parCount = 0;
+	std::string rVal = "";
 
-	// Parse fcn name -> "func"
+	while ((unsigned)it < equation.length() && !doExit)
+	{
+		char chr = equation.at(it);
+		it++;
 
+		int parCountDelta = cc::parseParanthesis(chr);
+		parCount += parCountDelta;
+		if (parCountDelta==1)
+		{
+			parCount++;
+			initOk = true;
+		}
 
-	// Parse params -> CChain(2,1),CConst(3)
-	// (need subequations...)
+		rVal.push_back(chr);
 
+		if (initOk && parCount == 0)
+		{
+			return rVal;
+		}
+		
 
-	return NULL;
+	}
+	
+	return "";
+
+}
+
+std::string CEqParserV2::_getFcnParamSubstr(std::string &equation, int &it)
+{
+	std::string rVal="";
+	int parCount = 0;
+
+	bool exit = false;
+
+	while ((unsigned)it < equation.length() && !exit)
+	{
+		char chr = equation.at(it);
+		
+		parCount += cc::parseParanthesis(chr);
+
+		exit |= (parCount<1 && equation.at(it) == ',');
+		exit |= parCount < 0;
+
+		if (!exit)rVal.push_back(equation.at(it));
+
+		it++;
+	}
+
+	return rVal;
 }
 
 bool CEqParserV2::_validate()

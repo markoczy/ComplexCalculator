@@ -121,6 +121,11 @@ namespace cc
 	// for a definition
 	bool validateChar(char chr);
 
+	// Checks if has paranthesis
+	// returns -1 if ')', +1 if '('
+	// 0 if no paranthesis
+	int parseParanthesis(char chr);
+
 	// returns the operation type
 	// of the char (@see eOpType)
 	eOpType parseOperator(char chr);

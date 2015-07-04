@@ -1,7 +1,7 @@
-﻿Build started 02.07.2015 22:09:55.
+﻿Build started 04.07.2015 15:03:05.
      1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAbstractFcnEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CC_Common.cpp CC_Function.cpp CDivEq.cpp CEqParserV2.cpp CExpEq.cpp CFcnChainEq.cpp CFunctionsPool.cpp CInvEq.cpp CMplEq.cpp CParsedFcnEq.cpp CParsedFcnEqV2.cpp CSubEq.cpp CVarEq.cpp Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAbstractFcnEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CC_Common.cpp CC_Function.cpp CDivEq.cpp CEqParserV2.cpp CExpEq.cpp CFcnChainEq.cpp CFunctionsPool.cpp CInvEq.cpp CMplEq.cpp CParsedFcnEq.cpp CParsedFcnEqV2.cpp CSubEq.cpp CVarEq.cpp Main.cpp StringTools.cpp
          CAbstractEq.cpp
          CAbstractFcnEq.cpp
          CAddEq.cpp
@@ -21,6 +21,7 @@
          CSubEq.cpp
          CVarEq.cpp
          Main.cpp
+         StringTools.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Coding\VSTUDIO\ComplexCalc\Release\cc_test_cpp.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Coding\VSTUDIO\ComplexCalc\Release\cc_test_cpp.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Coding\VSTUDIO\ComplexCalc\Release\cc_test_cpp.lib" /MACHINE:X86 /SAFESEH Release\CAbstractEq.obj
          Release\CAbstractFcnEq.obj
@@ -41,6 +42,7 @@
          Release\CSubEq.obj
          Release\CVarEq.obj
          Release\Main.obj
+         Release\StringTools.obj
          Generating code
          Finished generating code
          CCalc_Core.vcxproj -> F:\Coding\VSTUDIO\ComplexCalc\Release\cc_test_cpp.exe
@@ -48,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.91
+Time Elapsed 00:00:05.24

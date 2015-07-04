@@ -86,6 +86,9 @@
     <Filter Include="Equations\Single\Inverse">
       <UniqueIdentifier>{8b264a91-3e62-44cf-bb98-fb91062a19ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility\String">
+      <UniqueIdentifier>{c956c960-30a4-4b6d-a0fc-a381c3de90b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAbstractEq.cpp">
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="CInvEq.cpp">
       <Filter>Equations\Single\Inverse</Filter>
+    </ClCompile>
+    <ClCompile Include="StringTools.cpp">
+      <Filter>Utility\String</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="CInvEq.h">
       <Filter>Equations\Single\Inverse</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTools.h">
+      <Filter>Utility\String</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

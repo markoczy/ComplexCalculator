@@ -110,3 +110,18 @@ eOpType cc::parseOperator(char chr)
 		return eOpType::NULL_EQ;
 	}
 }
+
+int cc::parseParanthesis(char chr)
+{
+	if (cc::isParOpen(chr))
+	{
+		return 1;
+	}
+	else if (cc::isParClose(chr))
+	{
+		return -1;
+	}
+
+	return 0;
+}
+
