@@ -6,7 +6,7 @@ CParsedFcnEqV2::CParsedFcnEqV2(std::string name)
 	this->mName = name;
 }
 
-void CParsedFcnEqV2::setFcnChain(CFcnChainEq* chain)
+void CParsedFcnEqV2::init(CFcnChainEq* chain)
 {
 	this->mChain = chain;
 

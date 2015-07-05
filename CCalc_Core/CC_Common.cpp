@@ -125,3 +125,14 @@ int cc::parseParanthesis(char chr)
 	return 0;
 }
 
+void cc::clearEquation(CAbstractEq* aValue)
+{
+	if (aValue != NULL)
+	{
+		aValue->clear();
+		delete aValue;
+		aValue = NULL;
+	}
+}
+
+

@@ -40,9 +40,16 @@ public:
 	// Method will be overridden
 	virtual double getValue(){ return 0; };
 
+	// Used to delete all member Equations
+	// is called during getValue() call
+	virtual void clear(){};
+
 	virtual eOpType getEqType(){ return eqType; }
+
 
 protected:
 
 	eOpType eqType = NULL_EQ;
+
+	
 };

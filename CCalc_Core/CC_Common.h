@@ -130,6 +130,9 @@ namespace cc
 	// of the char (@see eOpType)
 	eOpType parseOperator(char chr);
 
+	// Clears equation and sets pointer to 0
+	//
+	void clearEquation(CAbstractEq* aValue);
 
 }
 

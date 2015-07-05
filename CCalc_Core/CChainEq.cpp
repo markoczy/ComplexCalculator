@@ -32,32 +32,12 @@ void CChainEq::addOperation(CAbstractEq* value, eOpType oper)
 	ops.push_back(op);
 }
 
+// XXX Not yet right: tmpOps(0) needed for recursive clear
 void CChainEq::clear()
 {
-	DBOUT("Called clear ops Size = " << ops.size());
-
-	// Delete Pointers
-	while (ops.size()>0)
-	{
-		eOpType op = ops.at(0).value->getEqType();
-
-		if (op == eOpType::CONST_EQ) // TODO: Others??
-		{
-			DBOUT("Deleting normal");
-			CConstEq* eq = (CConstEq*)ops.at(0).value;
-			delete eq;
-		}
-		else if (op == eOpType::CHAIN_EQ || op == eOpType::FCN_CH_EQ)
-		{
-			DBOUT("Deleting chain");
-			CChainEq* chain = (CChainEq*)ops.at(0).value;
-			chain->clear();
-			delete ops.at(0).value;
-		}
-		
-		ops.erase(ops.begin());
-		
-	}
+	DBOUT("Try Clear");
+	cc::clearEquation(parsedOp);
+	DBOUT("Clear OK");
 }
 
 double CChainEq::getValue()
@@ -106,8 +86,10 @@ double CChainEq::getValue()
 		_solveOp(tmpOps, first);
 	}
 
-	rVal = tmpOps.at(0).value->getValue();
-	
+	parsedOp = tmpOps.at(0).value;
+
+	if (!parsedOp == NULL) rVal = parsedOp->getValue();
+
 	return rVal;
 }
 

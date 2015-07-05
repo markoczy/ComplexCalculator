@@ -39,6 +39,9 @@ int CAbstractFcnEq::getParamCount()
 
 double CAbstractFcnEq::getValue()
 {
+	// failsave
+	if (fcnReference == NULL) return 0;
+	
 	DBOUT("values.size() = " << values.size());
 	
 	std::vector<double> tVals;
@@ -52,7 +55,17 @@ double CAbstractFcnEq::getValue()
 
 }
 
+void CAbstractFcnEq::clear()
+{
+	DBOUT("Try Clear");
+	for (unsigned int i = 0; i < values.size(); i++)
+	{
+		cc::clearEquation(values.at(i));
+	}
 
+	values.resize(0);
+	DBOUT("Clear OK");
+}
 //
 //
 //bool CAbstractFcnEq::setParamValue(std::string name, double value)

@@ -8,7 +8,10 @@ public:
 	CAddEq(CAbstractEq* value1, CAbstractEq* value2);
 	virtual double getValue();
 
+	virtual void clear();
+
 private:
-	CAbstractEq* value1;
-	CAbstractEq* value2;
+	CAbstractEq* value1 = NULL;
+	CAbstractEq* value2 = NULL;
+
 };

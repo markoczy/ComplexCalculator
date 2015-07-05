@@ -34,7 +34,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnExpEq* fcn = new CFcnExpEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -46,7 +46,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnLogEq* fcn = new CFcnLogEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -60,7 +60,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnSinEq* fcn = new CFcnSinEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -72,7 +72,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnASinEq* fcn = new CFcnASinEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -84,7 +84,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnCosEq* fcn = new CFcnCosEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -96,7 +96,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnACosEq* fcn = new CFcnACosEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -108,7 +108,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnTanEq* fcn = new CFcnTanEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -120,7 +120,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnATanEq* fcn = new CFcnATanEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -132,7 +132,7 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnCotEq* fcn = new CFcnCotEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
@@ -144,21 +144,24 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnACotEq* fcn = new CFcnACotEq();
 
-		eq->setFcnChain(fcn);
+		eq->init(fcn);
 
 		functions.push_back(eq);
 	}
 	//
 	// pi
-	/*if (true)
+	if (true)
 	{
-		eq = new CParsedFcnEq(fcnNames.PI);
+		eq = new CParsedFcnEqV2(fcnNames.PI);
 
-		CAbstractFcnEq* fcn = new CAbstractFcnEq();
-		eq->addOperation(new CConstEq(3.14159265359), eOpType::CONST_EQ);
+		CFcnChainEq* fcn = new CFcnChainEq();
+		
+		fcn->addOperation(new CConstEq(3.14159265359),eOpType::CONST_EQ);
+
+		eq->init(fcn);
 
 		functions.push_back(eq);
-	}*/
+	}
 
 	return true;
 }

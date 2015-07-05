@@ -11,3 +11,11 @@ double CExpEq::getValue()
 {
 	return pow(value1->getValue(),value2->getValue());
 }
+
+void CExpEq::clear()
+{
+	DBOUT("Try Clear");
+	cc::clearEquation(value1);
+	cc::clearEquation(value2);
+	DBOUT("Clear OK"); 
+}

@@ -1,4 +1,4 @@
-﻿Build started 04.07.2015 15:03:05.
+﻿Build started 04.07.2015 16:08:30.
      1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAbstractFcnEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CC_Common.cpp CC_Function.cpp CDivEq.cpp CEqParserV2.cpp CExpEq.cpp CFcnChainEq.cpp CFunctionsPool.cpp CInvEq.cpp CMplEq.cpp CParsedFcnEq.cpp CParsedFcnEqV2.cpp CSubEq.cpp CVarEq.cpp Main.cpp StringTools.cpp
@@ -50,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.24
+Time Elapsed 00:00:05.06

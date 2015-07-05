@@ -26,11 +26,17 @@ public:
 	CChainEq::CChainEq(std::vector<SOperation> ops);
 	
 	virtual double getValue();
-	virtual void addOperation(CAbstractEq* value, eOpType oper);
+
 	virtual void clear();
+
+	virtual void addOperation(CAbstractEq* value, eOpType oper);
 
 protected:
 	std::vector<SOperation> ops;
+
+	// Recursive refereence to ops array (as parsed)
+	// Needed to call clear()
+	CAbstractEq * parsedOp = NULL;
 
 	static bool _solveOp(std::vector<SOperation> &vec, int it);
 	static int _getCountOf(std::vector<SOperation> &vec, eOpType op);

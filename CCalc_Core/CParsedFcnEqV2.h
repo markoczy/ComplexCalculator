@@ -12,7 +12,7 @@ public:
 	CParsedFcnEqV2(std::string name);
 
 
-	void setFcnChain(CFcnChainEq* chain);
+	void init(CFcnChainEq* chain);
 
 
 	std::string getName();

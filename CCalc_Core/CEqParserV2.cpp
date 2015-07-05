@@ -18,7 +18,13 @@ bool CEqParserV2::validate(std::string equation)
 double CEqParserV2::parse(std::string equation)
 {
 	it = 0;
-	return _parseEquation(equation,it)->getValue();
+	CAbstractEq * eq = _parseEquation(equation, it);
+	double rVal = eq->getValue();
+
+	eq->clear();
+	delete eq;
+
+	return rVal;
 }
 
 //-//-//-//-//-// PRIVATE //-//-//-//-//-//
@@ -106,6 +112,7 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 			else
 			{
 				chr = equation.at(it);
+				DBOUT("Try autoadd MPL (203) char is: " << chr);
 
 				// Subequation e.g. 4(2+3)
 				//                   ^   ^
@@ -268,8 +275,8 @@ CAbstractFcnEq* CEqParserV2::_parseFunction(std::string &equation, int &it)
 	// not found return
 	if (!fcnEq->init(mFcns, fcnName))
 	{ 
-		EROUT("Init CAbstractFcnEq failed");
-		return NULL; 
+		EROUT("Init Function failed, name not found: "<<fcnName);
+		return fcnEq; 
 	}
 
 	// Parse params -> CChain(2,1),CConst(3)
@@ -278,8 +285,9 @@ CAbstractFcnEq* CEqParserV2::_parseFunction(std::string &equation, int &it)
 	DBOUT("Init successful, paramCount is "<<paramCount);
 
 	std::vector<CAbstractEq*> params; // XXX unneeded??
-
-	it++;
+	
+	// skip first parOpen
+	if (paramCount>0) it++;
 
 	// TODO: Lambda -> paramCount=-1
 	for (int i = 0; i < paramCount; i++)

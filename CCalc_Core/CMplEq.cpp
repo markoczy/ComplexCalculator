@@ -11,3 +11,11 @@ double CMplEq::getValue()
 {
 	return value1->getValue() * value2->getValue();
 }
+
+void CMplEq::clear()
+{
+	DBOUT("Try Clear");
+	cc::clearEquation(value1);
+	cc::clearEquation(value2);
+	DBOUT("Clear OK");
+}

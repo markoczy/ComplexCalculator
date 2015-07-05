@@ -22,11 +22,13 @@ public:
 
 	virtual double getValue();
 
+	virtual void clear();
+
 protected:
 
 	std::vector<CAbstractEq*> values;
 
-	CParsedFcnEqV2 * fcnReference;
+	CParsedFcnEqV2 * fcnReference = NULL;
 
 	int mParamCount = 0;
 
