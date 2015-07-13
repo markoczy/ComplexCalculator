@@ -7,6 +7,7 @@ f:\coding\vstudio\complexcalc\ccalc_core\debug\cconsteq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cc_common.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cc_function.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cdiveq.obj
+f:\coding\vstudio\complexcalc\ccalc_core\debug\ceqparserv2.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cexpeq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cfunctioneq_fcn.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cchaineq_fcn.obj
@@ -21,6 +22,12 @@ f:\coding\vstudio\complexcalc\ccalc_core\debug\main.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\stringtools.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cabstracteq.obj
 f:\coding\vstudio\complexcalc\ccalc_core\debug\cabstractfcn.obj
+f:\coding\vstudio\complexcalc\debug\cc_test_cpp.ilk
+f:\coding\vstudio\complexcalc\debug\cc_test_cpp.exe
+f:\coding\vstudio\complexcalc\debug\cc_test_cpp.pdb
 f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\cl.command.1.tlog
 f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\cl.read.1.tlog
 f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\cl.write.1.tlog
+f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\link.command.1.tlog
+f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\link.read.1.tlog
+f:\coding\vstudio\complexcalc\ccalc_core\debug\ccalc_core.tlog\link.write.1.tlog

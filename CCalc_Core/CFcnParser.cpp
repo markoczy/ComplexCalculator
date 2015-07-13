@@ -1,6 +1,6 @@
 #include "CFcnParser.h"
 
-CParsedFcnEqV2 CFcnParser::parse(std::string equation)
+CParsedFcnEqV2* CFcnParser::parse(std::string equation)
 {
 	///
 	/// Example:
@@ -25,7 +25,7 @@ CParsedFcnEqV2 CFcnParser::parse(std::string equation)
 
 	DBOUT("fcnName = " << fcnName);
 
-	CParsedFcnEqV2 rVal(fcnName);
+	CParsedFcnEqV2* rVal = new CParsedFcnEqV2(fcnName);
 
 	mParamNames = _parseFcnParamNames(equation, it);
 
@@ -68,7 +68,10 @@ CParsedFcnEqV2 CFcnParser::parse(std::string equation)
 		//num->addParam(mParamNames.at(i));
 	}
 
-	rVal.init(num,mParamNames);
+	rVal->init(num,mParamNames);
+
+	mParamNames.clear();
+	it = 0;
 
 	return rVal;
 }

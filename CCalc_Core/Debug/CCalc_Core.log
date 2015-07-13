@@ -1,8 +1,32 @@
-﻿Build started 13.07.2015 20:36:32.
-     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Build target(s)).
+﻿Build started 14.07.2015 01:33:48.
+     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MYDBG_ /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MYDBG_ /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CAbstractEq.cpp CAbstractFcn.cpp CFunctionEq.cpp CAddEq.cpp CChainEq.cpp CConstEq.cpp CC_Common.cpp CC_Function.cpp CDivEq.cpp CEqParserV2.cpp CExpEq.cpp CFunctionEq_FCN.cpp CChainEq_FCN.cpp CFcnParser.cpp CFunctionsPool.cpp CInvEq.cpp CMplEq.cpp CParsedFcnEqV2.cpp CSubEq.cpp CVarEq.cpp Main.cpp StringTools.cpp
+         StringTools.cpp
          Main.cpp
+         CVarEq.cpp
+         CSubEq.cpp
+         CParsedFcnEqV2.cpp
+         CMplEq.cpp
+         CInvEq.cpp
+         CFunctionsPool.cpp
+         CFcnParser.cpp
+         CChainEq_FCN.cpp
+         CFunctionEq_FCN.cpp
+         CExpEq.cpp
+         CEqParserV2.cpp
+         CDivEq.cpp
+         CC_Function.cpp
+         CC_Common.cpp
+         CConstEq.cpp
+         CChainEq.cpp
+         CAddEq.cpp
+         CFunctionEq.cpp
+         Generating Code...
+         Compiling...
+         CAbstractFcn.cpp
+         CAbstractEq.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.lib" /MACHINE:X86 Debug\CAbstractEq.obj
          Debug\CAbstractFcn.obj
@@ -27,8 +51,8 @@
          Debug\Main.obj
          Debug\StringTools.obj
          CCalc_Core.vcxproj -> F:\Coding\VSTUDIO\ComplexCalc\Debug\cc_test_cpp.exe
-     1>Done Building Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" (Build target(s)).
+     1>Done Building Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_Core\CCalc_Core.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.56
+Time Elapsed 00:00:06.01

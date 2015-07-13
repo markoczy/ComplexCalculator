@@ -16,7 +16,7 @@ public:
 
 	// used to define function by a single string
 	// accepts: f(x,y):=sin(x)+0.3y
-	bool defineFunction(std::string statement);
+	bool addFunction(CParsedFcnEqV2* fcn);
 
 	bool loadFunctionsDb(std::string path);
 

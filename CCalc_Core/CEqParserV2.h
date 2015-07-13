@@ -59,5 +59,6 @@ protected:
 	//
 	bool _validate();
 
+	//void _reset(); // considering...
 
 };

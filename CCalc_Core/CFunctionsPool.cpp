@@ -12,6 +12,21 @@ CFunctionsPool::CFunctionsPool()
 	}
 }
 
+bool CFunctionsPool::addFunction(CParsedFcnEqV2* fcn)
+{
+	std::string fcnName = fcn->getName();
+
+	// Check if alrdy exists
+	for (unsigned int iFcn = 0; iFcn < functions.size();iFcn++)
+	{
+		if (!functions.at(iFcn)->getName().compare(fcnName)) return false;
+	}
+
+	functions.push_back(fcn);
+	
+	return true;
+}
+
 // ===> CFcnParser
 //bool CFunctionsPool::defineFunction(std::string stmt)
 //{

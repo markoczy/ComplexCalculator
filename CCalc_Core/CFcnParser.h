@@ -4,7 +4,7 @@ class CFcnParser : public CEqParserV2
 {
 public:
 
-	CParsedFcnEqV2 parse(std::string equation);
+	CParsedFcnEqV2* parse(std::string equation);
 
 
 

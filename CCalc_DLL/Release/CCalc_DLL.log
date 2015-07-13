@@ -1,5 +1,5 @@
-﻿Build started 05.07.2015 22:46:00.
-     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_DLL\CCalc_DLL.vcxproj" on node 3 (Rebuild target(s)).
+﻿Build started 14.07.2015 01:33:29.
+     1>Project "F:\Coding\VSTUDIO\ComplexCalc\CCalc_DLL\CCalc_DLL.vcxproj" on node 2 (Rebuild target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IF:\Coding\VSTUDIO\ComplexCalc\\CCalc_Core\ /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D CCALC_DLL /D _MBCS /D _WINDLL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\CCalc_Core\CAbstractEq.cpp ..\CCalc_Core\CAddEq.cpp ..\CCalc_Core\CChainEq.cpp ..\CCalc_Core\CConstEq.cpp ..\CCalc_Core\CC_Common.cpp ..\CCalc_Core\CDivEq.cpp ..\CCalc_Core\CEqParser.cpp ..\CCalc_Core\CExpEq.cpp ..\CCalc_Core\CMplEq.cpp ..\CCalc_Core\CSubEq.cpp ccalc_dll.cpp
@@ -20,4 +20,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:02.08
+Time Elapsed 00:00:04.77
