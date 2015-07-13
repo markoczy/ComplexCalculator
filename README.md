@@ -58,16 +58,17 @@ These are the classes that build the Core logic:
 
 * Command Line Interface:
    * CLI Loop
-   * History -> Log (SQLiteDB?)
+   * History
    * Settings: 
      * Log steps count
      * Function (DB) files to load (e.g. "trigo.db","stats.db" etc.)
 
 *  Functions Parser:
-   * Built-In functions: ANS, abs, exp, sin, cos, etc.
-   * Define functions mechanism ( e.g. "f(x,y):=32*x+y" )
+   * Built-In functions: ANS, abs, exp, sin, cos, etc. -> DONE!
+   * Define functions mechanism ( e.g. "f(x,y):=32*x+y" ) -> DONE!
    * Store functions, mechanisms: RAM (volatile), SQLiteDB (static)
-   * Parse operations with functions ( e.g. "f(21,34)" )
+   * Parse operations with functions ( e.g. "f(21,34)" ) -> DONE!
+   * Lambda functions (infinite length)
 
 ## Contribution
 
