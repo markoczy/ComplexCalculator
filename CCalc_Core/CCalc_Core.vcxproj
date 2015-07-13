@@ -72,7 +72,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CAbstractEq.cpp" />
-    <ClCompile Include="CAbstractFcnEq.cpp" />
+    <ClCompile Include="CAbstractFcn.cpp" />
+    <ClCompile Include="CFunctionEq.cpp" />
     <ClCompile Include="CAddEq.cpp" />
     <ClCompile Include="CChainEq.cpp" />
     <ClCompile Include="CConstEq.cpp" />
@@ -81,11 +82,12 @@
     <ClCompile Include="CDivEq.cpp" />
     <ClCompile Include="CEqParserV2.cpp" />
     <ClCompile Include="CExpEq.cpp" />
-    <ClCompile Include="CFcnChainEq.cpp" />
+    <ClCompile Include="CFunctionEq_FCN.cpp" />
+    <ClCompile Include="CChainEq_FCN.cpp" />
+    <ClCompile Include="CFcnParser.cpp" />
     <ClCompile Include="CFunctionsPool.cpp" />
     <ClCompile Include="CInvEq.cpp" />
     <ClCompile Include="CMplEq.cpp" />
-    <ClCompile Include="CParsedFcnEq.cpp" />
     <ClCompile Include="CParsedFcnEqV2.cpp" />
     <ClCompile Include="CSubEq.cpp" />
     <ClCompile Include="CVarEq.cpp" />
@@ -94,7 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h" />
-    <ClInclude Include="CAbstractFcnEq.h" />
+    <ClInclude Include="CAbstractFcn.h" />
+    <ClInclude Include="CFunctionEq.h" />
     <ClInclude Include="CAddEq.h" />
     <ClInclude Include="CChainEq.h" />
     <ClInclude Include="CConstEq.h" />
@@ -103,27 +106,28 @@
     <ClInclude Include="CDivEq.h" />
     <ClInclude Include="CEqParserV2.h" />
     <ClInclude Include="CExpEq.h" />
+    <ClInclude Include="CFunctionEq_FCN.h" />
     <ClInclude Include="CFcnACosEq.h" />
     <ClInclude Include="CFcnACotEq.h" />
     <ClInclude Include="CFcnASinEq.h" />
     <ClInclude Include="CFcnATanEq.h" />
-    <ClInclude Include="CFcnChainEq.h" />
+    <ClInclude Include="CChainEq_FCN.h" />
     <ClInclude Include="CFcnCosEq.h" />
     <ClInclude Include="CFcnCotEq.h" />
     <ClInclude Include="CFcnExpEq.h" />
     <ClInclude Include="CFcnLogEq.h" />
+    <ClInclude Include="CFcnParser.h" />
     <ClInclude Include="CFcnSinEq.h" />
     <ClInclude Include="CFcnTanEq.h" />
     <ClInclude Include="CFunctionsPool.h" />
     <ClInclude Include="CInvEq.h" />
     <ClInclude Include="CMplEq.h" />
     <ClInclude Include="CC_Common.h" />
-    <ClInclude Include="CParsedFcnEq.h" />
     <ClInclude Include="CParsedFcnEqV2.h" />
     <ClInclude Include="CSubEq.h" />
     <ClInclude Include="CVarEq.h" />
     <ClInclude Include="DBOUT.h" />
-    <ClInclude Include="InitBuiltInFcns.h" />
+    <ClInclude Include="StringsUI.h" />
     <ClInclude Include="StringTools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

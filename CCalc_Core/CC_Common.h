@@ -12,6 +12,7 @@
 #include "DBOUT.h"
 
 #include "CAbstractEq.h"
+#include "StringsUI.h"
 //
 ////// Functions
 ////
@@ -38,7 +39,7 @@
 ////
 //////
 //
-//#include "CFcnChainEq.h"
+//#include "CChainEq_FCN.h"
 
 /////////////////////////////// PARSER CHARS ///////////////////////////////
 
@@ -91,6 +92,7 @@ struct sFcnNames
 	const char* ACOT = "acot";
 	//
 	const char* PI = "pi";
+	const char* E = "e";
 
 };
 static sFcnNames fcnNames;

@@ -9,12 +9,11 @@
 
 #include "CVarEq.h"
 
-//#include "CAbstractFcnEq.h"
+//#include "CAbstractFcn.h"
 #include "CParsedFcnEqV2.h"
 //// Built-In Functions
 //
-#include "CFcnChainEq.h"
-#include "CParsedFcnEq.h"
+#include "CChainEq_FCN.h"
 //
 #include "CFcnExpEq.h"
 #include "CFcnLogEq.h"

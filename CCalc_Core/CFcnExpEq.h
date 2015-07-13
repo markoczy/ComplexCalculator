@@ -2,10 +2,10 @@
 //
 
 #include "CC_Common.h"
-#include "CFcnChainEq.h"
+#include "CChainEq_FCN.h"
 
 
-class CFcnExpEq : public CFcnChainEq
+class CFcnExpEq : public CChainEq_FCN
 {
 public:
 
@@ -23,9 +23,6 @@ public:
 		lExp.value = exp;
 		lExp.conOp = eOpType::CONST_EQ;
 		ops.push_back(lExp);
-
-		this->addParam(base->getName());
-		this->addParam(exp->getName());
 
 		this->eqType = eOpType::FCN_CH_EQ;
 	}

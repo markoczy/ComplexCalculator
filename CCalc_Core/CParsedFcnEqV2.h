@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CFcnChainEq.h"
+#include "CChainEq_FCN.h"
 #include "CChainEq.h"
 
 class CParsedFcnEqV2
@@ -11,11 +11,10 @@ public:
 	// Since name is vital, name is in Constr.
 	CParsedFcnEqV2(std::string name);
 
-
-	void init(CFcnChainEq* chain);
-
+	void init(CChainEq_FCN* chain, std::vector<std::string> paramNames);
 
 	std::string getName();
+	std::string getDescription();
 
 	//// ParamCount:
 	//
@@ -26,13 +25,15 @@ public:
 
 	double getValue(std::vector<double> paramValues);
 
-
 private:
 
-	CFcnChainEq* mChain;
+	CChainEq_FCN* mChain;
 	std::string mName = "";
-	std::vector<std::string> paramNames;
 
-	int mParamCount=0;
+	std::string mDescripition = "";
+
+	std::vector<std::string> mParamNames;
+
+	int mParamCount = 0;
 
 };

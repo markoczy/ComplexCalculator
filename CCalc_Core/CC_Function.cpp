@@ -23,7 +23,8 @@ void cc::fcn::removeParam(std::string &stmt, std::string paramName)
 bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 {
 	CParsedFcnEqV2* eq;
-	//CFcnChainEq* chn;
+	std::vector<std::string> paramNames;
+	//CChainEq_FCN* chn;
 	
 	//// Exponential
 	//
@@ -34,7 +35,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnExpEq* fcn = new CFcnExpEq();
 
-		eq->init(fcn);
+		paramNames = { "X", "Y" };
+		eq->init(fcn,paramNames);
 
 		functions.push_back(eq);
 	}
@@ -46,7 +48,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnLogEq* fcn = new CFcnLogEq();
 
-		eq->init(fcn);
+		paramNames = { "X", "Y" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -60,7 +63,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnSinEq* fcn = new CFcnSinEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -72,7 +76,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnASinEq* fcn = new CFcnASinEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -84,7 +89,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 
 		CFcnCosEq* fcn = new CFcnCosEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -96,7 +102,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnACosEq* fcn = new CFcnACosEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -108,7 +115,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnTanEq* fcn = new CFcnTanEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -120,7 +128,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnATanEq* fcn = new CFcnATanEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -132,7 +141,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnCotEq* fcn = new CFcnCotEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -144,7 +154,8 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 		
 		CFcnACotEq* fcn = new CFcnACotEq();
 
-		eq->init(fcn);
+		paramNames = { "X" };
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}
@@ -154,11 +165,27 @@ bool cc::fcn::initFunctions(std::vector<CParsedFcnEqV2*> &functions)
 	{
 		eq = new CParsedFcnEqV2(fcnNames.PI);
 
-		CFcnChainEq* fcn = new CFcnChainEq();
+		CChainEq_FCN* fcn = new CChainEq_FCN();
 		
 		fcn->addOperation(new CConstEq(3.14159265359),eOpType::CONST_EQ);
 
-		eq->init(fcn);
+		paramNames = {};
+		eq->init(fcn, paramNames);
+
+		functions.push_back(eq);
+	}
+	//
+	// e
+	if (true)
+	{
+		eq = new CParsedFcnEqV2(fcnNames.E);
+
+		CChainEq_FCN* fcn = new CChainEq_FCN();
+
+		fcn->addOperation(new CConstEq(2.71828182845), eOpType::CONST_EQ);
+		                               
+		paramNames = {};
+		eq->init(fcn, paramNames);
 
 		functions.push_back(eq);
 	}

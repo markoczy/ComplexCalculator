@@ -75,7 +75,9 @@ CAbstractEq* CEqParserV2::_parseEquation(std::string &equation, int &it)
 		else if (cc::isAlpha(chr))
 		{
 			DBOUT("Found alpha " << chr);
-			number = _parseFunction(equation, it);
+			std::string fcnName = _parseIdentifier(equation, it);
+
+			number = _parseFunction(fcnName,equation, it);
 		}
 		else if (cc::isOperator(chr))
 		{
@@ -243,7 +245,7 @@ eOpType CEqParserV2::_parseOperator(std::string &equation, int &it)
 
 }
 
-std::string CEqParserV2::_parseFunctionName(std::string &equation, int &it)
+std::string CEqParserV2::_parseIdentifier(std::string &equation, int &it)
 {
 	std::string rVal = "";
 
@@ -255,10 +257,12 @@ std::string CEqParserV2::_parseFunctionName(std::string &equation, int &it)
 		it++;
 	}
 
+	DBOUT("Parsed Indentifier: " << rVal);
+
 	return rVal;
 }
 
-CAbstractFcnEq* CEqParserV2::_parseFunction(std::string &equation, int &it)
+CFunctionEq_FCN* CEqParserV2::_parseFunction(std::string fcnName, std::string &equation, int &it)
 {
 	//-//-//-//-//-//-//-//-//-//-//-//
 	// Example:	2+func((2+1),3)+42
@@ -266,10 +270,10 @@ CAbstractFcnEq* CEqParserV2::_parseFunction(std::string &equation, int &it)
 	//-//-//-//-//-//-//-//-//-//-//-//
 	
 	
-	std::string fcnName=_parseFunctionName(equation,it);
-	DBOUT("Function name is "<<fcnName);
+	//std::string fcnName = _parseIdentifier(equation, it);
+	DBOUT("Function name is " << fcnName);
 
-	CAbstractFcnEq * fcnEq = new CAbstractFcnEq();
+	CFunctionEq_FCN * fcnEq = new CFunctionEq_FCN();
 
 	// If function parsing failed or function 
 	// not found return
@@ -340,6 +344,7 @@ std::string CEqParserV2::_getEqSubstr(std::string &equation, int &it)
 		{
 			return rVal;
 		}
+
 		it++;
 
 	}

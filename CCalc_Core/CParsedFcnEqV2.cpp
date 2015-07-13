@@ -6,11 +6,13 @@ CParsedFcnEqV2::CParsedFcnEqV2(std::string name)
 	this->mName = name;
 }
 
-void CParsedFcnEqV2::init(CFcnChainEq* chain)
+void CParsedFcnEqV2::init(CChainEq_FCN* chain, std::vector<std::string> paramNames)
 {
 	this->mChain = chain;
+	this->mParamNames = paramNames;
 
-	mParamCount = chain->getParamCount();
+	// TODO: Lambda
+	mParamCount = mParamNames.size();
 }
 
 
@@ -30,12 +32,13 @@ double CParsedFcnEqV2::getValue(std::vector<double> paramValues)
 	// Params must mach and not lambda
 	if (mParamCount != -1 && paramValues.size() != mParamCount)
 	{
+		EROUT("Value count does not match: required = "<<mParamCount<<", provided = "<<paramValues.size());
 		return 0;
 	}
 
 	for (unsigned int i = 0; i < paramValues.size(); i++)
 	{
-		mChain->setParam(i, paramValues.at(i));
+		mChain->setParam(mParamNames.at(i), paramValues.at(i));
 	}
 
 	// TODO: Error Check!!!

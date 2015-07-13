@@ -1,9 +1,9 @@
 #pragma once
 
 #include "CC_Common.h"
-#include "CFcnChainEq.h"
+#include "CChainEq_FCN.h"
 
-class CFcnTanEq : public CFcnChainEq
+class CFcnTanEq : public CChainEq_FCN
 {
 public:
 
@@ -16,7 +16,6 @@ public:
 		op.conOp = eOpType::CONST_EQ;
 		ops.push_back(op);
 
-		this->addParam(value->getName());
 		this->eqType = eOpType::FCN_CH_EQ;
 	}
 
