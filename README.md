@@ -56,6 +56,10 @@ These are the classes that build the Core logic:
 
 ## TODO
 
+* Error Codes
+
+* DLL Wrapper for C# / Java
+
 * Command Line Interface:
    * CLI Loop
    * History
