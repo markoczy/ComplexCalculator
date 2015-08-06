@@ -23,9 +23,9 @@ public:
 	//~CChainEq(){ clear(); }
 
 	CChainEq(std::vector<CAbstractEq*> values, std::vector<eOpType> operators);
-	CChainEq::CChainEq(std::vector<SOperation> ops);
+	CChainEq(std::vector<SOperation> ops);
 	
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 
 	virtual void clear();
 

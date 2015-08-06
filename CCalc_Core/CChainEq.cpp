@@ -40,14 +40,12 @@ void CChainEq::clear()
 	DBOUT("Clear OK");
 }
 
-double CChainEq::getValue()
+int CChainEq::getValue(double &aValue)
 {
 	bool error = false;
 	int eqCount = ops.size();
 
-	double rVal = 0;
-
-	std::vector<SOperation> tmpOps=ops;
+	std::vector<SOperation> tmpOps = ops;
 
 	int first;
 
@@ -86,11 +84,15 @@ double CChainEq::getValue()
 		_solveOp(tmpOps, first);
 	}
 
-	parsedOp = tmpOps.at(0).value;
+	if (!tmpOps.at(0).value == NULL)
+	{
+		return tmpOps.at(0).value->getValue(aValue);
+	}
+	else
+	{
+		return NOK_BAD_INIT;
+	}
 
-	if (!parsedOp == NULL) rVal = parsedOp->getValue();
-
-	return rVal;
 }
 
 bool CChainEq::_solveOp(std::vector<SOperation> &vec, int it)

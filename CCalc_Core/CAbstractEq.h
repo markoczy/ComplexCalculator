@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CC_Error.h"
 
 /**
 * @brief Operation Types (i.e. child classes)
@@ -38,7 +39,7 @@ class CAbstractEq
 public:
 	
 	// Method will be overridden
-	virtual double getValue(){ return 0; };
+	virtual int getValue(double &aValue){ return NOK_BAD_INIT; };
 
 	// Used to delete all member Equations
 	// is called during getValue() call

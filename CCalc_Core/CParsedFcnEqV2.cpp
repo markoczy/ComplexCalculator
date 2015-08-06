@@ -27,7 +27,7 @@ int CParsedFcnEqV2::getParamCount()
 	return mParamCount;
 }
 
-double CParsedFcnEqV2::getValue(std::vector<double> paramValues)
+int CParsedFcnEqV2::getValue(std::vector<double> paramValues, double &aValue)
 {
 	// Params must mach and not lambda
 	if (mParamCount != -1 && paramValues.size() != mParamCount)
@@ -41,8 +41,6 @@ double CParsedFcnEqV2::getValue(std::vector<double> paramValues)
 		mChain->setParam(mParamNames.at(i), paramValues.at(i));
 	}
 
-	// TODO: Error Check!!!
-
-	return mChain->getValue();
+	return mChain->getValue(aValue);
 }
 

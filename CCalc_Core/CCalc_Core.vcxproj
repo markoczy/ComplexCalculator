@@ -73,6 +73,8 @@
   <ItemGroup>
     <ClCompile Include="CAbstractEq.cpp" />
     <ClCompile Include="CAbstractFcn.cpp" />
+    <ClCompile Include="CCalcEngine.cpp" />
+    <ClCompile Include="CC_Error.cpp" />
     <ClCompile Include="CFunctionEq.cpp" />
     <ClCompile Include="CAddEq.cpp" />
     <ClCompile Include="CChainEq.cpp" />
@@ -82,7 +84,6 @@
     <ClCompile Include="CDivEq.cpp" />
     <ClCompile Include="CEqParserV2.cpp" />
     <ClCompile Include="CExpEq.cpp" />
-    <ClCompile Include="CFunctionEq_FCN.cpp" />
     <ClCompile Include="CChainEq_FCN.cpp" />
     <ClCompile Include="CFcnParser.cpp" />
     <ClCompile Include="CFunctionsPool.cpp" />
@@ -97,6 +98,8 @@
   <ItemGroup>
     <ClInclude Include="CAbstractEq.h" />
     <ClInclude Include="CAbstractFcn.h" />
+    <ClInclude Include="CCalcEngine.h" />
+    <ClInclude Include="CC_Error.h" />
     <ClInclude Include="CFunctionEq.h" />
     <ClInclude Include="CAddEq.h" />
     <ClInclude Include="CChainEq.h" />
@@ -106,7 +109,6 @@
     <ClInclude Include="CDivEq.h" />
     <ClInclude Include="CEqParserV2.h" />
     <ClInclude Include="CExpEq.h" />
-    <ClInclude Include="CFunctionEq_FCN.h" />
     <ClInclude Include="CFcnACosEq.h" />
     <ClInclude Include="CFcnACotEq.h" />
     <ClInclude Include="CFcnASinEq.h" />

@@ -11,15 +11,16 @@ void CEqParserV2::init(CFunctionsPool *fcns)
 bool CEqParserV2::validate(std::string equation)
 {
 
-	return false;
+	return true;
 }
 
 // Parses double value from equation
-double CEqParserV2::parse(std::string equation)
+int CEqParserV2::parse(std::string equation, double &aValue)
 {
 	it = 0;
 	CAbstractEq * eq = _parseEquation(equation, it);
-	double rVal = eq->getValue();
+	
+	int rVal = eq->getValue(aValue);
 
 	eq->clear();
 	delete eq;
@@ -262,18 +263,17 @@ std::string CEqParserV2::_parseIdentifier(std::string &equation, int &it)
 	return rVal;
 }
 
-CFunctionEq_FCN* CEqParserV2::_parseFunction(std::string fcnName, std::string &equation, int &it)
+CFunctionEq* CEqParserV2::_parseFunction(std::string fcnName, std::string &equation, int &it)
 {
 	//-//-//-//-//-//-//-//-//-//-//-//
 	// Example:	2+func((2+1),3)+42
 	//            ^
 	//-//-//-//-//-//-//-//-//-//-//-//
 	
-	
 	//std::string fcnName = _parseIdentifier(equation, it);
 	DBOUT("Function name is " << fcnName);
 
-	CFunctionEq_FCN * fcnEq = new CFunctionEq_FCN();
+	CFunctionEq * fcnEq = new CFunctionEq();
 
 	// If function parsing failed or function 
 	// not found return

@@ -6,9 +6,11 @@ CConstEq::CConstEq(double value)
 	this->eqType = eOpType::CONST_EQ;
 }
 
-double CConstEq::getValue()
+int CConstEq::getValue(double &aValue)
 {
-	return this->value;
+	aValue = value;
+
+	return OK_GENERAL;
 }
 
 void CConstEq::setValue(double value)

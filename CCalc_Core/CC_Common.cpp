@@ -53,6 +53,24 @@ bool cc::isFcnDefOp(char chr1, char chr2)
 	return false;
 }
 //
+
+bool cc::isFcnDefEq(std::string &eq)
+{
+	if (eq.length() == 0) return false;
+
+	for (unsigned int i = 0; i < eq.length() - 1; i++)
+	{
+		if (eq.at(i) == ':')
+		{
+			if (eq.at(i + 1) == '=') return true;
+		}
+
+	}
+
+	return false;
+
+}
+
 bool cc::validateChar(char chr)
 {
 	for (int i = 0; i < DECIMALS_COUNT; i++)

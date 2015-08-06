@@ -60,8 +60,18 @@ void initCLI()
 			}
 			else
 			{
-				double val = p.parse(input);
-				std::cout << "Output: " << val << std::endl << std::endl;
+				double val = 0;
+				int rVal = p.parse(input,val);
+
+				if (cc::err::isSuccess(rVal))
+				{
+					std::cout << "Output: " << val << std::endl << std::endl;
+				}
+				else
+				{
+					std::string errStr = cc::err::getReturnString(rVal);
+					std::cout << ">>>>> : Error while parsing: " << errStr.c_str() << std::endl << std::endl;
+				}
 			}
 		}
 	}

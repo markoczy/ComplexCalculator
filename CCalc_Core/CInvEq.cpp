@@ -6,7 +6,16 @@ CInvEq::CInvEq(CAbstractEq* value)
 	this->eqType = eOpType::INV_EQ;
 }
 
-double CInvEq::getValue()
+int CInvEq::getValue(double &aValue)
 {
-	return -1.0*(this->value->getValue());
+	int rVal = 0;
+	double val = 0;
+
+	// Get first value, exit on error
+	rVal = value->getValue(val);
+	if (!cc::err::isSuccess(rVal)) return rVal;
+
+	aValue = -1.0*(val);
+
+	return OK_GENERAL;
 }

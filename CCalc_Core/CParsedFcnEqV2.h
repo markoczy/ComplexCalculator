@@ -23,7 +23,7 @@ public:
 	// -1 = Lambda
 	int getParamCount();
 
-	double getValue(std::vector<double> paramValues);
+	int getValue(std::vector<double> paramValues, double &aValue);
 
 private:
 

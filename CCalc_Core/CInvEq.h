@@ -6,7 +6,7 @@ class CInvEq : public CAbstractEq
 {
 public:
 	CInvEq(CAbstractEq* value);
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 
 private:
 	CAbstractEq* value;

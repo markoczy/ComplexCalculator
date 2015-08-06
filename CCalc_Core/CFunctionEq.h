@@ -5,7 +5,7 @@
 #include "CFunctionsPool.h"
 //
 //
-class CFunctionEq : public CAbstractEq
+class CFunctionEq : public CAbstractEq, public CAbstractFcn
 {
 	
 public:
@@ -20,9 +20,11 @@ public:
 	
 	virtual int getParamCount();
 
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 
 	virtual void clear();
+	
+	virtual int setParam(std::string name, double value);
 
 protected:
 

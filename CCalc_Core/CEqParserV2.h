@@ -5,7 +5,7 @@
 
 #include "CChainEq.h"
 //#include "CFunctionEq.h"
-#include "CFunctionEq_FCN.h"
+#include "CFunctionEq.h"
 
 #include "CFunctionsPool.h"
 
@@ -20,7 +20,7 @@ public:
 	virtual bool validate(std::string equation);
 
 	// Parses double value from equation
-	double parse(std::string equation);
+	int parse(std::string equation, double &aValue);
 
 	static std::string _parseIdentifier(std::string &equation, int &it);
 
@@ -45,7 +45,7 @@ protected:
 	//
 	//static std::string _parseFunctionName(std::string &equation, int &it);
 	//
-	virtual CFunctionEq_FCN* _parseFunction(std::string fcnName, std::string &equation, int &it);
+	virtual CFunctionEq* _parseFunction(std::string fcnName, std::string &equation, int &it);
 	
 	//// Substring
 	//

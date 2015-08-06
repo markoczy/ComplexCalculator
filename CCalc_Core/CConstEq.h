@@ -6,7 +6,7 @@ class CConstEq : public CAbstractEq
 {
 public:
 	CConstEq(double value);
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 	virtual void setValue(double value);
 
 private:

@@ -6,7 +6,7 @@ class CSubEq : public CAbstractEq
 {
 public:
 	CSubEq(CAbstractEq* value1, CAbstractEq* value2);
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 	
 	virtual void clear();
 

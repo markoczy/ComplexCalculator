@@ -24,7 +24,15 @@ bool CVarEq::hasValue()
 }
 
 // @override
-double CVarEq::getValue()
+int CVarEq::getValue(double &aValue)
 {
-	return value;
+	if (valExists)
+	{
+		aValue = value;
+		return OK_GENERAL;
+	}
+	else
+	{
+		return NOK_VAR_UNSET;
+	}
 }

@@ -14,7 +14,7 @@ public:
 	virtual bool hasValue();
 
 	// @override
-	virtual double getValue();
+	virtual int getValue(double &aValue);
 
 protected:
 	

@@ -6,8 +6,9 @@ class CMplEq : public CAbstractEq
 {
 public:
 	CMplEq(CAbstractEq* value1, CAbstractEq* value2);
-	virtual double getValue();
 	
+	virtual int getValue(double &aValue);
+
 	virtual void clear();
 
 private:

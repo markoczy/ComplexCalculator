@@ -19,13 +19,18 @@ public:
 		this->eqType = eOpType::FCN_CH_EQ;
 	}
 
-	virtual double getValue()
+	virtual int getValue(double &aValue)
 	{
-		// cot(x) = cos(x)/sin(x)
-		double val = ops.at(0).value->getValue();
+		int rVal = 0;
+		double v1 = 0;
 
-		return cos(val) / sin(val);
+		// Get first value, exit on error
+		rVal = ops.at(0).value->getValue(v1);
+		if (!cc::err::isSuccess(rVal)) return rVal;
+
+		aValue = cos(v1) / sin(v1);;
+
+		return OK_GENERAL;
 	}
-
 
 };

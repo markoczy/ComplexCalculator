@@ -7,10 +7,22 @@ CAddEq::CAddEq(CAbstractEq* value1, CAbstractEq* value2)
 	this->eqType = eOpType::ADD_EQ;
 }
 
-double CAddEq::getValue()
+int CAddEq::getValue(double &aValue)
 {
-	double rVal = value1->getValue() + value2->getValue();
-	return value1->getValue() + value2->getValue();
+	int rVal = 0;
+	double v1 = 0, v2 = 0;
+	
+	// Get first value, exit on error
+	rVal = value1->getValue(v1);
+	if (!cc::err::isSuccess(rVal)) return rVal;
+
+	// Get second value, exit on error
+	rVal = value2->getValue(v2);
+	if (!cc::err::isSuccess(rVal)) return rVal;
+
+	aValue = v1 + v2;
+
+	return OK_GENERAL;
 }
 
 void CAddEq::clear()

@@ -7,8 +7,8 @@ class CExpEq : public CAbstractEq
 public:
 	CExpEq(CAbstractEq* value1, CAbstractEq* value2);
 	
-	virtual double getValue();
-	
+	virtual int getValue(double &aValue);
+
 	virtual void clear();
 
 private:

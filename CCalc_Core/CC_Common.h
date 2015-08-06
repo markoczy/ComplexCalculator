@@ -119,6 +119,9 @@ namespace cc
 	// i.e. ":="
 	bool isFcnDefOp(char chr1, char chr2);
 
+	// i.e. contains ":="
+	bool isFcnDefEq(std::string &eq);
+
 	// returns if char is allowed
 	// for a definition
 	bool validateChar(char chr);
