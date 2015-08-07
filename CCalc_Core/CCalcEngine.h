@@ -13,14 +13,14 @@ public:
 	CCalcEngine();
 	~CCalcEngine();
 	
-	int parse(std::string equation, double &value);
+	int parse(std::string equation, double &aValue);
 	
-	int parseEquation(std::string equation, double &value);
+	int parseEquation(std::string equation, double &aValue);
 	
 	int parseFunction(std::string equation);
 
 
-	int validate();
+	int validate(std::string equation);
 
 	std::string parseReturnCode(int code);
 	
@@ -30,7 +30,7 @@ private:
 	CFcnParser mFcnParser;
 	CFunctionsPool mFunctions;
 
-	int _parse(std::string &equation, bool validate = true);
+	int _parse(std::string &equation, double &aValue);
 	int _parseEquation(std::string &equation, double &value, bool validate = true);
 	int _parseFunction(std::string &equation, bool validate = true);
 

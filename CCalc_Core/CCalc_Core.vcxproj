@@ -100,6 +100,7 @@
     <ClInclude Include="CAbstractFcn.h" />
     <ClInclude Include="CCalcEngine.h" />
     <ClInclude Include="CC_Error.h" />
+    <ClInclude Include="CC_Version.h" />
     <ClInclude Include="CFunctionEq.h" />
     <ClInclude Include="CAddEq.h" />
     <ClInclude Include="CChainEq.h" />

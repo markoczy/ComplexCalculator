@@ -12,7 +12,11 @@
 #include "DBOUT.h"
 
 #include "CAbstractEq.h"
-#include "StringsUI.h"
+#include "StringsUI.h"  /// <<< WTF`??
+
+
+#include "CC_Version.h"
+
 //
 ////// Functions
 ////

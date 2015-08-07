@@ -44,6 +44,20 @@ int CFunctionEq::getValue(double &aValue)
 	// failsave
 	if (fcnReference == NULL) return NOK_FCNREF_UNSET;
 
+	unsigned int refPCount = fcnReference->getParamCount();
+	if (refPCount != -1)
+	{
+		if (refPCount<values.size())
+		{
+			return NOK_PARAMCOUNT_HIGH;
+		}
+		else if (refPCount>values.size())
+		{
+			return NOK_PARAMCOUNT_HIGH;
+		}
+
+	}
+
 	DBOUT("values.size() = " << values.size());
 	
 	std::vector<double> tVals;

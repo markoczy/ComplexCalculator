@@ -1,4 +1,4 @@
-#include "CEqParser.h"
+#include "CCalcEngine.h"
 
 // DLLIMPORT / DLLEXPORT
 #ifdef CCALC_DLL
@@ -10,12 +10,16 @@ class SQLiteHandler;
 
 
 // Get Version
-DLL const char* ccalc_getVersion(char* out = NULL);
+DLL int ccalc_getVersion(char* out = NULL);
 
 // De / -Init
-DLL CEqParser * ccalc_create();
-DLL void ccalc_destroy(CEqParser * parser);
+DLL CCalcEngine * ccalc_create();
+DLL void ccalc_destroy(CCalcEngine * cc);
 
-// De / -Init
-DLL bool ccalc_validate(CEqParser * parser,char* stmt);
-DLL double ccalc_parse(CEqParser * parser,char* stmt);
+// Validate / Parse
+DLL bool ccalc_validate(CCalcEngine * cc, char* stmt);
+DLL int ccalc_parse(CCalcEngine * cc, char* stmt, double *aValue);
+
+// Error
+DLL bool ccalc_isSuccess(int retCode);
+DLL int ccalc_getReturnString(int retCode, char* out = NULL);

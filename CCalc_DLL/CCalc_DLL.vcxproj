@@ -84,28 +84,62 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\CCalc_Core\CAbstractEq.h" />
+    <ClInclude Include="..\CCalc_Core\CAbstractFcn.h" />
     <ClInclude Include="..\CCalc_Core\CAddEq.h" />
+    <ClInclude Include="..\CCalc_Core\CCalcEngine.h" />
     <ClInclude Include="..\CCalc_Core\CChainEq.h" />
+    <ClInclude Include="..\CCalc_Core\CChainEq_FCN.h" />
     <ClInclude Include="..\CCalc_Core\CConstEq.h" />
     <ClInclude Include="..\CCalc_Core\CC_Common.h" />
+    <ClInclude Include="..\CCalc_Core\CC_Error.h" />
+    <ClInclude Include="..\CCalc_Core\CC_Function.h" />
+    <ClInclude Include="..\CCalc_Core\CC_Operation.h" />
+    <ClInclude Include="..\CCalc_Core\CC_Version.h" />
     <ClInclude Include="..\CCalc_Core\CDivEq.h" />
-    <ClInclude Include="..\CCalc_Core\CEqParser.h" />
+    <ClInclude Include="..\CCalc_Core\CEqParserV2.h" />
     <ClInclude Include="..\CCalc_Core\CExpEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnACosEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnACotEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnASinEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnATanEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnCosEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnCotEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnExpEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnLogEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnParser.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnSinEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFcnTanEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFunctionEq.h" />
+    <ClInclude Include="..\CCalc_Core\CFunctionsPool.h" />
+    <ClInclude Include="..\CCalc_Core\CInvEq.h" />
     <ClInclude Include="..\CCalc_Core\CMplEq.h" />
+    <ClInclude Include="..\CCalc_Core\CParsedFcnEqV2.h" />
     <ClInclude Include="..\CCalc_Core\CSubEq.h" />
+    <ClInclude Include="..\CCalc_Core\CVarEq.h" />
     <ClInclude Include="ccalc_dll.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CCalc_Core\CAbstractEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CAbstractFcn.cpp" />
     <ClCompile Include="..\CCalc_Core\CAddEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CCalcEngine.cpp" />
     <ClCompile Include="..\CCalc_Core\CChainEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CChainEq_FCN.cpp" />
     <ClCompile Include="..\CCalc_Core\CConstEq.cpp" />
     <ClCompile Include="..\CCalc_Core\CC_Common.cpp" />
+    <ClCompile Include="..\CCalc_Core\CC_Error.cpp" />
+    <ClCompile Include="..\CCalc_Core\CC_Function.cpp" />
     <ClCompile Include="..\CCalc_Core\CDivEq.cpp" />
-    <ClCompile Include="..\CCalc_Core\CEqParser.cpp" />
+    <ClCompile Include="..\CCalc_Core\CEqParserV2.cpp" />
     <ClCompile Include="..\CCalc_Core\CExpEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CFcnParser.cpp" />
+    <ClCompile Include="..\CCalc_Core\CFunctionEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CFunctionsPool.cpp" />
+    <ClCompile Include="..\CCalc_Core\CInvEq.cpp" />
     <ClCompile Include="..\CCalc_Core\CMplEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CParsedFcnEqV2.cpp" />
     <ClCompile Include="..\CCalc_Core\CSubEq.cpp" />
+    <ClCompile Include="..\CCalc_Core\CVarEq.cpp" />
     <ClCompile Include="ccalc_dll.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

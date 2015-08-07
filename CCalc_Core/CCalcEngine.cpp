@@ -16,22 +16,22 @@ CCalcEngine::~CCalcEngine()
 
 }
 
-int CCalcEngine::parse(std::string equation, double &value)
+int CCalcEngine::parse(std::string equation, double &aValue)
 {
 	if (cc::isFcnDefEq(equation))
 	{
-		value = 0;
+		aValue = 0;
 		return _parseFunction(equation, false);
 	}
 	else
 	{
-		return _parseEquation(equation, value, false);
+		return _parseEquation(equation, aValue, false);
 	}
 }
 
-int CCalcEngine::parseEquation(std::string equation, double &value)
+int CCalcEngine::parseEquation(std::string equation, double &aValue)
 {
-	return _parseEquation(equation, value);
+	return _parseEquation(equation, aValue);
 }
 
 int CCalcEngine::parseFunction(std::string equation)
@@ -40,7 +40,7 @@ int CCalcEngine::parseFunction(std::string equation)
 }
 
 
-int CCalcEngine::validate()
+int CCalcEngine::validate(std::string equation)
 {
 
 	return 0;
@@ -54,22 +54,39 @@ std::string CCalcEngine::parseReturnCode(int code)
 
 //////////////////// PRIVATE ////////////////////
 
-int CCalcEngine::_parse(std::string &equation, bool validate)
-{
 
-	return 0;
-}
-
-int CCalcEngine::_parseEquation(std::string &equation, double &value, bool validate)
+int CCalcEngine::_parseEquation(std::string &equation, double &aValue, bool validate)
 {
+	/// TODO: Validate
+
+	double val = 0;
+	int rVal = mParser.parse(equation, aValue);
+
+	if (cc::err::isSuccess(rVal))
+	{
+		return OK_PARSED_EQUATION;
+	}
+	else
+	{
+		return rVal;
+	}
 
 	return 0;
 }
 
 int CCalcEngine::_parseFunction(std::string &equation, bool validate)
 {
+	CParsedFcnEqV2* fcn = mFcnParser.parse(equation);
 
-	return 0;
+	// TODO: more error codes
+	if (mFunctions.addFunction(fcn))
+	{
+		return OK_CREATED_FUNCTION;
+	}
+	else
+	{
+		return NOK_FCN_NAME_EXISTS;
+	}
 }
 
 int CCalcEngine::_validate(std::string &equation)

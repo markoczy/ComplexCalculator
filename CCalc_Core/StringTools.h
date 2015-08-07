@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 const char ALPHAS_LC[] =  { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',

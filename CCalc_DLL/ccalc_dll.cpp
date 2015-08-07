@@ -2,45 +2,64 @@
 
 
 // Get Version
-DLL const char* ccalc_getVersion(char* out)
+DLL int ccalc_getVersion(char* out)
 {
 	if (out == NULL)
 	{
-		return CC_VERSION;
+		return cc::getVersion().length();
 	}
 	else
 	{
-		strcpy_s(out, CC_VER_STRLEN, CC_VERSION);
+		std::string rVal = cc::getVersion();
+		std::copy(rVal.begin(), rVal.end(), out);
+		out[rVal.length()] = '\0';
+
+		return rVal.length();
 	}
-
-	return NULL;
-
 }
 
 // De / -Init
-DLL CEqParser * ccalc_create()
+DLL CCalcEngine * ccalc_create()
 {
-	return new CEqParser();
+	return new CCalcEngine();
 }
 //
-DLL void ccalc_destroy(CEqParser * parser)
+DLL void ccalc_destroy(CCalcEngine * cc)
 {
-	delete parser;
+	delete cc;
 }
 
 // Use
-DLL bool ccalc_validate(CEqParser * parser,char* stmt)
+DLL bool ccalc_validate(CCalcEngine * cc, char* stmt)
 {
 	DBOUT("Warning: untested method");
-	bool rVal = parser->validate(stmt);
+	bool rVal = cc->validate(stmt);
 	DBOUT("Success");
 	return rVal;
 }
 
-DLL double ccalc_parse(CEqParser * parser, char* stmt)
+DLL int ccalc_parse(CCalcEngine * cc, char* stmt, double *aValue)
 {
-	DBOUT("Warning: untested method");
-	double rVal = parser->parse(stmt);
-	DBOUT("Success");
-	return rVal;
+	return cc->parse(stmt, *aValue);
+}
+
+DLL int ccalc_getReturnString(int retCode, char* out)
+{
+	if (out == NULL)
+	{
+		return cc::err::getReturnString(retCode).length();
+	}
+	else
+	{
+		std::string rVal = cc::err::getReturnString(retCode);
+		std::copy(rVal.begin(), rVal.end(), out);
+		out[rVal.length()] = '\0';
+
+		return rVal.length();
+	}
+}
+
+DLL bool ccalc_isSuccess(int retCode)
+{
+	return cc::err::isSuccess(retCode);
 }

@@ -36,9 +36,6 @@
     <ClCompile Include="..\CCalc_Core\CDivEq.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\CCalc_Core\CEqParser.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\CCalc_Core\CExpEq.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -52,6 +49,42 @@
       <Filter>DLL</Filter>
     </ClCompile>
     <ClCompile Include="..\CCalc_Core\CC_Common.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CCalcEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CChainEq_FCN.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CEqParserV2.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CFcnParser.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CFunctionEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CFunctionsPool.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CInvEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CParsedFcnEqV2.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CVarEq.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CAbstractFcn.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CC_Error.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCalc_Core\CC_Function.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,9 +104,6 @@
     <ClInclude Include="..\CCalc_Core\CDivEq.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\CCalc_Core\CEqParser.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\CCalc_Core\CExpEq.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -87,6 +117,78 @@
       <Filter>DLL</Filter>
     </ClInclude>
     <ClInclude Include="..\CCalc_Core\CC_Common.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CCalcEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CChainEq_FCN.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CEqParserV2.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnACosEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnACotEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnASinEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnATanEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnCosEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnCotEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnExpEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnLogEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnParser.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnSinEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFcnTanEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFunctionEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CFunctionsPool.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CInvEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CParsedFcnEqV2.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CVarEq.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CAbstractFcn.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CC_Error.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CC_Function.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CC_Operation.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCalc_Core\CC_Version.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

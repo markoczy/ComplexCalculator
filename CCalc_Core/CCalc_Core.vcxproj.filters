@@ -151,20 +151,20 @@
     <ClCompile Include="CFcnParser.cpp">
       <Filter>Engine\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="CFunctionEq.cpp">
-      <Filter>Engine\Equations\Functions\Data Structure\Abstract</Filter>
-    </ClCompile>
     <ClCompile Include="CChainEq_FCN.cpp">
       <Filter>Engine\Equations\Functions\Data Structure\Chain</Filter>
-    </ClCompile>
-    <ClCompile Include="CAbstractFcn.cpp">
-      <Filter>Engine\Equations\Functions\Data Structure</Filter>
     </ClCompile>
     <ClCompile Include="CCalcEngine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="CC_Error.cpp">
       <Filter>Utility\Error</Filter>
+    </ClCompile>
+    <ClCompile Include="CAbstractFcn.cpp">
+      <Filter>Engine\Equations\Functions\Data Structure\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="CFunctionEq.cpp">
+      <Filter>Engine\Equations\Functions\Data Structure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,20 +258,23 @@
     <ClInclude Include="CFcnParser.h">
       <Filter>Engine\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="CFunctionEq.h">
-      <Filter>Engine\Equations\Functions\Data Structure\Abstract</Filter>
-    </ClInclude>
     <ClInclude Include="CChainEq_FCN.h">
       <Filter>Engine\Equations\Functions\Data Structure\Chain</Filter>
-    </ClInclude>
-    <ClInclude Include="CAbstractFcn.h">
-      <Filter>Engine\Equations\Functions\Data Structure</Filter>
     </ClInclude>
     <ClInclude Include="CCalcEngine.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="CC_Error.h">
       <Filter>Utility\Error</Filter>
+    </ClInclude>
+    <ClInclude Include="CAbstractFcn.h">
+      <Filter>Engine\Equations\Functions\Data Structure\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="CFunctionEq.h">
+      <Filter>Engine\Equations\Functions\Data Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="CC_Version.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

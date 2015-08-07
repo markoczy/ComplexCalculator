@@ -1,6 +1,8 @@
-#include "CEqParserV2.h"
-#include "CFunctionsPool.h"
-#include "CFcnParser.h"
+//#include "CEqParserV2.h"
+//#include "CFunctionsPool.h"
+//#include "CFcnParser.h"
+
+#include "CCalcEngine.h"
 
 #include "StringTools.h"
 
@@ -29,11 +31,13 @@ void initCLI()
 	std::cout << "+----------------------------------------------------------+" << std::endl;
 	std::cout << std::endl;
 
-	CEqParserV2 p;
+	/*CEqParserV2 p;
 	CFcnParser fp;
 	CFunctionsPool f;
 	p.init(&f);
-	fp.init(&f);
+	fp.init(&f);*/
+
+	CCalcEngine e;
 
 	std::string input = "";
 	while (str::toUpper(input).compare("/EXIT"))
@@ -45,34 +49,25 @@ void initCLI()
 
 		if (input.size()>0 && input.at(0) != '/')
 		{
-			if (isFcnDefEq(input))
-			{
-				CParsedFcnEqV2* fcn = fp.parse(input);
-				if (f.addFunction(fcn))
-				{
-					std::cout << ">>>>> : Succesfully added function" << std::endl << std::endl;
-				}
-				else
-				{
-					std::cout << ">>>>> : Unable to add function: name already exists" << std::endl << std::endl;
-				}
+			double val = 0;
+			int rVal = 0;
+			rVal = e.parse(input,val);
 
+
+			if (rVal==OK_CREATED_FUNCTION)
+			{
+				std::cout << ">>>>> : Succesfully added function" << std::endl << std::endl;
+			}
+			else if (rVal == OK_PARSED_EQUATION)
+			{
+				std::cout << "Output: " << val << std::endl << std::endl;
 			}
 			else
 			{
-				double val = 0;
-				int rVal = p.parse(input,val);
-
-				if (cc::err::isSuccess(rVal))
-				{
-					std::cout << "Output: " << val << std::endl << std::endl;
-				}
-				else
-				{
-					std::string errStr = cc::err::getReturnString(rVal);
-					std::cout << ">>>>> : Error while parsing: " << errStr.c_str() << std::endl << std::endl;
-				}
+				std::string errStr = cc::err::getReturnString(rVal);
+				std::cout << ">>>>> : Error while parsing: " << errStr.c_str() << std::endl << std::endl;
 			}
+
 		}
 	}
 	/*double val = p.parse("exp(sin(0.8),2)");
@@ -91,6 +86,8 @@ void initCLI()
 ////
 int main(int argc, char *argv[])
 {
+	DBOUT("CC_VERSION = "<<CC_VERSION<<"\n\n");
+	
 	//CFcnParser p;
 	//CFunctionsPool pool;
 
