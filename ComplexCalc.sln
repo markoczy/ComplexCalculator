@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCalc_Core", "CCalc_Core\CC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCalc_CS", "CCalc_CS\CCalc_CS.csproj", "{7D290846-6803-4F01-B732-F090D059F2A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCalc_GUI", "CCalc_GUI\CCalc_GUI.csproj", "{629C5884-01E4-4612-8554-189BEAAE00A6}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -59,6 +61,16 @@ Global
 		{7D290846-6803-4F01-B732-F090D059F2A4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7D290846-6803-4F01-B732-F090D059F2A4}.Release|Win32.ActiveCfg = Release|Any CPU
 		{7D290846-6803-4F01-B732-F090D059F2A4}.Release|Win32.Build.0 = Release|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{629C5884-01E4-4612-8554-189BEAAE00A6}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

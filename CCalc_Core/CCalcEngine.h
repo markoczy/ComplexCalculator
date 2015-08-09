@@ -19,6 +19,7 @@ public:
 	
 	int parseFunction(std::string equation);
 
+	int deleteFunction(std::string name);
 
 	int validate(std::string equation);
 

@@ -20,6 +20,8 @@ DLL void ccalc_destroy(CCalcEngine * cc);
 DLL bool ccalc_validate(CCalcEngine * cc, char* stmt);
 DLL int ccalc_parse(CCalcEngine * cc, char* stmt, double *aValue);
 
+DLL int ccalc_deleteFunction(CCalcEngine * cc, char* name);
+
 // Error
 DLL bool ccalc_isSuccess(int retCode);
 DLL int ccalc_getReturnString(int retCode, char* out = NULL);

@@ -44,6 +44,8 @@ enum eRetCode
 	//// Software Errors
 	///////////////////////////////////////////////////
 	//
+	NOK_GENERAL = 100,
+	//
 	NOK_BAD_INIT = 110,
 	//
 	NOK_VAR_UNSET = 111,

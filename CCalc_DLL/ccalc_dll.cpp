@@ -43,6 +43,11 @@ DLL int ccalc_parse(CCalcEngine * cc, char* stmt, double *aValue)
 	return cc->parse(stmt, *aValue);
 }
 
+DLL int ccalc_deleteFunction(CCalcEngine * cc, char* name)
+{
+	return cc->deleteFunction(name);
+}
+
 DLL int ccalc_getReturnString(int retCode, char* out)
 {
 	if (out == NULL)

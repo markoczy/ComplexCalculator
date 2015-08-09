@@ -127,9 +127,8 @@ namespace CCalc_CS
                 }
 
             }
+
 	        Console.WriteLine("Exit called, press <ENTER> to quit.");
-
-
 
         }
 

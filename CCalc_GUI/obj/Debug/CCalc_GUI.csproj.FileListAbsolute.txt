@@ -1,0 +1,9 @@
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\bin\Debug\CCalc_GUI.exe.config
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\bin\Debug\CCalc_GUI.exe
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\bin\Debug\CCalc_GUI.pdb
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.Form1.resources
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.Properties.Resources.resources
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.csproj.GenerateResource.Cache
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.exe
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.pdb
+F:\Coding\VSTUDIO\ComplexCalc\CCalc_GUI\obj\Debug\CCalc_GUI.csprojResolveAssemblyReference.cache

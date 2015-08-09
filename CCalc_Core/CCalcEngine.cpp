@@ -40,6 +40,20 @@ int CCalcEngine::parseFunction(std::string equation)
 }
 
 
+int CCalcEngine::deleteFunction(std::string name)
+{
+	if (mFunctions.deleteFunctionByName(name))
+	{
+		return OK_GENERAL;
+	}
+	else
+	{
+		return NOK_GENERAL;
+	}
+
+}
+
+
 int CCalcEngine::validate(std::string equation)
 {
 
@@ -88,6 +102,8 @@ int CCalcEngine::_parseFunction(std::string &equation, bool validate)
 		return NOK_FCN_NAME_EXISTS;
 	}
 }
+
+
 
 int CCalcEngine::_validate(std::string &equation)
 {

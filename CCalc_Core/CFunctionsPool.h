@@ -18,6 +18,8 @@ public:
 	// accepts: f(x,y):=sin(x)+0.3y
 	bool addFunction(CParsedFcnEqV2* fcn);
 
+	bool deleteFunctionByName(std::string name);
+
 	bool loadFunctionsDb(std::string path);
 
 	CParsedFcnEqV2* getFunctionByName(std::string name);

@@ -27,6 +27,23 @@ bool CFunctionsPool::addFunction(CParsedFcnEqV2* fcn)
 	return true;
 }
 
+bool CFunctionsPool::deleteFunctionByName(std::string name)
+{
+	// Check if alrdy exists
+	for (unsigned int iFcn = 0; iFcn < functions.size(); iFcn++)
+	{
+		// XXX: Very dirty: Must erase all content!!!
+		if (!functions.at(iFcn)->getName().compare(name)) 
+		{ 
+			functions.erase(functions.begin() + iFcn);
+			return true;
+		}
+	}
+
+	return false;
+	
+}
+
 // ===> CFcnParser
 //bool CFunctionsPool::defineFunction(std::string stmt)
 //{

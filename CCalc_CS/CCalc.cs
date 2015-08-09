@@ -69,6 +69,11 @@ namespace CCalc_CS
             val = 0;
             return DLL.ccalc_parse(cc, stmt, ref val);
         }
+
+        public int deleteFunction(string name)
+        {
+            return DLL.ccalc_deleteFunction(cc, name);
+        }
         #endregion
 
 
@@ -112,6 +117,9 @@ namespace CCalc_CS
             //
             [DllImport("lib\\ccalc.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern int ccalc_parse(IntPtr cc, string stmt, ref double aVal);
+            //
+            [DllImport("lib\\ccalc.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern int ccalc_deleteFunction(IntPtr cc, string name);
             //-//-//
             #endregion
 
