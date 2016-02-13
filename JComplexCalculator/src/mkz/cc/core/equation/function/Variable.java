@@ -57,7 +57,6 @@ public class Variable<T> implements IParamEquation<T>
 	{
 		if (mName != null && mName.equals(aName))
 		{
-			IO.SysOutV("Setting param for variable '"+aName+"'");
 			mValue = aValue;
 		}
 	}

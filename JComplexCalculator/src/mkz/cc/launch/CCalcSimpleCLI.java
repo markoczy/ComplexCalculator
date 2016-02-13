@@ -20,11 +20,13 @@
  */
 package mkz.cc.launch;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import mkz.cc.arithmetic.parser.ArithmeticEquationParser;
 import mkz.cc.arithmetic.parser.ArithmeticFunctionParser;
 import mkz.cc.core.debug.CCalcException;
+import mkz.cc.ui.PlotterCommandLineDisp;
 import mkz.cc.util.IO;
 
 /**
@@ -84,8 +86,9 @@ public class CCalcSimpleCLI
 			ArithmeticEquationParser lEqParser = new ArithmeticEquationParser();
 			ArithmeticFunctionParser lFcnParser = new ArithmeticFunctionParser();
 			
+			System.out.println();
 			System.out.println("----------------------------------------------------------------------------------");
-		    System.out.println("JComplexCalculator V0.8 (Simple test CLI)   Copyright (C) 2016  Aleistar Markoczy");
+		    System.out.println("JComplexCalculator V0.81 (Simple test CLI)  Copyright (C) 2016  Aleistar Markoczy");
 		    System.out.println("----------------------------------------------------------------------------------");
 			System.out.println("This program comes with ABSOLUTELY NO WARRANTY; for details type '/show w'.");
 			System.out.println("This is free software, and you are welcome to redistribute it");
@@ -94,36 +97,34 @@ public class CCalcSimpleCLI
 		    System.out.println("Source code available at: https://github.com/markoczy/ComplexCalculator");
 		    System.out.println("----------------------------------------------------------------------------------");
 			System.out.println();
+			System.out.println("NB: Type '/show h' or '/h' to get a list of available commands.");
+			System.out.println();
 			
 			System.out.print("Input : ");
 			String lInput = lScanner.nextLine();
 			
 			while(!lInput.toLowerCase().equals("/exit"))
 			{
-				try{
+				try
+				{
 					if(lInput.startsWith("/")) _parseCommand(lInput);
 					else if(lInput.contains(":="))
 					{
-						System.out.println(lFcnParser.parseFunction(lInput) ? ">>>>> : Succesfully added function" : ">>>>> : Error while adding function");
+						System.out.println(lFcnParser.parseFunction(lInput) ? ">>>>> : Succesfully added function." : ">>>>> : Error while adding function.");
 						System.out.println();
 					}
 					else
 					{
-						try
-						{
-							double lVal=lEqParser.parse(lInput);
-							System.out.println("Output: "+lVal);
-							System.out.println();
-						}
-						catch (CCalcException e)
-						{
-							IO.SysOutE(e);
-						}
+						double lVal=lEqParser.parse(lInput);
+						System.out.println("Output: "+lVal);
+						System.out.println();
 					}
 				}	
 				catch (Exception e)
 				{
 					IO.SysOutE(e);
+					System.out.println(">>>>> : An error occured ('/debug on' for more info)");
+					System.out.println();
 				}	
 				
 				System.out.print("Input : ");
@@ -141,6 +142,18 @@ public class CCalcSimpleCLI
 	
 	private static void _parseCommand(String aCommand)
 	{
+		if(aCommand.toLowerCase().startsWith("/plot"))
+		{
+			_parsePlotCommand(aCommand);
+			return;
+		}
+		
+		if(aCommand.toLowerCase().startsWith("/debug"))
+		{
+			_parseDebugCommand(aCommand);
+			return;
+		}
+		
 		switch(aCommand.toLowerCase())
 		{
 			case "/h":
@@ -161,14 +174,8 @@ public class CCalcSimpleCLI
 			case "/conditions":
 				_showConditions();
 				break;
-			case "/debug on":
-				IO.setLogLevel(4);
-				System.out.println(">>>>> : Debug mode has been activated.");
-				System.out.println();
-				break;
-			case "/debug off":
-				IO.setLogLevel(1);
-				System.out.println(">>>>> : Debug mode has been deactivated.");
+			default:
+				System.out.println(">>>>> : Command not found.");
 				System.out.println();
 				break;
 		}
@@ -192,6 +199,156 @@ public class CCalcSimpleCLI
 				IO.setLogLevel(4);
 				break;
 		}
+	}
+	
+	private static void _parseDebugCommand(String aCommand)
+	{
+		//
+		// Example: /plot f -10 10 -10 10
+		//
+		
+		try
+		{
+			
+			String[] lArgs=aCommand.split(" ");
+			if(lArgs.length==2)
+			{
+				switch(lArgs[1].toLowerCase())
+				{
+					case "off":
+					case "none":
+					case "0":
+						IO.setLogLevel(0);
+						System.out.println(">>>>> : All outputs are deactivated.");
+						System.out.println();
+						break;
+					case "error":
+					case "err":
+					case "e":
+					case "1":
+						IO.setLogLevel(1);
+						System.out.println(">>>>> : Error logs are activated.");
+						System.out.println();
+						break;
+					case "warning":
+					case "warn":
+					case "w":
+					case "2":
+						IO.setLogLevel(2);
+						System.out.println(">>>>> : Warning logs are activated.");
+						System.out.println();
+						break;
+					case "debug":
+					case "d":
+					case "on":
+					case "3":
+						IO.setLogLevel(3);
+						System.out.println(">>>>> : Debug logs are activated.");
+						System.out.println();
+						break;
+					case "verbose":
+					case "all":
+					case "v":
+					case "4":
+						IO.setLogLevel(4);
+						System.out.println(">>>>> : Verbose logs are activated.");
+						System.out.println();
+						break;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			IO.SysOutE(e);
+		}
+		
+	}
+	
+	
+	private static void _parsePlotCommand(String aCommand)
+	{
+		//
+		// Example: /plot f -10 10 -10 10
+		//
+		
+		try
+		{
+			
+			String[] lArgs=aCommand.split(" ");
+			String lFcn=null;
+			
+			ArrayList<String> lPlot = null;
+			Double lXmin=0.0,lXmax=0.0,lYmin=0.0,lYmax=0.0;
+			
+			switch(lArgs.length)
+			{
+				case 2:
+					// show help
+					if(lArgs[1].equals("h") || lArgs[1].equals("?"))
+					{ 
+						_showPlotterHelp();
+						return;
+					}
+					lFcn=lArgs[1];
+					lXmax=10.0;
+					lXmin=-10.0;
+					lYmax=10.0;
+					lYmin=-10.0;
+					lPlot=PlotterCommandLineDisp.plot(lFcn, lXmin, lXmax, lYmin, lYmax);
+					break;
+				case 3:
+					lFcn=lArgs[1];
+					lXmax=Double.parseDouble(lArgs[2]);
+					lXmin=-lXmax;
+					lYmax=lXmax;
+					lYmin=lXmin;
+					lPlot=PlotterCommandLineDisp.plot(lFcn, lXmin, lXmax, lYmin, lYmax);
+					break;
+				case 4:
+					lFcn=lArgs[1];
+					lXmin=Double.parseDouble(lArgs[2]);
+					lXmax=Double.parseDouble(lArgs[3]);
+					lYmax=lXmax;
+					lYmin=lXmin;
+					lPlot=PlotterCommandLineDisp.plot(lFcn, lXmin, lXmax, lYmin, lYmax);
+					break;
+				case 6:
+					lFcn=lArgs[1];
+					lXmin=Double.parseDouble(lArgs[2]);
+					lXmax=Double.parseDouble(lArgs[3]);
+					lYmin=Double.parseDouble(lArgs[4]);
+					lYmax=Double.parseDouble(lArgs[5]);
+					lPlot=PlotterCommandLineDisp.plot(lFcn, lXmin, lXmax, lYmin, lYmax);
+					break;
+			}
+			
+			
+			if(lPlot!=null)
+			{
+
+				System.out.println();
+				System.out.println("----------------------------------------------------------------------------------");
+				System.out.println("Plot('"+lFcn+"',"+lXmin+","+lXmax+","+lYmin+","+lYmax+")");
+				System.out.println("----------------------------------------------------------------------------------");
+				System.out.println();
+				
+				for(String iLine:lPlot)System.out.println(iLine);
+				
+				System.out.println();
+				System.out.println("----------------------------------------------------------------------------------");
+				System.out.println();
+				
+			}
+
+			
+			
+		}
+		catch (Exception e)
+		{
+			IO.SysOutE(e);
+		}
+		
+		
 	}
 
 	private static void _showWarranty()
@@ -256,15 +413,52 @@ public class CCalcSimpleCLI
 		System.out.println();
 		System.out.println("    NB: it is also possible to store variables, e.g.: 'a:=5'");
 		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("3. Commands");
+		System.out.println("3. Basic Commands");
 		System.out.println();
-		System.out.println("    '/debug [on|off]'                           en-/disables debug mode");
-		System.out.println("    '/show w'                                   show warranty text");
-		System.out.println("    '/show c'                                   show conditions");
-		System.out.println("    '/show h'                                   show help");
+		System.out.println("    '/debug [on|off]'                        en-/disables debug mode");
+		System.out.println("    '/show h'                                show help (this text)");
+		System.out.println("    '/show w'                                show warranty text");
+		System.out.println("    '/show c'                                show conditions");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("4. Plotter");
+		System.out.println();
+		System.out.println("    Type '/plot h' to get additional info about plotter commands");
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println();
 		
+	}
+	
+	private static void _showPlotterHelp()
+	{
+		System.out.println();
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("JComplexCalculator :: Plotter commands");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("1. Definition");
+		System.out.println();
+		System.out.println("    '/plot <function>'                       plot function with name <function>");
+		System.out.println("                                             (function must use 1 param)");
+		System.out.println();
+		System.out.println("    '/plot <function> <max>'                 plot function with name <function>");
+		System.out.println("                                             <max> defines grid extremas");
+		System.out.println();
+		System.out.println("    '/plot <function> <min> <max>'           plot function with name <function>");
+		System.out.println("                                             <min> defines grid min");
+		System.out.println("                                             <max> defines grid max");
+		System.out.println();
+		System.out.println("    '/plot <function> <xmin> <xmax> ..       plot function with name <function>");
+		System.out.println("                      <ymin> <ymax>'         <xmin> defines grid xmin");
+		System.out.println("                                             <xmax> defines grid xmax");
+		System.out.println("                                             <ymin> defines grid ymin");
+		System.out.println("                                             <ymax> defines grid ymax");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("2. Example usage");
+		System.out.println();
+		System.out.println("    Using the built-in function 'sin' we can type our plot command as follows:");
+		System.out.println();
+		System.out.println("    CMD: '/plot sin -3.14 3.14 -1.1 1.1' --> Try it out!");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println();
 	}
 	
 }
