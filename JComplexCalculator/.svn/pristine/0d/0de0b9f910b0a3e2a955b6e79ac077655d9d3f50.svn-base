@@ -1,0 +1,101 @@
+/**
+ * File: CCalcJavaV2::ParserCursor.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.parser;
+
+/**
+ * The Class ParserCursor.
+ */
+public class ParserCursor
+{
+	
+	/** The member position. */
+	private Integer mPosition;
+
+	/**
+	 * Instantiates a new parser cursor.
+	 */
+	public ParserCursor()
+	{
+		mPosition = 0;
+	}
+
+	/**
+	 * Instantiates a new parser cursor.
+	 *
+	 * @param aCursor the reference cursor
+	 */
+	public ParserCursor(ParserCursor aCursor)
+	{
+		mPosition = aCursor.getPosition();
+	}
+
+	/**
+	 * Previous.
+	 */
+	public void previous()
+	{
+		mPosition--;
+	}
+
+	/**
+	 * Next.
+	 */
+	public void next()
+	{
+		mPosition++;
+	}
+
+	/**
+	 * Gets the position.
+	 *
+	 * @return the position
+	 */
+	public Integer getPosition()
+	{
+		return mPosition;
+	}
+
+	/**
+	 * Sets the position.
+	 *
+	 * @param aIterator the new position
+	 */
+	public void setPosition(Integer aIterator)
+	{
+		mPosition = aIterator;
+	}
+
+	/**
+	 * Exceeds.
+	 *
+	 * @param aEquation the reference equation
+	 * @return true, if successful
+	 */
+	public boolean exceeds(String aEquation)
+	{
+		return mPosition >= aEquation.length();
+	}
+
+	/**
+	 * Gets the current char from equation.
+	 *
+	 * @param aEquation the reference equation
+	 * @return the char
+	 */
+	public char get(String aEquation)
+	{
+		return !exceeds(aEquation) ? aEquation.charAt(mPosition) : '\0';
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString()
+	{
+		return "" + mPosition;
+	}
+}

@@ -1,0 +1,6 @@
+package mkz.cc.core.equation.definition;
+
+public interface IParametrizable<T>
+{
+	public void setParam(String aName, IEquation<T> aValue);
+}

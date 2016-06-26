@@ -1,0 +1,56 @@
+/**
+ * File: CCalcJavaV2::Variable.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.equation.function;
+
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.definition.IParametrizable;
+
+/**
+ * The Class Variable. A Parametrizable constant.
+ */
+public class Variable implements IEquation, IParametrizable
+{
+	
+	/** The member name. */
+	private String mName = null;
+
+	/** The member value. */
+	private IEquation mValue = null;
+
+	/**
+	 * Instantiates a new variable.
+	 *
+	 * @param aName the reference name
+	 */
+	public Variable(String aName)
+	{
+		mName = aName;
+	}
+
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.function.IParametrizable#setParam(java.lang.String, mkz.cc.core.equation.IEquation)
+	 */
+	@Override
+	public void setParam(String aName, IEquation aValue)
+	{
+		if (mName != null && mName.equals(aName))
+		{
+			mValue = aValue;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.IEquation#getValue()
+	 */
+	@Override
+	public double getValue() throws CCalcException // TODO exception
+	{
+		return mValue != null ? mValue.getValue() : 0;
+	}
+
+}

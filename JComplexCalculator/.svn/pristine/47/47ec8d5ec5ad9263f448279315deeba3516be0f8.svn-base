@@ -1,0 +1,118 @@
+/**
+ * File: CCalcJavaV2::AEquation.java
+ *
+ * @author Aleistar Markóczy
+ * 
+ * - CWiSe, NLA -
+ * 
+ */
+package mkz.cc.core.equation;
+
+import java.util.ArrayList;
+
+import mkz.cc.util.IO;
+
+/**
+ * The Class Equation.
+ */
+public class Equation implements IEquation
+{
+	protected String mDisplayName;
+	
+	/** The member function. */
+	protected IFunction mFunction;
+
+	/** The member equations. */
+	protected ArrayList<IEquation> mParams;
+
+	/**
+	 * Instantiates a new a equation.
+	 *
+	 * @param aFunction the reference function
+	 */
+	public Equation(String aDisplayName,IFunction aFunction)
+	{
+		mFunction=aFunction;
+		mDisplayName=aDisplayName;
+	}
+	
+	/**
+	 * Sets the params.
+	 */
+	public void setParams(ArrayList<IEquation> aParams)
+	{
+		mParams=aParams;
+	}
+	
+	public Equation addParam(IEquation aParam)
+	{
+		_getParams().add(aParam);
+		return this;
+	}
+	
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.IEquation#getValue()
+	 */
+	public double getValue()
+	{
+		try
+		{
+			return mFunction.getValue(_getParams());
+		}
+		catch(Exception e)
+		{
+			IO.SysOutE(e);
+			return 0;
+		}
+	}
+	
+	@Override
+	public String toString()
+	{
+		return mDisplayName;
+	}
+	
+	/**
+	 * private get params. failsafe for NPE..
+	 *
+	 * @return the array list
+	 */
+	protected ArrayList<IEquation> _getParams()
+	{
+		return mParams == null ? mParams = new ArrayList<IEquation>() : mParams;
+	}
+
+	public static class DisplayNames	
+	{
+		// null equivalent
+		public static final String UNDEF = "<<UNDEFINED>>";
+
+		// unary
+		public static final String CONST = "Constant";
+		public static final String INV = "Inversed";
+		
+		// binary, basic
+		public static final String ADD = "Addition";
+		public static final String SUB = "Subtraction";
+		public static final String MPL = "Multiplication";
+		public static final String DIV = "Division";
+
+		// function
+		public static final String FCN = "Undefined function";
+		public static final String SUM = "Sum(i=0 -> n)";
+		public static final String EXP = "Exponential";
+		public static final String LOG = "Logarithm";
+		public static final String SIN = "Sinus";
+		public static final String COS = "Cosinus";
+		public static final String TAN = "Tangens";
+		public static final String COT = "Cotangens";
+		public static final String ASIN = "Arcus sinus";
+		public static final String ACOS = "Arcus cosinus";
+		public static final String ATAN = "Arcus tangens";
+		public static final String ACOT = "Arcus cotangens";
+
+		// complex
+		public static final String LINEAR = "Linear Function";
+	}
+	
+}

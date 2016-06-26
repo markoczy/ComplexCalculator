@@ -1,0 +1,32 @@
+package mkz.cc.core.equation.function;
+
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.core.equation.IEquation;
+
+public class Variable implements IEquation, IParametrizable
+{
+	private String mName = null;
+
+	private IEquation mValue = null;
+
+	public Variable(String aName)
+	{
+		mName = aName;
+	}
+
+	@Override
+	public void setParam(String aName, IEquation aValue)
+	{
+		if (mName != null && mName.equals(aName))
+		{
+			mValue = aValue;
+		}
+	}
+
+	@Override
+	public double getValue() throws CCalcException // TODO exception
+	{
+		return mValue != null ? mValue.getValue() : 0;
+	}
+
+}

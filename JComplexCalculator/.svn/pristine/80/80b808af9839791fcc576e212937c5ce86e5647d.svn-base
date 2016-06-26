@@ -1,0 +1,39 @@
+package mkz.cc.core.equation.linear;
+
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.IEquation;
+import mkz.cc.core.equation.Operation;
+
+public class LinearOperation
+{
+	private Operation mOperation = Operation.UNDEF;
+	private IEquation mEquation = null;
+	
+	public LinearOperation(IEquation aEquation,Operation aOperation)
+	{
+		mEquation=aEquation;
+		mOperation=aOperation;
+	}
+
+	public Operation getOperation()
+	{
+		return mOperation;
+	}
+
+	public void setOperation(Operation aOperation)
+	{
+		mOperation = aOperation;
+	}
+
+	public IEquation getEquation()
+	{
+		return mEquation;
+	}
+
+
+	public void setEquation(Equation aEquation)
+	{
+		mEquation = aEquation;
+	}
+	
+}

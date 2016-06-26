@@ -1,0 +1,160 @@
+/**
+ * File: CCalcJavaV2::FunctionPool.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.equation.function;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.definition.IFunction;
+import mkz.cc.util.IO;
+import mkz.cc.util.Pair;
+
+/**
+ * The Class FunctionPool.
+ */
+public class FunctionPool // XXX could do extends HashMap..
+{
+	/** The instance. */
+	private static FunctionPool instance = new FunctionPool();
+
+	/** The member functions. */
+	private HashMap<String, Pair<String, IFunction>> mFunctions = new HashMap<String, Pair<String, IFunction>>();
+
+	/** The member function constructors. */
+	// The function definition statements (e.g. {"f","f(x):=2x"})
+	private HashMap<String, String> mFunctionConstructors = new HashMap<String, String>();
+
+	/**
+	 * Instantiates a new function pool.
+	 */
+	private FunctionPool()
+	{
+		_initDefaultFunctions(mFunctions);
+	}
+
+	/**
+	 * Gets the single instance of FunctionPool.
+	 *
+	 * @return single instance of FunctionPool
+	 */
+	public static FunctionPool getInstance()
+	{
+		return instance;
+	}
+
+	/**
+	 * Gets the funcion.
+	 *
+	 * @param aCallName the reference call name
+	 * @return the funcion
+	 */
+	public Pair<String, IFunction> getFuncion(String aCallName)
+	{
+		Pair<String, IFunction> lFcn = mFunctions.get(aCallName);
+		return lFcn;
+	}
+
+	/**
+	 * Adds the function.
+	 *
+	 * @param aCallName the reference call name
+	 * @param aDisplayName the reference display name
+	 * @param aParamNames the reference param names
+	 * @param aCreateStatement the reference create statement
+	 * @param aFunction the reference function
+	 * @return true, if successful
+	 */
+	public boolean addFunction(String aCallName, String aDisplayName, ArrayList<String> aParamNames, String aCreateStatement, ParamLinearEquation aFunction)
+	{
+		if (!mFunctions.containsKey(aCallName))
+		{
+			ParamFunction lFunction = new ParamFunction(aDisplayName, aParamNames, aFunction);
+			mFunctions.put(aCallName, new Pair<String, IFunction>(aDisplayName, lFunction));
+			mFunctionConstructors.put(aCallName, aCreateStatement);
+			return true;
+		}
+
+		return false;
+
+	}
+
+	/**
+	 * [restricted] init default functions.
+	 *
+	 * @param aFunctions the reference functions
+	 * @return true, if successful
+	 */
+	private static boolean _initDefaultFunctions(HashMap<String, Pair<String, IFunction>> aFunctions)
+	{
+		try
+		{
+			aFunctions.put(CallNames.ADD, new Pair<String, IFunction>(Equation.DisplayNames.SUM, DefaultFunctions.SUM));
+			aFunctions.put(CallNames.SUM, new Pair<String, IFunction>(Equation.DisplayNames.SUM, DefaultFunctions.SUM));
+			aFunctions.put(CallNames.EXP, new Pair<String, IFunction>(Equation.DisplayNames.EXP, DefaultFunctions.EXP));
+			aFunctions.put(CallNames.LOG, new Pair<String, IFunction>(Equation.DisplayNames.LOG, DefaultFunctions.LOG));
+			aFunctions.put(CallNames.SIN, new Pair<String, IFunction>(Equation.DisplayNames.SIN, DefaultFunctions.SIN));
+			aFunctions.put(CallNames.COS, new Pair<String, IFunction>(Equation.DisplayNames.COS, DefaultFunctions.COS));
+			aFunctions.put(CallNames.TAN, new Pair<String, IFunction>(Equation.DisplayNames.TAN, DefaultFunctions.TAN));
+			aFunctions.put(CallNames.COT, new Pair<String, IFunction>(Equation.DisplayNames.COT, DefaultFunctions.COT));
+			aFunctions.put(CallNames.ASIN, new Pair<String, IFunction>(Equation.DisplayNames.ASIN, DefaultFunctions.ASIN));
+			aFunctions.put(CallNames.ACOS, new Pair<String, IFunction>(Equation.DisplayNames.ACOS, DefaultFunctions.ACOS));
+			aFunctions.put(CallNames.ATAN, new Pair<String, IFunction>(Equation.DisplayNames.ATAN, DefaultFunctions.ATAN));
+			aFunctions.put(CallNames.ACOT, new Pair<String, IFunction>(Equation.DisplayNames.ACOT, DefaultFunctions.ACOT));
+			IO.SysOutD("Default functions loaded.");
+			return true;
+		}
+		catch (Exception e)
+		{
+			IO.SysOutE(e);
+			return false;
+		}
+	}
+
+	/**
+	 * The Class CallNames.
+	 */
+	private static class CallNames
+	{
+		/** The Constant SUM. */
+		public static final String ADD = "add";
+		
+		/** The Constant SUM. */
+		public static final String SUM = "sum";
+		
+		/** The Constant EXP. */
+		public static final String EXP = "exp";
+		
+		/** The Constant LOG. */
+		public static final String LOG = "log";
+
+		/** The Constant SIN. */
+		public static final String SIN = "sin";
+		
+		/** The Constant COS. */
+		public static final String COS = "cos";
+		
+		/** The Constant TAN. */
+		public static final String TAN = "tan";
+		
+		/** The Constant COT. */
+		public static final String COT = "cot";
+
+		/** The Constant ASIN. */
+		public static final String ASIN = "asin";
+		
+		/** The Constant ACOS. */
+		public static final String ACOS = "acos";
+		
+		/** The Constant ATAN. */
+		public static final String ATAN = "atan";
+		
+		/** The Constant ACOT. */
+		public static final String ACOT = "acot";
+	}
+
+}

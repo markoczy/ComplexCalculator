@@ -1,0 +1,97 @@
+package mkz.cc.core.equation.function;
+
+import mkz.cc.core.debug.equation.InvalidParamCountException;
+import mkz.cc.core.equation.BasicFunctions;
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.IFunction;
+
+public class DefaultFunctions
+{
+	//
+	// Chain
+	//
+
+	public static final IFunction SUM = BasicFunctions.ADD;
+
+	//
+	// Exponential
+	//
+
+	public static final IFunction EXP = BasicFunctions.EXP;
+	public static final IFunction LOG = (aArr) ->
+	{
+		// mode 1: log(x)
+		//
+		if (aArr.size() == 1) return Math.log(aArr.get(0).getValue());
+
+		// mode 2: log(x,base)
+		//
+		else if (aArr.size() == 2)
+		{
+			double val = aArr.get(0).getValue();
+			double base = aArr.get(1).getValue();
+			return Math.log(val) / Math.log(base);
+		}
+		else throw new InvalidParamCountException(Equation.DisplayNames.LOG, aArr.size());
+	};
+
+	//
+	// Trigonometry
+	//
+
+	public static final IFunction SIN = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.SIN, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.sin(rVal);
+	};
+
+	public static final IFunction COS = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.COS, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.cos(rVal);
+	};
+
+	public static final IFunction TAN = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.TAN, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.tan(rVal);
+	};
+
+	public static final IFunction COT = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.COT, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return 1 / Math.tan(rVal);
+	};
+
+	public static final IFunction ASIN = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.ASIN, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.asin(rVal);
+	};
+
+	public static final IFunction ACOS = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.ACOS, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.acos(rVal);
+	};
+
+	public static final IFunction ATAN = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.ATAN, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.atan(rVal);
+	};
+
+	public static final IFunction ACOT = (aArr) ->
+	{
+		if (aArr.size() != 1) throw new InvalidParamCountException(Equation.DisplayNames.ACOT, aArr.size());
+		double rVal = aArr.get(0).getValue();
+		return Math.atan(1 / rVal);
+	};
+}

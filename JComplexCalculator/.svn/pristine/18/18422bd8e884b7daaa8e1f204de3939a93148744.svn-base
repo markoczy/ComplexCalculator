@@ -1,0 +1,6 @@
+package mkz.cc.core.equation.definition;
+
+public interface IParamEquation<T> extends IEquation<T>, IParametrizable<T>
+{
+
+}

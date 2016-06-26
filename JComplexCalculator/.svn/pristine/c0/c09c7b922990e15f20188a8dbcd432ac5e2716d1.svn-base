@@ -1,0 +1,29 @@
+package mkz.cc.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import mkz.cc.core.equation.Constant;
+import mkz.cc.core.equation.IEquation;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.function.LinearParamEquation;
+import mkz.cc.core.equation.function.Variable;
+
+public class TestFunction
+{
+
+	public static void main(String[] args)
+	{
+//		// f(x,y):=x+y
+//		LinearParamEquation lFcnEq = new LinearParamEquation();
+//		lFcnEq.addOperation(new Variable("x"), Operation.ADD);
+//		lFcnEq.addOperation(new Variable("y"), Operation.CONST);
+//		
+//		
+//		
+//		// x=4,y=3
+//		lEq.setParams(new ArrayList<IEquation>(Arrays.asList(new IEquation[]{new Constant(4),new Constant(4)})));
+//		System.out.println("Value = "+lEq.getValue());
+	}
+
+}

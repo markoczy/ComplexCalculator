@@ -1,0 +1,46 @@
+package mkz.cc.test.arithmetic;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import mkz.cc.arithmetic.parser.ArithmeticEquationParser;
+import mkz.cc.arithmetic.parser.ArithmeticFunctionParser;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.util.IO;
+
+public class TestFunctionParser
+{
+
+	@Test
+	public void test()
+	{
+		ArithmeticFunctionParser lFcnParser = new ArithmeticFunctionParser();
+		ArithmeticEquationParser lEqParser = new ArithmeticEquationParser();
+		
+		try
+		{
+			lFcnParser.parseFunction("f(c):=22*c");
+			Double v1 = lEqParser.parse("f(3)");
+			assertEquals(new Double(66),v1);
+			IO.SysOutD("f(3)= "+v1);
+			
+			Double v2 = lEqParser.parse("f(1+2)");
+			assertEquals(new Double(66),v2);
+			IO.SysOutD("f(1+2)= "+v2);
+			
+			// 2*22^2
+			Double v3 = lEqParser.parse("f(f(2))");
+			assertEquals(new Double(968),v3);
+			IO.SysOutD("f(f(2))= "+v3);
+			
+			// XXX could do more...
+		}
+		catch (CCalcException e)
+		{
+			IO.SysOutE(e);
+			fail("CCalcException");
+		}
+	}
+
+}

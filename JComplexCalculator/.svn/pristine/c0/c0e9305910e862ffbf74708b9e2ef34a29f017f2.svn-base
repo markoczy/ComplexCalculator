@@ -1,0 +1,147 @@
+package mkz.cc.core.parser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import mkz.cc.core.common.CC_Common;
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.IEquation;
+import mkz.cc.core.equation.function.FunctionPool;
+import mkz.cc.core.equation.function.IParametrizable;
+import mkz.cc.core.equation.function.LinearParamEquation;
+import mkz.cc.core.equation.function.Variable;
+import mkz.cc.core.equation.linear.LinearEquation;
+import mkz.cc.util.IO;
+
+public final class FunctionParser extends EquationParser
+{
+	private static FunctionPool functions = FunctionPool.getInstance();
+	
+	private ArrayList<IParametrizable> mTopLevelParams;	
+	
+	private ArrayList<String> mParamNames;
+	
+	public boolean parseFunction(String aEquation)
+	{
+		//
+		// e.g. f(x):=2*x
+		//
+		//
+		
+		mCursor = new ParserCursor();
+		mTopLevelParams = new ArrayList<IParametrizable>();
+		
+		String lName=_parseIdentifier(aEquation, mCursor);
+		
+		if(functions.getFuncion(lName)!=null) 
+		{
+			IO.SysOutE("Cannot add function: Name is not unique");
+			return false;
+		}
+		
+		mParamNames = _parseParamNames(aEquation, mCursor);
+		for(String iParam:mParamNames) IO.SysOutV("Found param: "+iParam);
+		
+		IO.SysOutD("Current char = "+mCursor.get(aEquation));
+		
+		if(!_parseFcnDefOf(aEquation,mCursor))
+		{
+			IO.SysOutE("Function definition operator not found.");
+			return false;
+		}
+		
+		IEquation lNewFunction=_parseEquation(aEquation, mCursor);
+		
+		if(lNewFunction instanceof LinearParamEquation)
+		{
+			LinearParamEquation lEquation=(LinearParamEquation)lNewFunction;
+			for(IParametrizable iParam:mTopLevelParams) lEquation.addLogicalParam(iParam);
+			IO.SysOutD("Added "+mTopLevelParams.size()+" logical param(s)");
+			functions.addFunction(lName, lName, mParamNames, aEquation, lEquation);
+			return true;
+		}
+		else
+		{
+			IO.SysOutE("Implementation fault: Parsed an invalid function type, type is: "+lNewFunction.getClass().getCanonicalName());
+			return false;
+		}
+	}
+	
+	private boolean _parseFcnDefOf(String aEquation, ParserCursor aCursor)
+	{
+		if(aCursor.get(aEquation)==':')
+		{
+			aCursor.next();
+			if(aCursor.get(aEquation)=='=')
+			{
+				aCursor.next();
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	private ArrayList<String> _parseParamNames(String equation, ParserCursor aCursor)
+	{
+		ArrayList<String> rVal = new ArrayList<String>();
+		if (!CC_Common.isParOpen(aCursor.get(equation))) return rVal;
+		aCursor.next();
+
+		String lParams = new String();
+		while (!aCursor.exceeds(equation) && !CC_Common.isParClose(aCursor.get(equation)))
+		{
+			lParams += aCursor.get(equation);
+			aCursor.next();
+		}
+
+		rVal = (lParams.split(",")).length > 0 ? new ArrayList<String>(Arrays.asList(lParams.split(","))) : rVal;
+		
+		// skip last closing paranthesis
+		aCursor.next();
+		
+		return rVal;
+	}
+	
+	@Override
+	protected IEquation _parseFunctionCall(String equation, ParserCursor aCursor)
+	{
+		IO.SysOutV("init, current char: "+aCursor.get(equation));
+		String lName = _parseIdentifier(equation, aCursor);
+		
+		for(String iParam:mParamNames)IO.SysOutV("Param = "+iParam);
+		
+		// if is a function param, return a new variable
+		if(mParamNames.contains(lName))
+		{
+			IO.SysOutV("Name is a param");
+			Variable lVar = new Variable(lName);
+			mTopLevelParams.add(lVar);
+			return lVar;
+		}
+		
+		
+		Equation lFcn = functions.getFuncion(lName);
+		if(lFcn!=null)
+		{
+			IO.SysOutV("Found function, name is "+lFcn);
+			ArrayList<String> lParamStrs = _getFcnParams(equation, aCursor);
+			for(String iParamStr:lParamStrs) lFcn.addParam(_parseEquation(iParamStr,new ParserCursor()));
+		}
+		
+		return lFcn;
+	}
+	
+	/**
+	 * [restricted] get new equation. Can be used to override datatype.
+	 *
+	 * @return the linear equation
+	 */
+	@Override
+	protected LinearEquation _getNewEquation()
+	{
+		return new LinearParamEquation();
+	}
+	
+}

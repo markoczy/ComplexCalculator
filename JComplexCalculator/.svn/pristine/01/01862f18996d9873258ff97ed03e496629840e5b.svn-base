@@ -1,0 +1,21 @@
+package mkz.cc.logical;
+
+import mkz.cc.core.equation.Equation;
+import mkz.cc.logical.function.BasicLogicFunctionsImpl;
+
+public class LogicalEquationFactory
+{
+	public static Equation<Boolean> createAndEquation()
+	{
+		return new Equation<Boolean>(Equation.DisplayNames.AND,BasicLogicFunctionsImpl.AND);
+	}
+	
+	public static Equation<Boolean> createOrEquation()
+	{
+		return new Equation<Boolean>(Equation.DisplayNames.OR,BasicLogicFunctionsImpl.OR);
+	}
+//	public static Equation<Boolean> createInversion()
+//	{
+//		
+//	}
+}

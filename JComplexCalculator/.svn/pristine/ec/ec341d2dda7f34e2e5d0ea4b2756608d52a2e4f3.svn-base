@@ -1,0 +1,85 @@
+/**
+ * Complex Calculator - Complex math equation solver
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/gpl-3.0.html.
+ */
+package mkz.cc.core.equation;
+
+import mkz.cc.core.debug.equation.InvalidParamCountException;
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.definition.IFunction;
+
+/**
+ * The Class BasicFunctions. Holds the implementation of all basic functions (such as "+","-" etc.).
+ */
+public class BasicFunctions
+{
+	/** The Constant ADD. */
+	public static final IFunction ADD=(aArr)->
+	{
+		if(aArr.size()<2)throw new InvalidParamCountException(Equation.DisplayNames.ADD,aArr.size());
+		double rVal=0;
+		
+		// eg. 1 + 2 + 3 = 6
+		for(IEquation iEq:aArr) rVal+=iEq.getValue();
+		return rVal;
+	};
+
+	/** The Constant SUB. */
+	public static final IFunction SUB=(aArr)->
+	{
+		if(aArr.size()<2)throw new InvalidParamCountException(Equation.DisplayNames.SUB,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal-=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant MPL. */
+	public static final IFunction MPL=(aArr)->
+	{
+		if(aArr.size()<2) throw new InvalidParamCountException(Equation.DisplayNames.MPL,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal*=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant DIV. */
+	public static final IFunction DIV=(aArr)->
+	{
+		if(aArr.size()<2) throw new InvalidParamCountException(Equation.DisplayNames.DIV,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal/=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant EXP. */
+	public static final IFunction EXP=(aArr)->
+	{
+		if(aArr.size()!=2)throw new InvalidParamCountException(Equation.DisplayNames.EXP,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		
+		// eg. 2 ^ 3 ^ 2 = 64
+		for(int i = 1;i<aArr.size();i++) rVal=Math.pow(rVal, aArr.get(i).getValue());
+		return rVal;
+	};
+	
+	/** The Constant INV. */
+	public static final IFunction INV=(aArr)->
+	{
+		if(aArr.size()!=1)throw new InvalidParamCountException(Equation.DisplayNames.INV,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		return -rVal;
+	};
+}

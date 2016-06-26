@@ -1,0 +1,19 @@
+package mkz.cc.core.debug.equation;
+
+import mkz.cc.core.debug.CCalcException;
+
+public class EquationException extends CCalcException
+{
+	private static final long serialVersionUID = 1L;
+	
+	public EquationException()
+	{
+		super();
+	}
+	
+	public EquationException(String aMessage)
+	{
+		super(aMessage);
+	}
+	
+}

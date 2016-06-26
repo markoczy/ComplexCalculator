@@ -1,0 +1,44 @@
+/**
+ * File: CCalcJavaV2::ParamLinearEquation.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.arithmetic.equation;
+
+import java.util.ArrayList;
+
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.definition.IParamEquation;
+import mkz.cc.core.equation.definition.IParametrizable;
+
+/**
+ * The Class ParamLinearArithmeticEquation. An extended version of the class LinearEquation that implements IParametrizable.
+ * The method setParam() sets all params of the equation recursively.
+ */
+public class ParamLinearArithmeticEquation extends LinearArithmeticEquation implements IParamEquation<Double>
+{
+	/** The member params. */
+	private ArrayList<IParamEquation<Double>> mParams = new ArrayList<IParamEquation<Double>>();
+	
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.function.IParametrizable#setParam(java.lang.String, mkz.cc.core.equation.IEquation)
+	 */
+	@Override
+	public void setParam(String aName, IEquation<Double> aValue)
+	{
+		for(IParametrizable<Double> iParam:mParams) iParam.setParam(aName, aValue);
+	}
+	
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.linear.LinearEquation#addOperation(mkz.cc.core.equation.IEquation, mkz.cc.core.equation.Operation)
+	 */
+	@Override
+	public void addOperation(IEquation<Double> aEquation, Operation aOperation)
+	{
+		super.addOperation(aEquation, aOperation);
+		if(aEquation instanceof IParamEquation) mParams.add((IParamEquation<Double>)aEquation);
+	}
+	
+}

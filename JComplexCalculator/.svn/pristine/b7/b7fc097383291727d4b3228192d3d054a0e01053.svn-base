@@ -1,0 +1,73 @@
+package mkz.cc.core.equation;
+
+import mkz.cc.core.debug.equation.InvalidParamCountException;
+import mkz.cc.util.IO;
+
+/**
+ * The Class BasicFunctions.
+ */
+public class BasicFunctions
+{
+	/** The Constant ADD. */
+	public static final IFunction ADD=(aArr)->
+	{
+		if(aArr.size()<2)throw new InvalidParamCountException(Equation.DisplayNames.ADD,aArr.size());
+		double rVal=0;
+		
+		// eg. 1 + 2 + 3 = 6
+		for(IEquation iEq:aArr) rVal+=iEq.getValue();
+		return rVal;
+	};
+
+	/** The Constant SUB. */
+	public static final IFunction SUB=(aArr)->
+	{
+		if(aArr.size()<2)throw new InvalidParamCountException(Equation.DisplayNames.SUB,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal-=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant MPL. */
+	public static final IFunction MPL=(aArr)->
+	{
+		if(aArr.size()<2) throw new InvalidParamCountException(Equation.DisplayNames.MPL,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal*=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant DIV. */
+	public static final IFunction DIV=(aArr)->
+	{
+		if(aArr.size()<2) throw new InvalidParamCountException(Equation.DisplayNames.DIV,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		for(int i = 1;i<aArr.size();i++) rVal/=aArr.get(i).getValue();
+		return rVal;
+	};
+	
+	/** The Constant EXP. */
+	public static final IFunction EXP=(aArr)->
+	{
+		if(aArr.size()!=2)throw new InvalidParamCountException(Equation.DisplayNames.EXP,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		
+		IO.SysOutD("v1 = "+aArr.get(0).getValue());
+		IO.SysOutD("v2 = "+aArr.get(1).getValue());
+		
+		// eg. 2 ^ 3 ^ 2 = 64
+		for(int i = 1;i<aArr.size();i++) rVal=Math.pow(rVal, aArr.get(i).getValue());
+		return rVal;
+	};
+	
+	/** The Constant INV. */
+	public static final IFunction INV=(aArr)->
+	{
+		if(aArr.size()!=1)throw new InvalidParamCountException(Equation.DisplayNames.INV,aArr.size());
+		double rVal=aArr.get(0).getValue();
+		
+		// eg. 2 ^ 3 ^ 2 = 64
+		for(int i = 1;i<aArr.size();i++) rVal=Math.pow(rVal, aArr.get(i).getValue());
+		return rVal;
+	};
+}

@@ -1,0 +1,78 @@
+/**
+ * File: CCalcJavaV2::LinearOperation.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.equation.linear;
+
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.definition.IEquation;
+
+/**
+ * The Class LinearOperation. Holds an equation and an Operation.
+ */
+public class LinearOperation
+{
+	
+	/** The member operation. */
+	private Operation mOperation = Operation.UNDEF;
+	
+	/** The member equation. */
+	private IEquation mEquation = null;
+	
+	/**
+	 * Instantiates a new linear operation.
+	 *
+	 * @param aEquation the reference equation
+	 * @param aOperation the reference operation
+	 */
+	public LinearOperation(IEquation aEquation,Operation aOperation)
+	{
+		mEquation=aEquation;
+		mOperation=aOperation;
+	}
+
+	/**
+	 * Gets the operation.
+	 *
+	 * @return the operation
+	 */
+	public Operation getOperation()
+	{
+		return mOperation;
+	}
+
+	/**
+	 * Sets the operation.
+	 *
+	 * @param aOperation the new operation
+	 */
+	public void setOperation(Operation aOperation)
+	{
+		mOperation = aOperation;
+	}
+
+	/**
+	 * Gets the equation.
+	 *
+	 * @return the equation
+	 */
+	public IEquation getEquation()
+	{
+		return mEquation;
+	}
+
+
+	/**
+	 * Sets the equation.
+	 *
+	 * @param aEquation the new equation
+	 */
+	public void setEquation(Equation aEquation)
+	{
+		mEquation = aEquation;
+	}
+	
+}

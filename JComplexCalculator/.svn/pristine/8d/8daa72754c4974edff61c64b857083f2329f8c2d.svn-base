@@ -1,0 +1,114 @@
+/**
+ * Complex Calculator - Complex math equation solver
+ * Copyright (C) 2016  Aleistar Markóczy
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/gpl-3.0.html.
+ */
+package mkz.cc.launch;
+
+import java.util.Scanner;
+
+import mkz.cc.core.arithmetic.parser.ArithmeticEquationParser;
+import mkz.cc.core.arithmetic.parser.ArithmeticFunctionParser;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.util.IO;
+
+/**
+ * The Class CCalcSimpleCLI.
+ */
+public class CCalcSimpleCLI
+{
+
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	public static void main(String[] args)
+	{
+		if(args.length>0)
+		{
+			String lCall = new String();
+			
+			for(String iArg:args)
+			{
+				lCall+=iArg;
+			}
+			lCall.replaceAll(" ", "");
+			
+			try
+			{
+				System.out.println("Output: "+new ArithmeticEquationParser().parse(lCall));
+			}
+			catch (CCalcException e)
+			{
+				IO.SysOutE(e);
+			}
+		}
+		else
+		{
+			_initCLI();
+		}
+	}
+	
+	/**
+	 * _init cli.
+	 */
+	private static void _initCLI()
+	{
+		Scanner lScanner = new Scanner(System.in);
+		ArithmeticEquationParser lEqParser = new ArithmeticEquationParser();
+		ArithmeticFunctionParser lFcnParser = new ArithmeticFunctionParser();
+		
+		System.out.println("+----------------------------------------------------------+");
+		System.out.println("|  ComplexCalculator V0.75 (Java test CLI)  Author: A.M.   |");
+		System.out.println("|                                                          |");
+		System.out.println("|  Source: https://github.com/markoczy/ComplexCalculator   |");
+		System.out.println("+----------------------------------------------------------+");
+		System.out.println();
+		
+		System.out.print("Input : ");
+		String lInput = lScanner.nextLine();
+		
+		while(!lInput.toLowerCase().equals("/exit"))
+		{
+			if(lInput.contains(":="))
+			{
+				System.out.println(lFcnParser.parseFunction(lInput)?">>>>> : Succesfully added function" : ">>>>> : Error while adding function");
+				System.out.println();
+			}
+			else
+			{
+				try
+				{
+					double lVal=lEqParser.parse(lInput);
+					System.out.println("Output: "+lVal);
+					System.out.println();
+				}
+				catch (CCalcException e)
+				{
+					IO.SysOutE(e);
+				}
+			}
+			
+			
+			System.out.print("Input : ");
+			lInput=lScanner.nextLine();
+		}
+		
+		lScanner.close();
+		
+	}
+
+}

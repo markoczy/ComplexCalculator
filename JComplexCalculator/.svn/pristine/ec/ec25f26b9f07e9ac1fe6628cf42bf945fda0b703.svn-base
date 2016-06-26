@@ -1,0 +1,40 @@
+package mkz.cc.core.equation.function;
+
+import java.util.ArrayList;
+
+import mkz.cc.core.equation.IEquation;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.linear.LinearEquation;
+import mkz.cc.util.IO;
+
+public class LinearParamEquation extends LinearEquation implements IParametrizable
+{
+	///
+	/// XXX Implementation still a bit dirty: 
+	///
+	///     All params must be added to the top level function -> addLogicalParam()
+	///     i.e. function setting is not recursive but managed at top level of a multilayered function 
+	///             e.g. "f(x):=2*g(x)" -> function "f" sets param "x" for calling g()
+	///
+	private ArrayList<IParametrizable> mParams = new ArrayList<IParametrizable>();
+	
+	public void addLogicalParam(IParametrizable aParam)
+	{
+		if(!mParams.contains(aParam)) mParams.add(aParam);
+		else IO.SysOutV("Param was already contained");
+	}
+	
+	@Override
+	public void setParam(String aName, IEquation aValue)
+	{
+		for(IParametrizable iParam:mParams) iParam.setParam(aName, aValue);
+	}
+	
+	@Override
+	public void addOperation(IEquation aEquation, Operation aOperation)
+	{
+		super.addOperation(aEquation, aOperation);
+		if(aEquation instanceof IParametrizable) mParams.add((IParametrizable)aEquation);
+	}
+	
+}

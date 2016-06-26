@@ -1,0 +1,24 @@
+package mkz.cc.test;
+
+import mkz.cc.core.arithmetic.parser.EquationParser;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.util.IO;
+
+public class TestParser
+{
+
+	public static void main(String[] args)
+	{
+		EquationParser lParser = new EquationParser();
+		
+		try
+		{
+			System.out.println(lParser.parse("sum(sin(5),2,3,4)"));
+		}
+		catch (CCalcException e)
+		{
+			IO.SysOutE(e);
+		}
+	}
+
+}

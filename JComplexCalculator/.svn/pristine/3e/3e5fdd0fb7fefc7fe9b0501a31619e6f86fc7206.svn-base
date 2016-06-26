@@ -1,0 +1,28 @@
+package mkz.cc.core.debug.equation;
+
+import mkz.cc.core.debug.CCalcException;
+
+public class InvalidParamCountException extends CCalcException
+{
+private static final long serialVersionUID = 1L;
+	
+	public InvalidParamCountException()
+	{
+		super();
+	}
+	
+	public InvalidParamCountException(int aCount)
+	{
+		super("Cannot solve equation, paramcount does not match, paramcount = "+aCount);
+	}
+	
+	public InvalidParamCountException(String aId,int aCount)
+	{
+		super("Cannot solve equation '"+aId+"', paramcount does not match, paramcount = "+aCount);
+	}
+	
+	public InvalidParamCountException(String aMessage)
+	{
+		super(aMessage);
+	}
+}

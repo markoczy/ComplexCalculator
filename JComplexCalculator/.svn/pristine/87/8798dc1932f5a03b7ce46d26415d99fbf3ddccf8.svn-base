@@ -1,0 +1,27 @@
+package mkz.cc.test;
+
+import mkz.cc.core.arithmetic.parser.ArithmeticEquationParser;
+import mkz.cc.core.arithmetic.parser.ArithmeticFunctionParser;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.util.IO;
+
+public class TestFunctionParser
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		ArithmeticFunctionParser lp = new ArithmeticFunctionParser();
+		lp.parseFunction("f(c):=22*c");
+		
+		try
+		{
+			System.out.println("f(3)= "+(new ArithmeticEquationParser()).parse("f(3"));
+		}
+		catch (CCalcException e)
+		{
+			IO.SysOutE(e);
+		}
+	}
+
+}

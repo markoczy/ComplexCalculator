@@ -1,0 +1,41 @@
+package mkz.cc.test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import mkz.cc.core.equation.Constant;
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.IEquation;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.function.FunctionPool;
+import mkz.cc.core.equation.function.LinearParamEquation;
+import mkz.cc.core.equation.function.Variable;
+
+public class TestFunctionsPool
+{
+
+	public static void main(String[] args)
+	{
+		// Test 1: sin(5)
+		//
+		Equation lSinEq = FunctionPool.getInstance().getFuncion("sin");
+		System.out.println("Value = "+lSinEq.addParam(new Constant(5)).getValue());
+
+		// Test 2: sum(1,2,3,4)
+		//
+		Equation lSumEq = FunctionPool.getInstance().getFuncion("sum");
+		lSumEq.setParams(new ArrayList<IEquation>(Arrays.asList(new IEquation[]{new Constant(1),new Constant(2),new Constant(3),new Constant(4)})));
+		System.out.println("Value = "+lSumEq.getValue());
+		
+		// Test 3: Create Function test(x):=x*2
+		//
+		LinearParamEquation lFunction= new LinearParamEquation();
+		lFunction.addOperation(new Variable("x"), Operation.MPL);
+		lFunction.addOperation(new Constant(2), Operation.CONST);
+		FunctionPool.getInstance().addFunction("test", "My test function", new ArrayList<String>(Arrays.asList(new String[]{"x"})),"test(x):=x*2",lFunction);
+		Equation lTestEq=FunctionPool.getInstance().getFuncion("test");
+		System.out.println("test(x):=x*2 -> test(5)="+lTestEq.addParam(new Constant(5)).addParam(new Constant(3)).getValue());
+		
+	}
+
+}

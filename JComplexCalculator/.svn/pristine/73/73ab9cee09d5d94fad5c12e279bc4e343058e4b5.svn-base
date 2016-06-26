@@ -1,0 +1,86 @@
+/**
+ * File: CCalcJavaV2::ParamFunction.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.equation.function;
+
+import java.util.ArrayList;
+
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.core.debug.equation.InvalidParamCountException;
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.definition.IFunction;
+
+/**
+ * The Class ParamFunction. Implements a Parsed function where all function params 
+ * are used to set recursively the functions values by name (see getValue).
+ */
+public class ParamFunction implements IFunction
+{
+	
+	/** The member name. */
+	private String mName=null;
+	
+	/** The member param names. */
+	private ArrayList<String> mParamNames = new ArrayList<String>();
+	
+	/** The member equation. */
+	ParamLinearEquation mEquation=null;
+
+	/**
+	 * Instantiates a new param function.
+	 *
+	 * @param aName the reference name
+	 * @param aEquation the reference equation
+	 */
+	public ParamFunction(String aName,ParamLinearEquation aEquation)
+	{
+		mName=aName;
+		mEquation=aEquation;
+	}
+	
+	/**
+	 * Instantiates a new param function.
+	 *
+	 * @param aName the reference name
+	 * @param aParamNames the reference param names
+	 * @param aEquation the reference equation
+	 */
+	public ParamFunction(String aName,ArrayList<String> aParamNames,ParamLinearEquation aEquation)
+	{
+		mName=aName;
+		mParamNames=aParamNames;
+		mEquation=aEquation;
+	}
+	
+	/**
+	 * Adds the param.
+	 *
+	 * @param aName the reference name
+	 * @return the param function
+	 */
+	public ParamFunction addParam(String aName)
+	{
+		mParamNames.add(aName);
+		return this;
+	}
+	
+	/* (non-Javadoc)
+	 * @see mkz.cc.core.equation.IFunction#getValue(java.util.ArrayList)
+	 */
+	@Override
+	public double getValue(ArrayList<IEquation> aEqArr) throws CCalcException
+	{
+		if(aEqArr.size()!=mParamNames.size())throw new InvalidParamCountException(mName,aEqArr.size());
+		
+		for(int i=0;i<aEqArr.size();i++)
+		{
+			mEquation.setParam(mParamNames.get(i), aEqArr.get(i));
+		}
+		
+		return mEquation.getValue();
+	}
+
+}

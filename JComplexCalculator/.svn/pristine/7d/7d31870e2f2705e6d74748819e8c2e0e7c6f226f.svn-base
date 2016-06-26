@@ -1,0 +1,250 @@
+/**
+ * Complex Calculator - Complex math equation solver
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/gpl-3.0.html.
+ */
+package mkz.cc.core.equation;
+
+import java.util.HashMap;
+
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.definition.IFunction;
+import mkz.cc.core.equation.function.FunctionPool;
+import mkz.cc.core.equation.function.ParamEquation;
+import mkz.cc.util.IO;
+import mkz.cc.util.Pair;
+
+/**
+ * A factory for creating basic Equation objects.
+ */
+public class EquationFactory
+{
+	
+	/** The functions. */
+	private static FunctionPool functions = FunctionPool.getInstance();
+	
+	/** The Constant BASIC_OPS_TABLE. */
+	private static final HashMap<Operation,IFunction> BASIC_OPS_TABLE= _createBasicOpsTable();
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aValue the reference value
+	 * @return the constant
+	 */
+	public static Constant createConstant(double aValue)
+	{
+		return new Constant(aValue);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aOp the reference op
+	 * @return the equation
+	 */
+	public static Equation createBasicEquation(Operation aOp)
+	{
+		Equation rVal=null;
+		
+		IFunction lFunction=BASIC_OPS_TABLE.get(aOp);
+		
+		// means that the operation is valid
+		if(lFunction!=null)
+		{
+			rVal = new Equation(aOp.toString(),lFunction);
+		}
+		else
+		{
+			IO.SysOutE("Trying to make an equation using an invalid Operation, OP is "+aOp);
+		}
+		
+		return rVal;
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createInversion()
+	{
+		return new Equation(Equation.DisplayNames.INV,BasicFunctions.INV);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aValue the reference value
+	 * @return the equation
+	 */
+	public static Equation createInversion(IEquation aValue)
+	{
+		return new Equation(Equation.DisplayNames.INV,BasicFunctions.INV).addParam(aValue);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createAddition()
+	{
+		return new Equation(Equation.DisplayNames.ADD,BasicFunctions.ADD);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aV1 the reference v1
+	 * @param aV2 the reference v2
+	 * @return the equation
+	 */
+	public static Equation createAddition(IEquation aV1,IEquation aV2)
+	{
+		return new Equation(Equation.DisplayNames.ADD,BasicFunctions.ADD).addParam(aV1).addParam(aV2);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createSubtraction()
+	{
+		return new Equation(Equation.DisplayNames.SUB,BasicFunctions.SUB);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aV1 the reference v1
+	 * @param aV2 the reference v2
+	 * @return the equation
+	 */
+	public static Equation createSubtraction(IEquation aV1,IEquation aV2)
+	{
+		return new Equation(Equation.DisplayNames.SUB,BasicFunctions.SUB).addParam(aV1).addParam(aV2);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createMultiplication()
+	{
+		return new Equation(Equation.DisplayNames.MPL,BasicFunctions.MPL);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aV1 the reference v1
+	 * @param aV2 the reference v2
+	 * @return the equation
+	 */
+	public static Equation createMultiplication(IEquation aV1,IEquation aV2)
+	{
+		return new Equation(Equation.DisplayNames.MPL,BasicFunctions.MPL).addParam(aV1).addParam(aV2);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createDivision()
+	{
+		return new Equation(Equation.DisplayNames.DIV,BasicFunctions.DIV);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aV1 the reference v1
+	 * @param aV2 the reference v2
+	 * @return the equation
+	 */
+	public static Equation createDivision(IEquation aV1,IEquation aV2)
+	{
+		return new Equation(Equation.DisplayNames.DIV,BasicFunctions.DIV).addParam(aV1).addParam(aV2);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @return the equation
+	 */
+	public static Equation createExponential()
+	{
+		return new Equation(Equation.DisplayNames.EXP,BasicFunctions.EXP);
+	}
+	
+	/**
+	 * Creates a new Equation object.
+	 *
+	 * @param aV1 the reference v1
+	 * @param aV2 the reference v2
+	 * @return the equation
+	 */
+	public static Equation createExponential(IEquation aV1,IEquation aV2)
+	{
+		return new Equation(Equation.DisplayNames.EXP,BasicFunctions.EXP).addParam(aV1).addParam(aV2);
+	}
+	
+	
+	/**
+	 * Creates a new Equation object. Equation of a function (e.g. x+y).
+	 *
+	 * @param aCallName the reference call name
+	 * @return the equation
+	 */
+	public static Equation createFuncionEquation(String aCallName)
+	{
+		Pair<String, IFunction> lFcn=functions.getFuncion(aCallName);
+		return lFcn != null ? new Equation(lFcn.getObject1(), lFcn.getObject2()) : null;
+	}
+
+	/**
+	 * Creates a new Equation object. Parametrizable equation of a function.
+	 *
+	 * @param aCallName the reference call name
+	 * @return the equation
+	 */
+	public static Equation createParamFuncionEquation(String aCallName)
+	{
+		Pair<String, IFunction> lFcn=functions.getFuncion(aCallName);
+		return lFcn != null ? new ParamEquation(lFcn.getObject1(), lFcn.getObject2()) : null;
+	}
+
+	/**
+	 * [restricted] create basic ops table. Maps operations with corresponding interfaces.
+	 *
+	 * @return the hash map
+	 */
+	private static HashMap<Operation,IFunction> _createBasicOpsTable()
+	{
+		HashMap<Operation,IFunction> rVal = new HashMap<Operation,IFunction>();
+		rVal.put(Operation.ADD, BasicFunctions.ADD);
+		rVal.put(Operation.SUB, BasicFunctions.SUB);
+		rVal.put(Operation.MPL, BasicFunctions.MPL);
+		rVal.put(Operation.DIV, BasicFunctions.DIV);
+		rVal.put(Operation.EXP, BasicFunctions.EXP);
+		return rVal;
+	}
+	
+	
+}

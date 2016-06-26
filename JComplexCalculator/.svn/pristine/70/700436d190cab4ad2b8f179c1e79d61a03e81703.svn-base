@@ -1,0 +1,25 @@
+package mkz.cc.test;
+
+import java.util.ArrayList;
+
+import mkz.cc.core.equation.Constant;
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.EquationFactory;
+import mkz.cc.core.equation.definition.IEquation;
+
+public class TestEquations
+{
+
+	public static void main(String[] args)
+	{
+		ArrayList<IEquation> lEq = new ArrayList<IEquation>();
+		lEq.add(new Constant(12));
+		lEq.add(new Constant(10));
+		
+		Equation lAdd=EquationFactory.createAddition();
+		lAdd.setParams(lEq);
+		
+		System.out.println("Value = "+ lAdd.getValue());
+	}
+
+}

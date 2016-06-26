@@ -1,0 +1,79 @@
+/**
+ * File: CCalcJavaV2::Operation.java
+ *
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ * 
+ */
+package mkz.cc.core.equation;
+
+/**
+ * The Class Operation.
+ */
+public class Operation implements Comparable<Operation>
+{
+	
+	/** The Constant FCN. */
+	public static final Operation FCN = new Operation(Equation.DisplayNames.FCN,0);
+	
+	/** The Constant EXP. */
+	public static final Operation EXP = new Operation(Equation.DisplayNames.EXP,2);
+
+	/** The Constant DIV. */
+	public static final Operation DIV = new Operation(Equation.DisplayNames.DIV,100);
+	
+	/** The Constant MPL. */
+	public static final Operation MPL = new Operation(Equation.DisplayNames.MPL,101);
+	
+	/** The Constant SUB. */
+	public static final Operation SUB = new Operation(Equation.DisplayNames.SUB,102);
+	
+	/** The Constant ADD. */
+	public static final Operation ADD = new Operation(Equation.DisplayNames.ADD,103);
+
+	/** The Constant CONST. */
+	public static final Operation CONST = new Operation(Equation.DisplayNames.CONST,1000);
+	
+	/** The Constant UNDEF. */
+	public static final Operation UNDEF = new Operation(Equation.DisplayNames.UNDEF,1001);
+	
+	///
+	/// Implementation
+	///
+	
+	/** The member name. */
+	private String mName;
+	
+	/** The member priority. */
+	private Integer mPriority;
+	
+	/**
+	 * Instantiates a new operation.
+	 *
+	 * @param aName the reference name
+	 * @param aPriority the reference priority
+	 */
+	private Operation(String aName,int aPriority)
+	{
+		mName=aName;
+		mPriority=aPriority;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Operation aOperation)
+	{
+		return mPriority.compareTo(aOperation.mPriority);
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return mName;
+	}
+	
+}

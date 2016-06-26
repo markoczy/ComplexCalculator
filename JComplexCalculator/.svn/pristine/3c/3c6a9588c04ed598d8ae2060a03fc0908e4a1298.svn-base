@@ -1,0 +1,16 @@
+package mkz.cc.core.debug;
+
+public class CCalcException extends Exception
+{
+	private static final long serialVersionUID = 1L;
+	
+	public CCalcException()
+	{
+		super();
+	}
+	
+	public CCalcException(String aMessage)
+	{
+		super(aMessage);
+	}
+}

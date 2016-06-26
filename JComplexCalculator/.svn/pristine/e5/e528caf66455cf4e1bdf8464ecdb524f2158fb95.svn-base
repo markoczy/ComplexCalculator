@@ -1,0 +1,35 @@
+package mkz.cc.test;
+
+import mkz.cc.core.arithmetic.equation.LinearArithmeticEquation;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.core.equation.Constant;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.util.IO;
+
+public class TestLinearEquation
+{
+
+	public static void main(String[] args)
+	{
+		// 5 - 1 + 4 / 2 * 5
+		
+		LinearArithmeticEquation lEq = new LinearArithmeticEquation();
+		lEq.addOperation(new Constant<Double>(5.0), Operation.SUB);
+		lEq.addOperation(new Constant<Double>(1.0), Operation.ADD);
+		lEq.addOperation(new Constant<Double>(4.0), Operation.DIV);
+		lEq.addOperation(new Constant<Double>(2.0), Operation.MPL);
+		lEq.addOperation(new Constant<Double>(5.0), Operation.UNDEF);
+		
+		try
+		{
+			System.out.println("Value is: "+lEq.getValue());
+		}
+		catch (CCalcException e)
+		{
+			IO.SysOutE(e);
+		}
+		
+		
+	}
+
+}

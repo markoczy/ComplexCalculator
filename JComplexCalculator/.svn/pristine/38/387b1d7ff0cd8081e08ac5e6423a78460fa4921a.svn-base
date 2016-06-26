@@ -1,0 +1,444 @@
+/**
+ * Complex Calculator - Complex math equation solver
+ * Copyright (C) 2016  Aleistar Markóczy, a.markoczy@gmail.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/gpl-3.0.html.
+ */
+package mkz.cc.core.parser;
+
+import java.util.ArrayList;
+import mkz.cc.core.common.CC_Common;
+import mkz.cc.core.debug.CCalcException;
+import mkz.cc.core.equation.Constant;
+import mkz.cc.core.equation.Equation;
+import mkz.cc.core.equation.EquationFactory;
+import mkz.cc.core.equation.Operation;
+import mkz.cc.core.equation.definition.IEquation;
+import mkz.cc.core.equation.linear.LinearEquation;
+import mkz.cc.util.IO;
+
+/**
+ * The Class EquationParser.
+ */
+public class EquationParser
+{
+	/** The member cursor. */
+	protected ParserCursor mCursor = new ParserCursor();
+	
+	/**
+	 * Parses the equation string.
+	 *
+	 * @param equation the equation
+	 * @return the double
+	 * @throws CCalcException the c calc exception
+	 */
+	// Parses double value from equation
+	public double parse(String equation) throws CCalcException
+	{
+		// deinit first..
+		mCursor.setPosition(0);
+		
+		
+		IEquation eq = _parseEquation(equation, mCursor);
+		double rVal = eq.getValue();
+
+		return rVal;
+	}
+
+	/**
+	 * [restricted] parse number.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the constant
+	 */
+	private Constant _parseNumber(String equation, ParserCursor aCursor)
+	{
+		Constant rVal = new Constant(0.0);
+
+		String num = new String();
+
+		// int charCount = 0;
+
+		while (aCursor.getPosition() < equation.length())
+		{
+			char chr = equation.charAt(aCursor.getPosition());
+
+			if (CC_Common.isDecimal(chr))
+			{
+				num += chr;
+				// charCount++;
+				aCursor.next();;
+			}
+			else
+			{
+				IO.SysOutV("NumberString = " + num);
+
+				// Happens number ends (i.e. no dec char)
+				rVal.setValue(Double.parseDouble(num));
+				return rVal;
+			}
+
+		}
+
+		rVal.setValue(Double.parseDouble(num));
+		return rVal;
+	}
+
+	/**
+	 * [restricted] parse equation.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the i equation
+	 */
+	protected IEquation _parseEquation(String equation, ParserCursor aCursor)
+	{
+		LinearEquation rVal = _getNewEquation();
+
+		IEquation lNumber = null;
+
+		boolean hasNum = false;
+		boolean hasOp = false;
+
+		boolean inverseNum = false;
+
+		char chr = equation.charAt(aCursor.getPosition());
+
+		while (aCursor.getPosition() < equation.length())
+		{
+			chr = equation.charAt(aCursor.getPosition());
+			IO.SysOutD("it = " + aCursor + ", char = " + chr);
+
+			Operation lOperation = Operation.UNDEF;
+
+			if (CC_Common.isDecimal(chr))
+			{
+				IO.SysOutV("Found decimal: " + chr);
+				lNumber = _parseNumber(equation, aCursor);
+			}
+			else if (CC_Common.isParOpen(chr))
+			{
+				aCursor.next();
+				String sub = _getEqSubstr(equation, aCursor);
+				IO.SysOutV("Found subEquation " + sub);
+
+				ParserCursor subCursor = new ParserCursor(); // dummy
+				lNumber = _parseEquation(sub, subCursor);
+			}
+			else if (CC_Common.isAlpha(chr))
+			{
+				IO.SysOutD("Found alpha " + chr);
+				lNumber=_parseFunctionCall(equation, aCursor);
+			}
+			else if (CC_Common.isOperator(chr))
+			{
+				lOperation = _parseOperator(equation, aCursor);
+			}
+			else
+			{
+				aCursor.next();;
+			}
+
+			hasNum = (lNumber != null);
+			hasOp = (lOperation != Operation.UNDEF);
+
+			IO.SysOutV("hasOp = " + hasOp + " hasNum = " + hasNum);
+
+			if (hasNum)
+			{
+				boolean doAdd = false;
+
+				// Has Number and Operator
+				if (hasOp)
+				{
+					doAdd = true;
+				}
+				// Default Operator "CONST" if finished
+				else if (aCursor.getPosition() >= equation.length())
+				{
+					lOperation = Operation.CONST;
+					
+					doAdd = true;
+				}
+				// Default Operator "MPL" if undefined
+				else
+				{
+					chr = equation.charAt(aCursor.getPosition());
+					IO.SysOutV("Try autoadd MPL (203) char is: " + chr);
+
+					// Subequation e.g. 4(2+3)
+					// ^ ^
+					doAdd |= CC_Common.isParOpen(chr);
+
+					// Function e.g. 4x
+					// ^
+					doAdd |= CC_Common.isAlpha(chr);
+
+					// Decimal e.g. (2+3)4
+					// ^
+					doAdd |= CC_Common.isDecimal(chr);
+
+					if (doAdd)
+					{
+						lOperation = Operation.MPL;
+					}
+				}
+
+				if (doAdd)
+				{
+					if (inverseNum) lNumber = EquationFactory.createInversion(lNumber);
+
+					IO.SysOutV("Adding Operation " + lOperation);
+					rVal.addOperation(lNumber, lOperation);
+					lOperation = Operation.UNDEF;
+					lNumber = null;
+					//
+					hasNum = false;
+					hasOp = false;
+					inverseNum = false;
+				}
+
+			}
+			// Inverse negative
+			else
+			{
+				if (lOperation == Operation.SUB)
+				{
+					IO.SysOutV("Setting inversenum = true");
+					inverseNum = true;
+				}
+
+			}
+
+		}
+
+		if (hasNum)
+		{
+			if (inverseNum) lNumber = EquationFactory.createInversion(lNumber);
+
+			IO.SysOutV("Adding Operation (end) " + Equation.DisplayNames.INV);
+			rVal.addOperation(lNumber, Operation.CONST);
+		}
+
+		IO.SysOutV("Returning equation, it = " + aCursor);
+		return rVal;
+	}
+
+	/**
+	 * [restricted] get equation substring.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the string
+	 */
+	protected String _getEqSubstr(String equation, ParserCursor aCursor)
+	{
+		// -//-//-//-//-//-//-//-//-//-//-//
+		// Example: 22+(24-5/3.43+12)
+		//             ^^
+		// -//-//-//-//-//-//-//-//-//-//-//
+
+		// Params
+		int parCount = 1;
+		char chr = equation.charAt(aCursor.getPosition());
+		String rVal = "";
+
+		//// Skip first parOpen
+		// if (cc::isParOpen(chr))
+		// {
+		// it++;
+		// chr = equation.at(it);
+		// }
+
+		// Loop
+		while (aCursor.getPosition() < equation.length() && parCount > 0)
+		{
+			chr = equation.charAt(aCursor.getPosition());
+
+			parCount += CC_Common.parseParanthesis(chr);
+
+			if (parCount > 0)
+			{
+				rVal += chr;
+			}
+			else
+			{
+				return rVal;
+			}
+
+			aCursor.next();;
+
+		}
+
+		// TODO if parcount>0 throw ex
+		return rVal;
+	}
+	
+	/**
+	 * [restricted] get function param substr.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the string
+	 */
+	protected String _getFcnParamSubstr(String equation, ParserCursor aCursor)
+	{
+		// -//-//-//-//-//-//-//-//-//-//-//
+		// Example: 22+(24-5/3.43+12)
+		//             ^^
+		// -//-//-//-//-//-//-//-//-//-//-//
+
+		// Params
+		int parCount = 1;
+		char chr = equation.charAt(aCursor.getPosition());
+		String rVal = "";
+
+		//// Skip first parOpen
+		// if (cc::isParOpen(chr))
+		// {
+		// it++;
+		// chr = equation.at(it);
+		// }
+
+		// Loop
+		while (aCursor.getPosition() < equation.length() && parCount > 0)
+		{
+			chr = equation.charAt(aCursor.getPosition());
+
+			parCount += CC_Common.parseParanthesis(chr);
+
+			if (parCount > 0 && aCursor.get(equation)!=',')
+			{
+				rVal += chr;
+			}
+			else
+			{
+				aCursor.next();
+				return rVal;
+			}
+
+			aCursor.next();;
+
+		}
+
+		// TODO if parcount>0 throw ex
+		return rVal;
+	}
+
+	/**
+	 * [restricted] parse operator.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the operation
+	 */
+	protected Operation _parseOperator(String equation, ParserCursor aCursor)
+	{
+		char chr = aCursor.getPosition() < equation.length() ? equation.charAt(aCursor.getPosition()) : '\0';
+		aCursor.next();;
+
+		IO.SysOutD("OperatorString = " + chr);
+
+		switch (chr)
+		{
+			case '+':
+				return Operation.ADD;
+			case '-':
+				return Operation.SUB;
+			case '/':
+				return Operation.DIV;
+			case '*':
+				return Operation.MPL;
+			case '^':
+				return Operation.EXP;
+			default:
+				return Operation.UNDEF;
+		}
+
+	}
+
+	/**
+	 * [restricted] parse identifier.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the string
+	 */
+	protected String _parseIdentifier(String equation, ParserCursor aCursor)
+	{
+		String rVal = "";
+
+		while (aCursor.getPosition() < equation.length() && CC_Common.isAlpha(equation.charAt(aCursor.getPosition())))
+		{
+			char chr = equation.charAt(aCursor.getPosition());
+			rVal += chr;
+
+			aCursor.next();
+		}
+
+		IO.SysOutD("Parsed Indentifier: " + rVal);
+
+		return rVal;
+	}
+	
+	protected IEquation _parseFunctionCall(String equation, ParserCursor aCursor)
+	{
+		String fcnName = _parseIdentifier(equation, aCursor);
+		
+		Equation lFcn = EquationFactory.createFuncionEquation(fcnName);
+		
+		if(lFcn!=null)
+		{
+			ArrayList<String> lParamStrs = _getFcnParams(equation, aCursor);
+			for(String iParamStr:lParamStrs) lFcn.addParam(_parseEquation(iParamStr,new ParserCursor()));
+		} // TODO else throw ex
+		
+		return lFcn;
+	}
+	
+	/**
+	 * [restricted] get new equation. Can be used to override datatype.
+	 *
+	 * @return the linear equation
+	 */
+	protected LinearEquation _getNewEquation()
+	{
+		return new LinearEquation();
+	}
+	
+	/**
+	 * [restricted] get fcn params.
+	 *
+	 * @param equation the equation
+	 * @param aCursor the reference cursor
+	 * @return the array list
+	 */
+	protected ArrayList<String> _getFcnParams(String equation, ParserCursor aCursor)
+	{
+		ArrayList<String> rVal = new ArrayList<String>();
+		if (!CC_Common.isParOpen(aCursor.get(equation))) return rVal;
+		aCursor.next();
+
+		while (!aCursor.exceeds(equation) && !CC_Common.isParClose(aCursor.get(equation)))
+		{
+			IO.SysOutV("Current char: "+aCursor.get(equation));
+			String lParam=_getFcnParamSubstr(equation, aCursor);
+			IO.SysOutD("Found param, string is: "+lParam);
+			rVal.add(lParam);
+		}
+		return rVal;
+	}
+
+}
