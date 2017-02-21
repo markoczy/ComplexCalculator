@@ -1,9 +1,0 @@
-package mkz.cc.core.equation;
-
-import mkz.cc.core.debug.CCalcException;
-
-@FunctionalInterface
-public interface IEquation
-{
-	public double getValue() throws CCalcException;
-}

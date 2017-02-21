@@ -1,8 +1,0 @@
-package mkz.cc.core.equation.function;
-
-import mkz.cc.core.equation.IEquation;
-
-public interface IParametrizable
-{
-	public void setParam(String aName, IEquation aValue);
-}

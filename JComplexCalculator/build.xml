@@ -1,0 +1,114 @@
+<project name="ANT Java Builder" basedir="." default="deploy">
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <!--+++++++           AJB SINGLE ENVIRONMENT DEPLOYER            ++++++++-->
+    <!--+++++++                (AJB VERSION: 1.1.0)                  ++++++++-->
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+    <!-- - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - -
+    Dependencies:
+
+    > ANT V1.8.1 or later
+    > ANT Contrib V0.6 or later
+    > ajb.xml V1.1.0
+    - - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - - -->
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Description
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - -
+    Deploys a java project according to the settings in the properties file.
+    Designed for single environment deploy, only one executable will be created.
+
+    Tasks:
+    > build  : create executable, don't increase build UID
+    > run    : run the executable (if possible)
+    > zip    : create zip file from executable
+    > deploy : build, create zip, and increase build UID
+    - - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - - -->
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Import Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- ANT Contrib -->
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <!-- Properties -->
+    <loadproperties srcfile="build.properties"/>
+
+    <!-- Build number -->
+    <trycatch property="prop" reference="ref">
+        <try>
+            <loadproperties srcfile="build.number"/>
+        </try>
+        <catch>
+            <buildnumber file="build.number"/>
+            <loadproperties srcfile="build.number"/>
+        </catch>
+    </trycatch>
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Declare Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <description>
+    Basic Java Project Builder with automated jar generation, zip packaging,
+    and a basic run task. Supports incremental build ID and Timestamp.
+    </description>
+
+    <tstamp>
+        <format property="version.tstamp" pattern="${version.tstamp.pattern}"/>
+    </tstamp>
+
+    <property name="ajb_xml" value="ajb.xml" />
+    <property name="build" value="${build.dir}/build" />
+    <property name="install" value="${build.dir}/install" />
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Runnable Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="deploy">
+        <antcall target="build" />
+        <antcall target="zip" />
+        <buildnumber file="build.number"/>
+        <echo>Build ${build.number} created.</echo>
+    </target>
+
+    <!-- Build All -->
+    <target name="build">
+        <!-- reinit folder structure -->
+        <delete dir="${build}" />
+        <mkdir dir="${build}" />
+        <mkdir dir="${install}" />
+        
+        <ant antfile="${ajb_xml}" target="build"  inheritall="true" inheritrefs="true" >
+            <property name="a_msgprefix" value=""/>
+            <property name="a_srcdir" value="${build}/src"/>
+            <property name="a_libdir" value="${path.dir.lib}"/>
+            <property name="a_resdir" value="${path.dir.res}"/>
+            <property name="a_scriptdir" value="${path.dir.script}"/>
+            <property name="a_outdir" value="${build}"/>
+            <property name="a_isdebug" value="${build.is_debug}"/>
+            <property name="a_uid" value="${build.number}"/>
+            <property name="a_tstamp" value="${version.tstamp}"/>
+        </ant>
+    </target>
+        
+    <!-- Run a test -->
+    <target name="run">
+        <java jar="${build}/${project.name}.jar" fork="true"/>
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Zip Contents
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="zip" >
+		<zip destfile="${install}/${install.pattern}.zip" basedir="${build}" />
+	</target>
+</project>

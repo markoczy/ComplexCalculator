@@ -147,7 +147,8 @@ public class CCalcSimpleCLI
 			
 			for(String iReport:preinit_statusreports) System.out.println(iReport);
 			if(preinit_statusreports.size()>0)System.out.println();
-			preinit_statusreports.clear();
+			
+
 			
 			interrupt=false;
 			
@@ -363,9 +364,11 @@ public class CCalcSimpleCLI
 	{
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("VersionInfo: JComplexCalculator");
+		System.out.println("VersionInfo "+VersionInfo.getDisplayName());
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Release ID : "+VersionInfo.getVersion());
+		System.out.println("Build UID  : "+VersionInfo.getBuildUID());
+		System.out.println("Created on : "+VersionInfo.getBuildTimestamp());
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println();
 	}

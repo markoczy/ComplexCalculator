@@ -1,8 +1,0 @@
-package mkz.cc.core.equation.definition;
-
-import mkz.cc.core.equation.Operation;
-
-public interface ILinearEquation<T>
-{
-	public abstract void addOperation(IEquation<T> aEquation, Operation aOperation);
-}

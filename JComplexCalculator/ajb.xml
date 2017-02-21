@@ -1,0 +1,405 @@
+<project name="ANT Java Builder" basedir="." default="build">
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <!--+++++++       ANT JAVA BUILDER BY ALEISTAR MARKOCZY          ++++++++-->
+    <!--+++++++                 (VERSION: 1.1.0)                     ++++++++-->
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+    <!-- - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - -
+    Changelog:
+
+    V1.0.0  :   First usable build
+    V1.0.1  :   User can define wether the project has lib/script/res
+    V1.0.2  :   Fixed path bug when project has no libs
+    V1.1.0  :   Shared library (single/multi)
+    V1.1.1  :   Includes Excludes
+    V1.1.2  :   Unnecessary file creation removed
+    - - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - - -->
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    License Note
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - -
+    This file is under public domain, and I do not claim any copyright or 
+    other kind of license. Get the newest version free at:
+
+    GitHub.com/markoczy/AntJavaBuilder
+    - - - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - - - - - -->
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Import Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <loadproperties srcfile="build.properties"/>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Declare Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <property name="version.build_uid" value="${build.number}"/>
+
+    <property name="build" value="${a_outdir}" />
+
+    <property name="src" value="${build}/src" />
+    <property name="bin" value="${build}/bin" />
+    <property name="lib" value="${build}/${build.dir.lib}" />
+    <property name="script" value="${build}/${build.dir.script}" />
+    <property name="res" value="${build}/${build.dir.res}" />
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Runnable Section
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- Build All -->
+    <target name="build">
+        
+<echo>${a_msgprefix}Starting build...</echo>
+        <!--<antcall target="clean" />-->
+        <antcall target="init" />
+
+
+        <!-- Copy source files -->
+        <antcall target="src.copy" />
+        <if>
+            <equals arg1="${build.replace_tokens.src}" arg2="true" />
+            <then>
+                <antcall target="src.replace_tokens" />
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped replace tokens source: see configuration.</echo>
+            </else>
+        </if>
+        
+        <!-- Copy libraries -->
+        <if>
+            <equals arg1="${project.haslib}" arg2="true" />
+            <then>
+                <antcall target="libs.copy" />
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped copy libraries: see configuration.</echo>
+            </else>
+        </if>
+
+        <!-- Copy scripts -->
+        <if>
+            <equals arg1="${project.hasscript}" arg2="true" />
+            <then>
+                <antcall target="scripts.copy" />
+                <if>
+                    <equals arg1="${build.replace_tokens.script}" arg2="true" />
+                    <then>
+                        <antcall target="script.replace_tokens" />
+                    </then>
+                    <else>
+<echo>${a_msgprefix}Skipped replace tokens scripts: see configuration.</echo>
+                    </else>
+                </if>
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped copy scripts: see configuration.</echo>
+            </else>
+        </if>
+
+        <!-- Copy resources -->
+        <if>
+            <equals arg1="${project.hasres}" arg2="true" />
+            <then>
+                <antcall target="res.copy" />
+                <if>
+                    <equals arg1="${build.replace_tokens.res}" arg2="true" />
+                    <then>
+                        <antcall target="res.replace_tokens" />
+                    </then>
+                    <else>
+<echo>${a_msgprefix}Skipped replace tokens resources: see configuration.</echo>
+                    </else>
+                </if>
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped copy resources: see configuration.</echo>
+            </else>
+        </if>
+        
+        <antcall target="compile" />
+        <antcall target="jar" />
+        <antcall target="clean_build" />
+    </target>
+
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Clean
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!--<target name="clean">
+        <delete dir="${build}" />
+    </target>-->
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Init
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="init">
+        <mkdir dir="${build}" />
+        <mkdir dir="${bin}" />
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Copy files
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- function template -->
+    <target name="fcn_copy">
+        <if>
+            <available file="${a_src}" type="dir"/>
+            <then>
+                <mkdir dir="${a_dest}" />
+                <copy todir="${a_dest}">
+                    <fileset dir="${a_src}">
+                        <include name="**/*"/>
+                    </fileset>
+                </copy> 
+            </then>
+            <else>
+<fail>${a_msgprefix}Not found ${a_name} at path ${a_src}.
+Change path or disable ${a_name} for project.</fail>
+            </else>
+        </if>
+    </target>
+
+    <!-- copy source files -->
+    <target name="src.copy"> 
+        <antcall target="fcn_copy">
+            <param name="a_src" value="${path.dir.src}"/>
+            <param name="a_dest" value="${src}"/>
+            <param name="a_name" value="source files"/>
+        </antcall>
+    </target>
+
+    <!-- copy libs -->
+    <target name="libs.copy">
+        <antcall target="fcn_copy">       
+            <param name="a_src" value="${a_libdir}"/>
+            <param name="a_dest" value="${lib}"/>
+            <param name="a_name" value="libraries"/>
+        </antcall>
+    </target>
+
+    <!-- copy scripts -->
+    <target name="scripts.copy">
+    <antcall target="fcn_copy">       
+        <param name="a_src" value="${a_scriptdir}"/>
+        <param name="a_dest" value="${script}"/>
+        <param name="a_name" value="script files"/>
+    </antcall>
+    </target>
+
+    <!-- copy resources -->
+    <target name="res.copy">
+    <antcall target="fcn_copy">       
+        <param name="a_src" value="${a_resdir}"/>
+        <param name="a_dest" value="${res}"/>
+        <param name="a_name" value="resources"/>
+    </antcall>
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Replace Tokens
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- function template: folder -->
+    <target name="replace_tokens">
+        <foreach target="replace_tokens_file" param="a_file">
+            <path>
+                <fileset dir="${a_dir}" casesensitive="yes">
+                    <include name="**/*.*"/>
+                </fileset>  
+            </path>
+        </foreach>
+    </target>
+
+    <!-- function template: file -->
+    <target name="replace_tokens_file">
+        <replace file="${a_file}">
+        <replacefilter 
+            token="${version.major.token}" 
+            value="${version.major}"/>
+        <replacefilter 
+            token="${version.minor.token}" 
+            value="${version.minor}"/>
+        <replacefilter 
+            token="${version.build.token}" 
+            value="${version.build}"/>
+        <replacefilter 
+            token="${version.build_uid.token}" 
+            value="${a_uid}"/> 
+        <replacefilter 
+            token="${version.tstamp.token}"
+            value="${a_tstamp}"/>
+        <replacefilter 
+            token="${version.full.token}"
+            value="${version.full}"/>
+        <replacefilter 
+            token="${project.name.token}"
+            value="${project.name}"/>
+        <replacefilter 
+            token="${project.vendor.token}"
+            value="${project.vendor}"/>
+        </replace>
+    </target>
+
+    <!-- function call: source files -->
+    <target name="src.replace_tokens">
+        <if>
+            <equals arg1="${build.replace_tokens.src}" arg2="true" />
+            <then>
+                <antcall target="replace_tokens">       
+                    <param name="a_dir" value="${src}"/>
+                </antcall>
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped token replace for source files. 
+${build.replace_tokens.src}</echo>   
+            </else>
+        </if>
+    </target>
+
+    <!-- function call: resource files -->
+    <target name="res.replace_tokens">
+        <if>
+            <and>
+                <equals arg1="${build.replace_tokens.res}" arg2="true" />
+            </and>
+            <then>
+                <antcall target="replace_tokens">       
+                    <param name="a_dir" value="${res}"/>
+                </antcall>
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped token replace for resource files.</echo>   
+            </else>
+        </if>
+    </target>
+
+    <!-- function call: script files -->
+    <target name="script.replace_tokens">
+        <if>
+            <and>
+                <equals arg1="${build.replace_tokens.script}" arg2="true" />
+            </and>
+            <then>
+                <antcall target="replace_tokens">       
+                    <param name="a_dir" value="${script}"/>
+                </antcall>
+            </then>
+            <else>
+<echo>${a_msgprefix}Skipped token replace for script files. 
+${build.replace_tokens.script}</echo>   
+            </else>
+        </if>
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Compile Sources
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+    <!-- Compile .java to .class files -->
+    <target name="compile">
+        <path id="classpath"/>
+        <if>
+            <equals arg1="${project.haslib}" arg2="true" />
+            <then>
+                <path id="classpath">
+                    <fileset dir="${a_libdir}" includes="*.jar" />
+                </path>
+            </then>
+        </if>
+        <javac  destdir="${bin}" 
+                classpathref="classpath" 
+                debug="${a_isdebug}" 
+                includeantruntime="false"
+                includes="${build.include}"
+                excludes="${build.exclude}" >
+            <src path="${src}"/>
+        </javac>
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Create runnable jar
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- Create executable archive -->
+    <target name="jar">
+        <var name="libsep" value="/"/>
+        <!-- special case: lib dir = build dir -->
+        <if>
+            <equals arg1="${build.dir.lib}" arg2="" />
+            <then>
+                <var name="libsep" value=""/>
+            </then>
+        </if>
+        <!-- prefix source files -->
+        <if>
+            <equals arg1="${project.haslib}" arg2="true" />
+            <then>
+                <pathconvert property="path.lib">
+                    <mapper>
+                        <chainedmapper>
+                            <!-- remove absolute path -->
+                            <flattenmapper />
+                            <!-- add prefix -->
+                            <globmapper from="*" 
+                                        to="${build.dir.lib}${libsep}*" />
+                        </chainedmapper>
+                    </mapper>
+                    <path>
+                        <fileset dir="${a_libdir}">
+                            <include name="**/*.jar" />
+                        </fileset>
+                    </path> 
+                </pathconvert>
+            </then>
+            <else>
+                <pathconvert var="path.lib">
+                <path/>
+                </pathconvert>
+            </else>
+        </if>
+        
+        <jar    destfile="${build}/${project.name}.jar" basedir="${bin}"
+                encoding="${build.encoding}" excludes="${build.exclude}"
+                includes="${build.include}">
+            <manifest>
+                <attribute name="Build-By" value="${user.name}" />
+                <attribute name="Main-Class" value="${main.class}" />
+                <attribute name="Class-Path" value="${path.lib}" />
+                <section name="common">
+                    <attribute name="Specification-Title" 
+                    value="${project.name}" />
+                    <attribute name="Specification-Version" 
+                    value="V${version.full}" />
+                    <attribute name="Specification-Vendor" 
+                    value="${project.vendor}" />
+                    <attribute name="Implementation-Title" 
+                    value="${project.name}" />
+                    <attribute name="Implementation-Version" 
+                    value="${version.full} / ${build.number}" />
+                    <attribute name="Implementation-Vendor" 
+                    value="${project.vendor}" />
+                </section>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    Task: Cleanup build
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="clean_build">
+        <delete dir="${src}" />
+        <delete dir="${bin}" />
+    </target>
+
+</project>

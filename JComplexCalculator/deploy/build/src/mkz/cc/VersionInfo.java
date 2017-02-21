@@ -1,7 +1,7 @@
 /**
  * File: JComplexCalculator::VersionInfo.java
  * 
- * Copyright (C) 2016  Aleistar Markóczy
+ * Copyright (C) 2016  Aleistar Markï¿½czy
  * 
  * This file is part of JComplexCalculator.
  *
@@ -25,15 +25,35 @@ package mkz.cc;
  */
 public class VersionInfo
 {
+	/** The display name. */
+	private static String mDisplayName = "JComplexCalculator";
+
+	/** The display version. */
+	private static String mDisplayVersion = "0.2.6";
+
 	/** The member release. */
-	private static int mRelease = 0;
+	private static String mRelease = "0";
 	
 	/** The member subrelease. */
-	private static int mSubrelease = 2;
+	private static String mSubrelease = "2";
 	
 	/** The member build. */
-	private static int mBuild = 7;
+	private static String mBuild = "6";
+
+	private static String mTimestamp = "2016.11.10_11:22:08";
+
+	private static String mUniqueIdentifier = "8";
 	
+	/**
+	 * Gets the project name.
+	 *
+	 * @return the version
+	 */
+	public static String getDisplayName()
+	{
+		return mDisplayName;
+	}
+
 	/**
 	 * Gets the version.
 	 *
@@ -41,7 +61,7 @@ public class VersionInfo
 	 */
 	public static String getVersion()
 	{
-		return mRelease+"."+mSubrelease+"."+mBuild;
+		return mDisplayVersion;
 	}
 	
 	/**
@@ -49,7 +69,7 @@ public class VersionInfo
 	 *
 	 * @return the release
 	 */
-	public static int getRelease()
+	public static String getRelease()
 	{
 		return mRelease;
 	}
@@ -59,7 +79,7 @@ public class VersionInfo
 	 *
 	 * @return the sub releases
 	 */
-	public static int getSubReleases()
+	public static String getSubReleases()
 	{
 		return mSubrelease;
 	}
@@ -69,8 +89,28 @@ public class VersionInfo
 	 *
 	 * @return the build
 	 */
-	public static int getBuild()
+	public static String getBuild()
 	{
 		return mBuild;
+	}
+
+    /**
+	 * Gets the build timestamp.
+	 *
+	 * @return the build
+	 */
+	public static String getBuildTimestamp()
+	{
+		return mTimestamp;
+	}
+
+	/**
+	 * Gets the build unique id.
+	 *
+	 * @return the build
+	 */
+	public static String getBuildUID()
+	{
+		return mUniqueIdentifier;
 	}
 }
