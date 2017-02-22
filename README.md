@@ -1,83 +1,58 @@
 # ComplexCalculator
-Complex math Expression parser in C++ (Core) and C# (CLI)
+Mathematical equation solver in Java with an extensible API.
 
 ## Description
 
 ### Purpose
 
-* Command line tool to solve an equation string and output a double value in return.
-* Can solve equations of infinite depth as it uses a fully recursive solving algorithm
-* Can validate a string before solving (Attention: validation rather basic)
+* Works entirely in the command line
+* Can solve mathematical expressions of infinite depth
+* Can store, apply and plot mathematical functions
+* Can solve logic expressions and plot truth tables (undocumented)
 
 ### Use
 
-Run the program cc.exe via command line (I recommend to put it somewhere in %PATH%)
+Run the program cc.jar via command line (CMD: java -jar cc.jar). Type in any
+expression you want to solve, use <code>/h</code> for help. Store functions or 
+constants by using the <code>:=</code> operator.
 
-### Example usage:
-
-* Input > "cc (-(21.433*0.46+75)+4*5.775/94-1)"
-* Output> "-85,6134353191489"
-
-NB: Please note that the exponential function technically exists put the character is escaped by windows CMD 
-    use enclosing " signs in your equation to avoid this ( i.e. "(2^3)3" )
+>You can also pass any sequence of equations to solve as argument, e.g.:
+<br>
+<br>
+Input:<br><code>java -jar cc.jar 2+3 ans\*5</code><br>
+Output:<br><code>2+3 = 5<br>ans*5 = 25</code>
+</code>
 
 ## Dependencies
 
-### In-Project Dependencies
+### Internal
 
-The C# Project depends on the Core Project in C++ (ccalc.dll) this library has to be in a folder named "lib"
+The Project is based on the mkz_utils library which was made by me and is public
+domain (see: <https://github.com/markoczy/JavaPowerUtils> or /lib folder).
 
 ### Third Party
 
-At the moment there is no third party dependency, but I plan to have an SQLite DB attached,
-it will be used to store user-defined function definitions (see TODO section)
+At the moment there is no third party dependency.
 
 ## Strucural Design
 
 ### Projects
 
-At the moment there are 3 Projects:
+At the moment there are 2 Projects:
 
-* CCalc_Core: The Core library in C++
-* CCalc_DLL: The DLL export logic to use the DLL for C# and Java projects (JNA)
-* CCalc_CS: The DLL import logic for C# and the Command Line Interface (will soon be exported to CCalc_CLI)
+- JComplexCalculator: The Actual Java Project
+- The old obsolete C++ Project with a GUI made in C#
 
 ### Classes
 
-These are the classes that build the Core logic:
+TODO: Explain architecture...
 
-* CEqParser: The parser.
-    * Used to solve an equation string
-  
-* CAbstractEq: The abstract Equations class, 
-    * All operations (add, multiply etc.) inherit from this class
-    * Contains method "getValue()" to retreive the value as a double
-    * Most important child: CChaineq (Can hold linear equations of infinite lentgh and solve them in appropriate order)
+## License
+
+The project is licensed under GPL Version 3.
 
 ## TODO
 
-* Error Codes
-
-* DLL Wrapper for C# / Java
-
-* Command Line Interface:
-   * CLI Loop
-   * History
-   * Settings: 
-     * Log steps count
-     * Function (DB) files to load (e.g. "trigo.db","stats.db" etc.)
-
-*  Functions Parser:
-   * Built-In functions: ANS, abs, exp, sin, cos, etc. -> DONE!
-   * Define functions mechanism ( e.g. "f(x,y):=32*x+y" ) -> DONE!
-   * Store functions, mechanisms: RAM (volatile), SQLiteDB (static)
-   * Parse operations with functions ( e.g. "f(21,34)" ) -> DONE!
-   * Lambda functions (infinite length)
-
-## Contribution
-
-If you want to contribute to this project, you are very welcome! Also if you want to use the algorithm in one of
-your projects, please feel free :-) However if you want to contribute to the core project, please mail me what you
-are planning to do so that we don't work both at the same improvement.
-
-Sorry for the rather basic commenting, this will be improved in future versions...
+- Matrix integration
+- Data structure 3.0 (multiway tree)
+- Solver prototype
