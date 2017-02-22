@@ -20,7 +20,7 @@ constants by using the <code>:=</code> operator.
 <br>
 <br>
 Input:<br><code>java -jar cc.jar 2+3 ans\*5</code><br>
-Output:<br><code>2+3 = 5<br>ans*5 = 25</code>
+Output:<br><code>2+3 = 5</code><br><code>ans*5 = 25</code>
 </code>
 
 ## Dependencies
